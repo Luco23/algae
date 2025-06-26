@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Microalgas - Tema Acuicultura</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-image: url('https://i.ytimg.com/vi/bLiVhw3Jb-E/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AHUBoAC4AOKAgwIABABGBMgMSh_MA8=&rs=AOn4CLD0DpFlOgSvetyS_ndGFGGDcP1KUw');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #e0f2f7;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Filtro de color azul translúcido al fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 40, 80, 0.7); /* Azul oscuro translúcido, ligeramente más opaco */
+  z-index: -1;
+}
+
+/* Encabezado principal centrado con animación suave e icono */
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(2, 62, 138, 0.85);
+  padding: 20px 40px;
+  border-radius: 15px;
+  margin-bottom: 35px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  font-size: 2.8em;
+  color: #ffffff;
+  letter-spacing: 1px;
+  max-width: 90%;
+  width: auto; /* Ancho automático para ajustarse al contenido */
+  box-sizing: border-box;
+  animation: pulse 2.5s infinite alternate ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+/* Icono decorativo del título */
+h1::before {
+  content: "🧫"; /* Emoji de microalga */
+  margin-right: 20px;
+  font-size: 1.2em;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+  to {
+    transform: scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Contenedores de grupos de algas */
+#catalogo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.grupo {
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
+  background-color: rgba(0, 119, 182, 0.65);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grupo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.grupo h2 {
+  background-color: rgba(0, 150, 199, 0.85);
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  font-size: 2em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+ul {
+  columns: 2;
+  padding-left: 0;
+  list-style: none;
+}
+
+li {
+  margin: 10px 0;
+  cursor: pointer;
+  color: #90e0ef;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  padding: 5px 0;
+  font-size: 1.1em;
+  outline: none;
+}
+
+li:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+li:focus {
+    color: #ffffff;
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+
+/* Sección de resultados (imagen) */
+#result {
+  margin-top: 40px;
+  text-align: center;
+  background-color: rgba(0, 119, 182, 0.65);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  max-width: 90%;
+  width: 800px;
+  box-sizing: border-box;
+}
+
+#result h2 {
+  color: #ffffff;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.imagen-container {
+  position: relative;
+  display: inline-block;
+  margin: 30px 0;
+}
+
+#result img {
+  max-width: 100%;
+  height: auto;
+  max-height: 450px;
+  border: 7px solid #ffffff;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+#result img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.pantalla-completa-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.pantalla-completa-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-2px);
+}
+
+/* Indicador de carga */
+#cargando {
+  font-size: 22px;
+  color: #90e0ef;
+  margin: 30px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Estilo del spinner */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #90e0ef;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Botón de búsqueda en Google */
+#buscarImagen {
+  display: none;
+  margin-top: 30px;
+  padding: 15px 30px;
+  background-color: #00b4d8;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+#buscarImagen:hover {
+  background-color: #0096c7;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Modal de pantalla completa */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  overflow: auto;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 95%;
+  max-height: 95%;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+.modal img {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  display: block;
+  border-radius: 5px;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.cerrar-modal:hover {
+  color: #a0d9ef;
+  transform: scale(1.1);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 900px) {
+  h1 {
+    font-size: 2.2em;
+    padding: 20px 30px;
+  }
+  #catalogo {
+    flex-direction: column;
+    align-items: center;
+  }
+  .grupo {
+    max-width: 90%;
+  }
+  ul {
+    columns: 1;
+  }
+  #result {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.6em;
+    padding: 15px 20px;
+    flex-direction: column;
+  }
+  h1::before {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .grupo h2 {
+    font-size: 1.5em;
+  }
+  #result h2 {
+    font-size: 1.8em;
+  }
+  #result img {
+    max-height: 300px;
+  }
+  .pantalla-completa-btn {
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  #buscarImagen {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+  .cerrar-modal {
+    font-size: 35px;
+    top: 15px;
+    right: 25px;
+  }
+}
+</style>
+</head>
+<body>
+<h1>Microalgas</h1>
+<div id="catalogo"></div>
+<div id="result">
+<h2 id="algaSeleccionada">Selecciona una microalga</h2>
+<div id="cargando" style="display:none;">
+    <div class="spinner"></div>
+    CARGANDO, ESPERA...
+</div>
+<div class="imagen-container" style="display:none;" id="contenedorImagen">
+<img id="imagenAlga" src="" alt="">
+<button class="pantalla-completa-btn" onclick="abrirPantallaCompleta()" aria-label="Ampliar imagen de la microalga">🔍 Ampliar</button>
+</div>
+<br>
+<button id="buscarImagen" onclick="buscarEnGoogleImages()" aria-label="Buscar esta microalga en Google Imágenes">Buscar en Google Imágenes</button>
+</div>
+
+<div id="modalImagen" class="modal" role="dialog" aria-modal="true" aria-label="Imagen en pantalla completa" onclick="cerrarModal()">
+<span class="cerrar-modal" onclick="cerrarModal()" aria-label="Cerrar imagen en pantalla completa">&times;</span>
+<div class="modal-content">
+<img id="imagenModal" src="" alt="">
+</div>
+</div>
+<script>
+const gruposOriginales = {
+    "Cianofitas": [
+        "Spirulina", "Oscillatoria", "Merismopedia", "Rivularia", "Nostoc",
+        "Anabaena", "Microcystis", "Lyngbya", "Micrasterias"
+    ],
+    "Diatomeas": [
+        "Skeletonema", "Chaetocero", "Rhizosolenia", "Biddulphia", "Thalassiosira",
+        "Coscinodiscus", "Pleurosigma", "Gyrosigma", "Ditylum", "Navícula",
+        "Pinnularia", "Asterionella", "Tabellaría"
+    ],
+    "Dinoflagelados": [
+        "Ceratium", "Dinophysis", "Noctiluca", "Peridinium", "Gymnodinium"
+    ],
+    "Clorofitas": [
+        "Tetraselmis", "Dunaliella", "Chlamydomona", "Chlorella", "Pediastrum",
+        "Closterium", "Cosmarium", "Ankistrodesmus", "Scenedesmus", "Volvox",
+        "Spirogyra", "Oedogonium", "Zygnema", "Ulva", "Codium"
+    ],
+    "Euglenofitas": [
+        "Euglena", "Phacus", "Paranema"
+    ],
+    "Feofitas": [
+        "Padina", "Sargassum"
+    ],
+    "Rodofitas": [
+        "Corallina"
+    ]
+};
+
+// --- NUEVO SUBTÍTULO: ALGAS EXTRAS ---
+const gruposExtra = {
+    "Cianofitas (Extra)": [
+        "Nodularia", "Arthrospira", "Aphanizomenom", "Cylindrospermun", "Gloeocapsa",
+        "Anacystis"
+    ],
+    "Diatomeas (Extra)": [
+        "Melosira", "Bacteriastrum", "Lithodesmium", "Triceratium", "Tlalassiotrix", "Asterionella",
+        "Nitzchia", "Surilella", "Diploneis", "Amphora", "Dictyocha", "Meridion",
+        "Gompkonema", "Fragilaria"
+    ],
+    "Euglenofitas (Extra)": [
+        "Astasia"
+    ],
+    "Clorofitas (Extra)": [
+        "Pandorina", "Gonium", "Staurastrum", "Chlamydomonas", "Nitella", "Caulerpa",
+        "Enteromorpha", "Ulothrix", "Chaetomorpha", "Rhizoclonium", "Halimeda",
+        "Euastrium", "Palmella", "Coelastrum", "Chlorococcum", "Hidrodictium"
+    ],
+    "Feofitas (Extra)": [
+        "Laminaria", "Undaria", "Colpomenia", "Dicyota"
+    ],
+    "Rodofitas (Extra)": [
+        "Gracilaria", "Gigartina", "Chondrus", "Kappaphycus"
+    ]
+};
+
+// Combinar los grupos originales y los extras
+const grupos = { ...gruposOriginales };
+for (const grupoExtra in gruposExtra) {
+    grupos[grupoExtra] = gruposExtra[grupoExtra];
+}
+
+const catalogo = document.getElementById("catalogo");
+const algaSeleccionada = document.getElementById("algaSeleccionada");
+const imagenAlga = document.getElementById("imagenAlga");
+const botonImagen = document.getElementById("buscarImagen");
+const contenedorImagen = document.getElementById("contenedorImagen");
+const cargando = document.getElementById("cargando");
+
+// Genera dinámicamente las secciones de grupos y listas de microalgas
+for (const grupo in grupos) {
+    const divGrupo = document.createElement("div");
+    divGrupo.className = "grupo";
+    divGrupo.setAttribute("role", "group");
+    divGrupo.setAttribute("aria-labelledby", `grupo-${grupo.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`); // Limpiar ID
+
+    const h2 = document.createElement("h2");
+    h2.textContent = grupo;
+    h2.id = `grupo-${grupo.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`; // Limpiar ID para evitar caracteres especiales
+    divGrupo.appendChild(h2);
+
+    const ul = document.createElement("ul");
+    ul.setAttribute("role", "list");
+
+    grupos[grupo].forEach(nombre => {
+        const li = document.createElement("li");
+        li.textContent = nombre;
+        li.onclick = () => mostrarAlga(nombre);
+        li.setAttribute("role", "listitem");
+        li.setAttribute("tabindex", "0");
+        li.setAttribute("aria-label", `Seleccionar ${nombre}`);
+        li.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                mostrarAlga(nombre);
+            }
+        });
+        ul.appendChild(li);
+    });
+    divGrupo.appendChild(ul);
+    catalogo.appendChild(divGrupo);
+}
+
+async function mostrarAlga(nombre) {
+    algaSeleccionada.textContent = nombre;
+    contenedorImagen.style.display = "none";
+    cargando.style.display = "flex";
+    botonImagen.style.display = "inline-block";
+    botonImagen.dataset.nombre = nombre;
+    localStorage.setItem('ultimaAlgaSeleccionada', nombre);
+
+    await buscarImagenAutomatica(nombre);
+}
+
+async function buscarImagenAutomatica(nombre) {
+    try {
+        const imagenEspecifica = obtenerImagenEspecifica(nombre);
+        if (imagenEspecifica) {
+            const esValida = await verificarImagen(imagenEspecifica);
+            if (esValida) {
+                mostrarImagen(imagenEspecifica, `${nombre} - Vista microscópica`);
+                return;
+            } else {
+                console.warn(`La imagen específica para ${nombre} no cargó: ${imagenEspecifica}`);
+            }
+        }
+
+        const imagenWiki = await buscarEnWikimediaCommons(nombre);
+        if (imagenWiki) {
+            const esValida = await verificarImagen(imagenWiki);
+            if (esValida) {
+                mostrarImagen(imagenWiki, `${nombre} - Wikimedia Commons`);
+                return;
+            } else {
+                console.warn(`La imagen de Wikimedia para ${nombre} no cargó: ${imagenWiki}`);
+            }
+        }
+
+        const imagenINaturalist = await buscarEnINaturalist(nombre);
+        if (imagenINaturalist) {
+            const esValida = await verificarImagen(imagenINaturalist);
+            if (esValida) {
+                mostrarImagen(imagenINaturalist, `${nombre} - iNaturalist Ecuador`);
+                return;
+            } else {
+                console.warn(`La imagen de iNaturalist para ${nombre} no cargó: ${imagenINaturalist}`);
+            }
+        }
+
+        cargando.style.display = "none";
+        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">No se encontró imagen disponible</small>`;
+    } catch (error) {
+        console.error("Error buscando imagen automáticamente:", error);
+        cargando.style.display = "none";
+        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">Error al cargar imagen</small>`;
+    }
+}
+
+function obtenerImagenEspecifica(nombre) {
+    const imagenesEspecificas = {
+        // Cianofitas Originales
+        "Spirulina": "https://atlasofcyanobacteria.com/Cyanobacteria/Spirulinales/Spirulinaceae/Spirulina/major/spirulina-major-151.jpg",
+        "Oscillatoria": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Oscillatoria_limosa.jpg/400px-Oscillatoria_limosa.jpg",
+        "Merismopedia": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Merismopedia_elegans.jpg/400px-Merismopedia_elegans.jpg",
+        "Rivularia": "https://atlasofcyanobacteria.com/Cyanobacteria/Nostocales/Rivulariaceae/Rivularia/minutula/rivularia-minutula-473.jpg",
+        "Nostoc": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Nostoc_commune.jpg/400px-Nostoc_commune.jpg",
+        "Anabaena": "https://atlasofcyanobacteria.com/Cyanobacteria/Nostocales/Nostocaceae/Anabaena/oscillarioides/anabaena-oscillarioides-624.jpg",
+        "Microcystis": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Microcystis_aeruginosa.jpg/400px-Microcystis_aeruginosa.jpg",
+
+        // Diatomeas Originales
+        "Skeletonema": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Skeletonema_costatum.jpg/400px-Skeletonema_costatum.jpg",
+        "Chaetocero": "https://inaturalist-open-data.s3.amazonaws.com/photos/82380/original.png",
+        "Rhizosolenia": "https://cfb.unh.edu/phycokey/Choices/Bacillariophyceae/Centric/Centric_Unicells/RHIZOSOLENIA/Rhizosolenia_08_600x452.jpg",
+        "Coscinodiscus": "https://inaturalist-open-data.s3.amazonaws.com/photos/5578370/original.jpeg",
+        "Tabellaría": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tabellaria_fenestrata.jpg/400px-Tabellaria_fenestrata.jpg",
+        "Navícula": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Navicula_sp.jpg/400px-Navicula_sp.jpg",
+        "Pinnularia": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Pinnularia_viridis.jpg/400px-Pinnularia_viridis.jpg",
+
+        // Dinoflagelados Originales
+        "Ceratium": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ceratium_hirundinella.jpg/400px-Ceratium_hirundinella.jpg",
+        "Noctiluca": "https://live.staticflickr.com/4406/36620227182_24e2553a93_b.jpg",
+        "Peridinium": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Peridinium_willei.jpg/400px-Peridinium_willei.jpg",
+
+        // Clorofitas Originales
+        "Tetraselmis": "https://inaturalist-open-data.s3.amazonaws.com/photos/197884735/large.jpg",
+        "Dunaliella": "https://www.researchgate.net/publication/281482708/figure/fig4/AS:1088567342309377@1636546087119/Dunaliella-sp-microalga-48.jpg",
+        "Chlorella": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chlorella_vulgaris.jpg/400px-Chlorella_vulgaris.jpg",
+        "Ulva": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Meersalat-Ulva-lactuca.jpg",
+        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C/Oedogonium-filaments-oogonia.jpg",
+        "Scenedesmus": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Scenedesmus_quadricauda.jpg/400px-Scenedesmus_quadricauda.jpg",
+        "Volvox": "https://cdn.britannica.com/04/40604-004-AFBDAA4A/Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg",
+        "Spirogyra": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Spirogyra_sp.jpg/400px-Spirogyra_sp.jpg",
+        "Ankistrodesmus": "https://img.algaebase.org/images/AC1F05100321923A15IUB4E5FD00/e1w3pbYnHD9H.jpg",
+
+        // Euglenofitas Originales
+        "Euglena": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Euglena_gracilis.jpg/400px-Euglena_gracilis.jpg",
+        "Phacus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Phacus_longicauda.jpg/400px-Phacus_longicauda.jpg",
+        "Paranema": "https://live.staticflickr.com/3262/2657110932_5a19728509_c.jpg",
+
+        // Feofitas Originales
+        "Padina": "https://www.cibsub.cat/rcs_gene/Padina_pavonica000.jpg",
+        "Sargassum": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg/960px-Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg",
+
+        // Rodofitas Originales
+        "Corallina": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Corallina_officinalis.jpg/400px-Corallina_officinalis.jpg",
+
+        // --- Nuevas Algas (puedes añadir URLs específicas aquí si las tienes) ---
+        // Cianofitas (Extra)
+        "Nodularia": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Nodularia_spumigena_02.jpg/400px-Nodularia_spumigena_02.jpg",
+        "Arthrospira": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Arthrospira_platensis.jpg/400px-Arthrospira_platensis.jpg",
+        "Aphanizomenom": "https://img.algaebase.org/images/5B7BE95A076ca2A24CplH2C4D9E6/QH2wrmBHskRF.jpg",
+        "Cylindrospermun": "https://www.shetlandlochs.com/site/assets/files/2785/v49_r6.jpg",
+        "Gloeocapsa": "https://inaturalist-open-data.s3.amazonaws.com/photos/7956217/large.jpg",
+        "Anacystis": "https://inaturalist-open-data.s3.amazonaws.com/photos/45077704/medium.jpg",
+
+        // Diatomeas (Extra)
+        "Melosira": "https://inaturalist-open-data.s3.amazonaws.com/photos/21305667/original.jpg",
+        "Bacteriastrum": "https://www.biol.lu.se/fytoplankton/diatoms/Bacteriastrum_hyalinum.jpg",
+        "Lithodesmium": "https://static.inaturalist.org/photos/217423517/large.png",
+        "Triceratium": "https://img.algaebase.org/images/60162F0911c080308AWkr31A74EB/VEGLiw3Z5Sca.jpg",
+        "Asterionella": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Asterionella_formosa.jpg/400px-Asterionella_formosa.jpg",
+        "Nitzchia": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Nitzschia_acicularis.jpg/400px-Nitzschia_acicularis.jpg",
+        "Surilella": "https://live.staticflickr.com/3155/2831738286_1d6e6cae35_c.jpg",
+        "Diploneis": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Diploneis_smithii_var._dilatata.jpg/400px-Diploneis_smithii_var._dilatata.jpg",
+        "Amphora": "https://inaturalist-open-data.s3.amazonaws.com/photos/449576/original.jpg",
+        "Dictyocha": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Dictyocha_speculum.jpg/400px-Dictyocha_speculum.jpg",
+        "Meridion": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Meridion_circulare.jpg/400px-Meridion_circulare.jpg",
+        "Gompkonema": "https://www.landcareresearch.co.nz/assets/Tools-And-Resources/Identification/algae/gomphonema1000__ScaleWidthWzEwMjRd.jpg",
+        "Fragilaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fragilaria_crotonensis.jpg/400px-Fragilaria_crotonensis.jpg",
+        "Thalassiothrix": "https://marinebiodiversity.org.bd/wp-content/uploads/2024/01/Thalassionema-spp._-GBIF.jpg",
+
+        // Euglenofitas (Extra)
+        "Astasia": "https://live.staticflickr.com/2236/3533572343_bbdf18f6dd_c.jpg",
+
+        // Clorofitas (Extra)
+        "Pandorina": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Pandorina_morum.jpg/400px-Pandorina_morum.jpg",
+        "Gonium": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gonium_pectorale_2.jpg/400px-Gonium_pectorale_2.jpg",
+        "Staurastrum": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Staurastrum_cingulum.jpg/400px-Staurastrum_cingulum.jpg",
+        "Chlamydomonas": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Chlamydomonas_reinhardtii.jpg/400px-Chlamydomonas_reinhardtii.jpg",
+        "Nitella": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Nitella_flexilis.jpg/400px-Nitella_flexilis.jpg",
+        "Caulerpa": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Caulerpa_taxifolia.jpg/400px-Caulerpa_taxifolia.jpg",
+        "Enteromorpha": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ulva_intestinalis_-_gut_weed.jpg/400px-Ulva_intestinalis_-_gut_weed.jpg",
+        "Ulothrix": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Ulothrix.jpg/400px-Ulothrix.jpg",
+        "Chaetomorpha": "https://turismo.santander.es/inventario-litoral/sites/default/files/2022-06/Cheatomorpha_sp.jpg",
+        "Rhizoclonium": "https://www.landcareresearch.co.nz/assets/Tools-And-Resources/Identification/algae/rhizoclonium640__ScaleWidthWzEwMjRd.jpg",
+        "Halimeda": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Halimeda_incrassata.jpg/400px-Halimeda_incrassata.jpg",
+        "Euastrium": "https://upload.wikimedia.org/wikipedia/commons/8/89/Bancs%C3%B3_2021_Fig_9-14_Euastrum_oblongum_cropped.jpg",
+        "Palmella": "https://img.algaebase.org/images/AC1F25A604fc430D59wKB5097BFA/mtWA32AnPEGt.jpg",
+        "Coelastrum": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Coelastrum_sphaericum.jpg/400px-Coelastrum_sphaericum.jpg",
+        "Chlorococcum": "https://inaturalist-open-data.s3.amazonaws.com/photos/366346219/original.jpg",
+        "Hidrodictium": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Hydrodictyon_amimidoro01.jpg/250px-Hydrodictyon_amimidoro01.jpg",
+
+        // Feofitas (Extra)
+        "Laminaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Laminaria_digitata_-_NHMW-Botanik.jpg/400px-Laminaria_digitata_-_NHMW-Botanik.jpg",
+        "Undaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Undaria_pinnatifida_alga.jpg/400px-Undaria_pinnatifida_alga.jpg",
+        "Colpomenia": "https://inaturalist-open-data.s3.amazonaws.com/photos/6723579/large.jpeg",
+        "Dicyota": "https://inaturalist-open-data.s3.amazonaws.com/photos/314113912/original.jpeg",
+
+        // Rodofitas (Extra)
+        "Gracilaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Gracilaria_salicornia.jpg/400px-Gracilaria_salicornia.jpg",
+        "Gigartina": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gigartina_pistillata_1.jpg/400px-Gigartina_pistillata_1.jpg",
+        "Chondrus": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Chondrus_crispus_at_low_tide.jpg/400px-Chondrus_crispus_at_low_tide.jpg",
+        "Kappaphycus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Kappaphycus_alvarezii_farm.jpg/400px-Kappaphycus_alvarezii_farm.jpg"
+    };
+
+    return imagenesEspecificas[nombre] || null;
+}
+
+async function buscarEnWikimediaCommons(nombre) {
+    try {
+        const queries = [`${nombre}`, `${nombre} algae`, `${nombre} microalgae`];
+
+        for (const query of queries) {
+            const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&srlimit=3&origin=*`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.query && data.query.search && data.query.search.length > 0) {
+                for (const resultado of data.query.search) {
+                    const archivo = resultado.title.replace('File:', '');
+                    const imagenUrl = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(archivo)}`;
+
+                    if (await verificarImagen(imagenUrl)) {
+                        return imagenUrl;
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.log("Error en Wikimedia:", error);
+    }
+    return null;
+}
+
+async function buscarEnINaturalist(nombre) {
+    try {
+        const queries = [
+            nombre.toLowerCase(),
+            `${nombre.toLowerCase()} algae`,
+            `${nombre.toLowerCase()} microalgae`,
+            `${nombre.toLowerCase()} phytoplankton`
+        ];
+
+        for (const query of queries) {
+            try {
+                const url = `https://api.inaturalist.org/v1/observations?q=${encodeURIComponent(query)}&place_id=7509&photos=true&per_page=5&quality_grade=research`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.results && data.results.length > 0) {
+                    for (const observation of data.results) {
+                        if (observation.photos && observation.photos.length > 0) {
+                            const foto = observation.photos[0];
+                            const imagenUrl = foto.url.replace('square', 'original');
+
+                            if (await verificarImagen(imagenUrl)) {
+                                return imagenUrl;
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log(`Error con query "${query}" en iNaturalist:`, error);
+                continue;
+            }
+        }
+    } catch (error) {
+        console.log("Error general en iNaturalist:", error);
+    }
+    return null;
+}
+
+async function verificarImagen(url) {
+    if (!url) return false;
+
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+
+        setTimeout(() => {
+            if (!img.complete || img.naturalWidth === 0) {
+                resolve(false);
+            }
+        }, 4000);
+    });
+}
+
+function mostrarImagen(url, descripcion) {
+    cargando.style.display = "none";
+    imagenAlga.src = url;
+    imagenAlga.alt = descripcion;
+    imagenAlga.setAttribute('aria-label', `Imagen de ${descripcion}`);
+    contenedorImagen.style.display = "inline-block";
+}
+
+function abrirPantallaCompleta() {
+    const modal = document.getElementById("modalImagen");
+    const imagenModal = document.getElementById("imagenModal");
+
+    imagenModal.src = imagenAlga.src;
+    imagenModal.alt = imagenAlga.alt;
+    imagenModal.setAttribute('aria-label', `Imagen ampliada de ${imagenAlga.alt}`);
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+function cerrarModal() {
+    const modal = document.getElementById("modalImagen");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        cerrarModal();
+    }
+});
+
+function buscarEnGoogleImages() {
+    const nombre = botonImagen.dataset.nombre;
+    const query = `${nombre} microalga microscope`;
+    const url = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(query)}`;
+    window.open(url, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const ultimaAlga = localStorage.getItem('ultimaAlgaSeleccionada');
+    if (ultimaAlga) {
+        mostrarAlga(ultimaAlga);
+    }
+});
+
+</script>
+</body>
+</html>
