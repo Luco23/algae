@@ -3,403 +3,772 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Microalgas - Tema Acuicultura</title>
+<title>Catálogo de Microalgas - Acuicultura</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <style>
+/* Variables CSS para modo claro/oscuro */
+:root {
+    /* Colores base para el modo claro */
+    --bg-color-light: #e0f7fa; /* Azul muy claro, casi blanco */
+    --bg-filter-light: rgba(10, 40, 80, 0.7); /* Azul oscuro translúcido */
+    --text-color-light: #001f3f; /* Azul marino oscuro */
+    --heading-bg-light: rgba(0, 70, 120, 0.9); /* Azul oscuro para título principal */
+    --card-bg-light: rgba(255, 255, 255, 0.85); /* Blanco translúcido para tarjetas */
+    --card-border-light: rgba(0, 119, 182, 0.3); /* Borde azul suave */
+    --list-bg-light: rgba(255, 255, 255, 0.95); /* Blanco casi opaco para fondo de lista */
+    --list-item-color-light: #004080; /* Azul oscuro para ítems, mejor contraste */
+    --list-item-hover-bg-light: rgba(0, 119, 182, 0.1); /* Azul muy claro al hover */
+    --button-bg-light: #0096c7; /* Azul turquesa para botones */
+    --button-hover-light: #0077b6; /* Azul más oscuro al hover */
+    --search-bg-light: rgba(255, 255, 255, 0.95); /* Blanco casi opaco para buscador */
+    --search-text-light: #333;
+    --placeholder-light: #888;
+    --image-border-light: #0096c7; /* Borde de imagen turquesa */
+    --image-bg-light: rgba(255, 255, 255, 0.95);
+    --modal-bg: rgba(0, 0, 0, 0.95);
+    --modal-close-color: #fff;
+    --modal-close-hover: #a0d9ef;
+    --spinner-color: #0096c7; /* Turquesa para spinner */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+
+    /* Colores base para el modo oscuro */
+    --bg-color-dark: #1a202c; /* Gris azulado oscuro */
+    --bg-filter-dark: rgba(0, 0, 0, 0.85); /* Negro más opaco */
+    --text-color-dark: #e2e8f0; /* Gris claro */
+    --heading-bg-dark: rgba(26, 32, 44, 0.9); /* Gris muy oscuro para título principal */
+    --card-bg-dark: rgba(45, 55, 72, 0.9); /* Gris oscuro para tarjetas */
+    --card-border-dark: rgba(74, 85, 104, 0.5); /* Borde gris más claro */
+    --list-bg-dark: rgba(45, 55, 72, 0.95); /* Gris oscuro casi opaco para fondo de lista */
+    --list-item-color-dark: #90cdf4; /* Azul claro para ítems */
+    --list-item-hover-bg-dark: rgba(100, 116, 139, 0.2); /* Gris azulado al hover */
+    --button-bg-dark: #4299e1; /* Azul brillante para botones */
+    --button-hover-dark: #3182ce; /* Azul más oscuro al hover */
+    --search-bg-dark: rgba(60, 60, 60, 0.95);
+    --search-text-dark: #e2e8f0;
+    --placeholder-dark: #a0aec0;
+    --image-border-dark: #4299e1;
+    --image-bg-dark: rgba(25, 25, 25, 0.95);
+    --spinner-color-dark: #4299e1;
+    --shadow-color-dark: rgba(0, 0, 0, 0.7);
+}
+
+/* Aplicar colores del modo oscuro */
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); /* Sombra más fuerte en oscuro */
+}
+
+body.dark-mode::before {
+    background: var(--bg-filter-dark);
+}
+
+body.dark-mode h1 {
+    background-color: var(--heading-bg-dark);
+    box-shadow: 0 8px 20px var(--shadow-color-dark);
+}
+
+body.dark-mode .grupo {
+    background-color: var(--card-bg-dark);
+    border: 1px solid var(--card-border-dark);
+    box-shadow: 0 6px 15px var(--shadow-color-dark);
+}
+
+body.dark-mode .grupo:hover {
+    box-shadow: 0 10px 25px var(--shadow-color-dark);
+}
+
+body.dark-mode .grupo h2 {
+    /* El color de fondo de h2 se manejará con JS para los colores únicos */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode ul {
+    background-color: var(--list-bg-dark);
+}
+
+body.dark-mode li {
+    color: var(--list-item-color-dark);
+}
+
+body.dark-mode li:hover {
+    background-color: var(--list-item-hover-bg-dark);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode li:focus {
+    background-color: var(--list-item-hover-bg-dark);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode #result {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 6px 15px var(--shadow-color-dark);
+}
+
+body.dark-mode #result h2 {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode #result img {
+    border: 7px solid var(--image-border-dark);
+    background: var(--image-bg-dark);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode #result img:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode #cargando {
+    color: var(--spinner-color-dark);
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.95);
+}
+
+body.dark-mode .spinner {
+    border-top: 4px solid var(--spinner-color-dark);
+}
+
+body.dark-mode #buscarImagen {
+    background-color: var(--button-bg-dark);
+    box-shadow: 0 5px 12px var(--shadow-color-dark);
+}
+
+body.dark-mode #buscarImagen:hover {
+    background-color: var(--button-hover-dark);
+    box-shadow: 0 8px 15px var(--shadow-color-dark);
+}
+
+body.dark-mode #mode-toggle {
+    background-color: var(--button-bg-dark);
+    box-shadow: 0 4px 10px var(--shadow-color-dark);
+}
+
+body.dark-mode #mode-toggle:hover {
+    background-color: var(--button-hover-dark);
+    box-shadow: 0 6px 15px var(--shadow-color-dark);
+}
+
+body.dark-mode #search-input {
+    background-color: var(--search-bg-dark);
+    color: var(--search-text-dark);
+    box-shadow: 0 4px 10px var(--shadow-color-dark);
+}
+
+body.dark-mode #search-input::placeholder {
+    color: var(--placeholder-dark);
+}
+
+body.dark-mode #search-input:focus {
+    box-shadow: 0 6px 15px var(--shadow-color-dark);
+}
+
 /* Estilos generales */
 body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-image: url('https://i.ytimg.com/vi/bLiVhw3Jb-E/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AHUBoAC4AOKAgwIABABGBMgMSh_MA8=&rs=AOn4CLD0DpFlOgSvetyS_ndGFGGDcP1KUw');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #e0f2f7;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  position: relative;
-  z-index: 1;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://i.ytimg.com/vi/bLiVhw3Jb-E/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AHUBoAC4AOKAgwIABABGBMgMSh_MA8=&rs=AOn4CLD0DpFlOgSvetyS_ndGFGGDcP1KUw');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-color-light);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Filtro de color azul translúcido al fondo */
 body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 40, 80, 0.7); /* Azul oscuro translúcido, ligeramente más opaco */
-  z-index: -1;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-filter-light);
+    z-index: -1;
+    transition: background 0.5s ease;
 }
 
 /* Encabezado principal centrado con animación suave e icono */
 h1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: rgba(2, 62, 138, 0.85);
-  padding: 20px 40px;
-  border-radius: 15px;
-  margin-bottom: 35px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  font-size: 2.8em;
-  color: #ffffff;
-  letter-spacing: 1px;
-  max-width: 90%;
-  width: auto; /* Ancho automático para ajustarse al contenido */
-  box-sizing: border-box;
-  animation: pulse 2.5s infinite alternate ease-in-out;
-  transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--heading-bg-light);
+    padding: 20px 40px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    font-size: 2.8em;
+    color: #ffffff;
+    letter-spacing: 1px;
+    max-width: 90%;
+    width: auto;
+    box-sizing: border-box;
+    animation: pulse 2.5s infinite alternate ease-in-out;
+    transition: transform 0.3s ease, background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 /* Icono decorativo del título */
 h1::before {
-  content: "🧫"; /* Emoji de microalga */
-  margin-right: 20px;
-  font-size: 1.2em;
-  filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+    content: "🧫"; /* Emoji de microalga */
+    margin-right: 20px;
+    font-size: 1.2em;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
 }
 
 @keyframes pulse {
-  from {
-    transform: scale(1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  }
-  to {
-    transform: scale(1.03);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
-  }
+    from {
+        transform: scale(1);
+        box-shadow: 0 8px 20px var(--shadow-color);
+    }
+    to {
+        transform: scale(1.03);
+        box-shadow: 0 12px 28px var(--shadow-color);
+    }
+}
+
+/* Contenedor principal para el buscador y el catálogo */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Buscador de algas */
+#search-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+#search-input {
+    width: calc(100% - 40px);
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    background-color: var(--search-bg-light);
+    color: var(--search-text-light);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#search-input::placeholder {
+    color: var(--placeholder-light);
+}
+
+#search-input:focus {
+    box-shadow: 0 6px 15px var(--shadow-color);
+    transform: translateY(-2px);
 }
 
 /* Contenedores de grupos de algas */
 #catalogo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  max-width: 1200px;
-  width: 100%;
-  margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    width: 100%;
+    margin-bottom: 30px;
 }
 
+/* Estilo de la tarjeta de grupo (acordeón) */
 .grupo {
-  flex: 1;
-  min-width: 280px;
-  max-width: 380px;
-  background-color: rgba(0, 119, 182, 0.65);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    background-color: var(--card-bg-light);
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px var(--shadow-color);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--card-border-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease;
+    overflow: hidden;
 }
 
 .grupo:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--shadow-color);
 }
 
 .grupo h2 {
-  background-color: rgba(0, 150, 199, 0.85);
-  color: #ffffff;
-  padding: 15px 20px;
-  border-radius: 10px;
-  margin-top: -10px;
-  margin-bottom: 25px;
-  font-size: 2em;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-  text-align: center;
+    color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 15px 15px 0 0;
+    margin: 0;
+    font-size: 2em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grupo h2::after {
+    content: '▼';
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.grupo.active h2::after {
+    transform: rotate(180deg);
+}
+
+.grupo.active h2 {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 ul {
-  columns: 2;
-  padding-left: 0;
-  list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding-left: 0;
+    list-style: none;
+    background-color: var(--list-bg-light);
+    padding-bottom: 0;
+    border-radius: 0 0 15px 15px;
+}
+
+.grupo.active ul {
+    max-height: 2000px; /* Aumentado para asegurar visibilidad en móvil */
+    padding-bottom: 20px;
+    padding-top: 10px;
+    transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+    overflow-y: auto; /* Permite el desplazamiento vertical si el contenido excede el max-height */
 }
 
 li {
-  margin: 10px 0;
-  cursor: pointer;
-  color: #90e0ef;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-  padding: 5px 0;
-  font-size: 1.1em;
-  outline: none;
+    margin: 5px 20px;
+    cursor: pointer;
+    color: var(--list-item-color-light); /* Color mejorado para legibilidad */
+    transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease;
+    padding: 8px 10px;
+    font-size: 1.1em;
+    outline: none;
+    border-radius: 5px;
+}
+
+/* Asegura que el texto sea visible en modo claro y oscuro */
+.grupo.active li {
+    color: var(--text-color-light); /* En modo claro, usa un color oscuro para el texto */
+}
+
+body.dark-mode .grupo.active li {
+    color: #ffffff; /* En modo oscuro, usa blanco para el texto */
 }
 
 li:hover {
-  color: #ffffff;
-  text-decoration: underline;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    color: #ffffff;
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    background-color: var(--list-item-hover-bg-light);
 }
 
 li:focus {
     color: #ffffff;
     text-decoration: underline;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--list-item-hover-bg-light);
     border-radius: 5px;
+}
+
+/* Resaltado para la búsqueda */
+li.search-highlight {
+    background-color: rgba(255, 255, 0, 0.3); /* Amarillo translúcido */
+    color: #333 !important; /* Asegura buen contraste */
+    font-weight: bold;
+    text-shadow: none;
+}
+body.dark-mode li.search-highlight {
+    background-color: rgba(255, 255, 0, 0.2);
+    color: #fff !important;
 }
 
 
 /* Sección de resultados (imagen) */
 #result {
-  margin-top: 40px;
-  text-align: center;
-  background-color: rgba(0, 119, 182, 0.65);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px);
-  max-width: 90%;
-  width: 800px;
-  box-sizing: border-box;
+    margin-top: 40px;
+    text-align: center;
+    background-color: var(--card-bg-light);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px var(--shadow-color);
+    backdrop-filter: blur(4px);
+    max-width: 90%;
+    width: 800px;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 #result h2 {
-  color: #ffffff;
-  font-size: 2.2em;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .imagen-container {
-  position: relative;
-  display: inline-block;
-  margin: 30px 0;
+    position: relative;
+    display: inline-block;
+    margin: 30px 0;
+    overflow: hidden;
+    border-radius: 12px;
 }
 
 #result img {
-  max-width: 100%;
-  height: auto;
-  max-height: 450px;
-  border: 7px solid #ffffff;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: block;
-  margin: 0 auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+    height: auto;
+    max-height: 450px; /* Altura máxima para desktop */
+    border: 7px solid var(--image-border-light);
+    padding: 10px;
+    background: var(--image-bg-light);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Transición suave para zoom */
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
 }
 
 #result img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    transform: scale(1.05); /* Efecto de zoom suave */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 .pantalla-completa-btn {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 15px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .pantalla-completa-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
-  transform: translateY(-2px);
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+}
+
+/* Estilos para la marca de agua */
+.watermark {
+    position: absolute;
+    bottom: 15px; /* Ajusta la posición vertical */
+    left: 15px; /* Ajusta la posición horizontal */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+    color: rgba(255, 255, 255, 0.8); /* Color del texto semi-transparente */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    pointer-events: none; /* Asegura que no interfiera con clics en la imagen */
+    backdrop-filter: blur(2px); /* Efecto de desenfoque para el fondo de la marca de agua */
+    font-weight: bold;
 }
 
 /* Indicador de carga */
 #cargando {
-  font-size: 22px;
-  color: #90e0ef;
-  margin: 30px 0;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+    font-size: 22px;
+    color: var(--spinner-color);
+    margin: 30px 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
 }
 
 /* Estilo del spinner */
 .spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #90e0ef;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  animation: spin 1s linear infinite;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--spinner-color);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Botón de búsqueda en Google */
 #buscarImagen {
-  display: none;
-  margin-top: 30px;
-  padding: 15px 30px;
-  background-color: #00b4d8;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 1.2em;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    display: none;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background-color: var(--button-bg-light);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
 #buscarImagen:hover {
-  background-color: #0096c7;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    background-color: var(--button-hover-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Nuevo botón de recomendar algas */
+#recomendarAlgas {
+    display: inline-block; /* Para que aparezca en la misma línea si hay espacio o debajo */
+    margin-top: 15px; /* Espacio entre los botones */
+    padding: 15px 30px;
+    background-color: #28a745; /* Un verde vibrante */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+#recomendarAlgas:hover {
+    background-color: #218838; /* Un verde más oscuro al pasar el ratón */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Modal de pantalla completa */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.95);
-  overflow: auto;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-bg);
+    overflow: auto;
 }
 
 .modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 95%;
-  max-height: 95%;
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95%;
+    max-height: 95%;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
 }
 
 .modal img {
-  width: 100%;
-  height: auto;
-  max-width: none;
-  display: block;
-  border-radius: 5px;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    display: block;
+    border-radius: 5px;
 }
 
 .cerrar-modal {
-  position: absolute;
-  top: 25px;
-  right: 40px;
-  color: #fff;
-  font-size: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
-  transition: color 0.3s ease, transform 0.2s ease;
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    color: var(--modal-close-color);
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .cerrar-modal:hover {
-  color: #a0d9ef;
-  transform: scale(1.1);
+    color: var(--modal-close-hover);
+    transform: scale(1.1);
 }
+
+/* Botón de Modo Oscuro */
+#mode-toggle {
+    background-color: var(--button-bg-light);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#mode-toggle:hover {
+    background-color: var(--button-hover-light);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+/* Animación de entrada para elementos principales */
+.animate__animated.animate__fadeInUp {
+    animation-duration: 0.8s;
+}
+.animate__animated.animate__fadeIn {
+    animation-duration: 1s;
+}
+.animate__animated.animate__fadeOut {
+    animation-duration: 0.3s; /* Más rápido para cerrar */
+}
+
 
 /* Media Queries para responsividad */
 @media (max-width: 900px) {
-  h1 {
-    font-size: 2.2em;
-    padding: 20px 30px;
-  }
-  #catalogo {
-    flex-direction: column;
-    align-items: center;
-  }
-  .grupo {
-    max-width: 90%;
-  }
-  ul {
-    columns: 1;
-  }
-  #result {
-    width: 90%;
-  }
+    h1 {
+        font-size: 2.2em;
+        padding: 20px 30px;
+    }
+    #catalogo {
+        flex-direction: column;
+        align-items: center;
+    }
+    .grupo {
+        max-width: 90%;
+        min-width: unset;
+    }
+    ul {
+        columns: 1; /* Una sola columna en móvil */
+    }
+    #result {
+        width: 90%;
+        margin-top: 20px; /* Menos margen en móvil */
+        padding: 20px; /* Menos padding en móvil */
+    }
+    #result img {
+        max-height: 300px; /* Altura máxima reducida para móvil */
+    }
+    .pantalla-completa-btn {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    #mode-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+        bottom: 20px;
+        right: 20px;
+    }
+    .watermark {
+        font-size: 0.7em;
+        bottom: 10px;
+        left: 10px;
+        padding: 3px 8px;
+    }
 }
 
 @media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-  h1 {
-    font-size: 1.6em;
-    padding: 15px 20px;
-    flex-direction: column;
-  }
-  h1::before {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-  .grupo h2 {
-    font-size: 1.5em;
-  }
-  #result h2 {
-    font-size: 1.8em;
-  }
-  #result img {
-    max-height: 300px;
-  }
-  .pantalla-completa-btn {
-    top: 15px;
-    right: 15px;
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  #buscarImagen {
-    padding: 10px 20px;
-    font-size: 1em;
-  }
-  .cerrar-modal {
-    font-size: 35px;
-    top: 15px;
-    right: 25px;
-  }
+    body {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.6em;
+        padding: 15px 20px;
+        flex-direction: column;
+    }
+    h1::before {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .grupo h2 {
+        font-size: 1.5em;
+    }
+    #result h2 {
+        font-size: 1.8em;
+    }
+    #search-input {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    #buscarImagen, #recomendarAlgas {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .cerrar-modal {
+        font-size: 35px;
+        top: 15px;
+        right: 25px;
+    }
 }
 </style>
 </head>
 <body>
-<h1>Microalgas</h1>
-<div id="catalogo"></div>
-<div id="result">
-<h2 id="algaSeleccionada">Selecciona una microalga</h2>
-<div id="cargando" style="display:none;">
-    <div class="spinner"></div>
-    CARGANDO, ESPERA...
-</div>
-<div class="imagen-container" style="display:none;" id="contenedorImagen">
-<img id="imagenAlga" src="" alt="">
-<button class="pantalla-completa-btn" onclick="abrirPantallaCompleta()" aria-label="Ampliar imagen de la microalga">🔍 Ampliar</button>
-</div>
-<br>
-<button id="buscarImagen" onclick="buscarEnGoogleImages()" aria-label="Buscar esta microalga en Google Imágenes">Buscar en Google Imágenes</button>
+<h1 class="animate__animated animate__fadeInDown">Catálogo de Microalgas</h1>
+
+<div class="main-content">
+    <div id="search-container" class="animate__animated animate__fadeIn">
+        <input type="text" id="search-input" placeholder="Buscar microalga por nombre..." aria-label="Buscar microalga">
+    </div>
+
+    <div id="catalogo" class="animate__animated animate__fadeInUp"></div>
+
+    <div id="result" class="animate__animated animate__fadeIn">
+        <h2 id="algaSeleccionada">Selecciona una microalga</h2>
+        <div id="cargando" style="display:none;">
+            <div class="spinner"></div>
+            CARGANDO, ESPERA...
+        </div>
+        <div class="imagen-container" style="display:none;" id="contenedorImagen">
+            <img id="imagenAlga" src="" alt="Imagen de microalga">
+            <button class="pantalla-completa-btn" onclick="abrirPantallaCompleta()" aria-label="Ampliar imagen de la microalga">🔍 Ampliar</button>
+            <div class="watermark">Desarrollada Por Luis Cordova</div>
+        </div>
+        <br>
+        <button id="buscarImagen" onclick="buscarEnGoogleImages()" aria-label="Buscar esta microalga en Google Imágenes">Buscar en Google Imágenes</button>
+        <button id="recomendarAlgas" onclick="recomendarAlgas()" aria-label="Recomendar nuevas algas">Recomendar Algas</button>
+    </div>
 </div>
 
 <div id="modalImagen" class="modal" role="dialog" aria-modal="true" aria-label="Imagen en pantalla completa" onclick="cerrarModal()">
-<span class="cerrar-modal" onclick="cerrarModal()" aria-label="Cerrar imagen en pantalla completa">&times;</span>
-<div class="modal-content">
-<img id="imagenModal" src="" alt="">
+    <span class="cerrar-modal" onclick="cerrarModal()" aria-label="Cerrar imagen en pantalla completa">×</span>
+    <div class="modal-content">
+        <img id="imagenModal" src="" alt="Imagen ampliada de microalga">
+    </div>
 </div>
-</div>
+
+<button id="mode-toggle" aria-label="Cambiar modo claro/oscuro">🌙</button>
+
 <script>
+// Define los grupos de microalgas originales
 const gruposOriginales = {
     "Cianofitas": [
         "Spirulina", "Oscillatoria", "Merismopedia", "Rivularia", "Nostoc",
@@ -414,7 +783,7 @@ const gruposOriginales = {
         "Ceratium", "Dinophysis", "Noctiluca", "Peridinium", "Gymnodinium"
     ],
     "Clorofitas": [
-        "Tetraselmis", "Dunaliella", "Chlamydomona", "Chlorella", "Pediastrum",
+        "Tetraselmis", "Dunaliella", "Chlorella", "Pediastrum",
         "Closterium", "Cosmarium", "Ankistrodesmus", "Scenedesmus", "Volvox",
         "Spirogyra", "Oedogonium", "Zygnema", "Ulva", "Codium"
     ],
@@ -429,14 +798,14 @@ const gruposOriginales = {
     ]
 };
 
-// --- NUEVO SUBTÍTULO: ALGAS EXTRAS ---
+// Define los grupos de microalgas extras
 const gruposExtra = {
     "Cianofitas (Extra)": [
         "Nodularia", "Arthrospira", "Aphanizomenom", "Cylindrospermun", "Gloeocapsa",
         "Anacystis"
     ],
     "Diatomeas (Extra)": [
-        "Melosira", "Bacteriastrum", "Lithodesmium", "Triceratium", "Tlalassiotrix", "Asterionella",
+        "Melosira", "Bacteriastrum", "Lithodesmium", "Triceratium", "Thalassiothrix",
         "Nitzchia", "Surilella", "Diploneis", "Amphora", "Dictyocha", "Meridion",
         "Gompkonema", "Fragilaria"
     ],
@@ -456,189 +825,157 @@ const gruposExtra = {
     ]
 };
 
-// Combinar los grupos originales y los extras
-const grupos = { ...gruposOriginales };
-for (const grupoExtra in gruposExtra) {
-    grupos[grupoExtra] = gruposExtra[grupoExtra];
+// Unificar grupos y eliminar duplicados
+const grupos = {};
+function getOriginalGroupName(extraGroupName) {
+    return extraGroupName.replace(' (Extra)', '');
 }
 
+for (const grupoName in gruposOriginales) {
+    grupos[grupoName] = [...gruposOriginales[grupoName]];
+}
+
+for (const grupoExtraName in gruposExtra) {
+    const originalGroupName = getOriginalGroupName(grupoExtraName);
+    if (grupos[originalGroupName]) {
+        grupos[originalGroupName] = grupos[originalGroupName].concat(gruposExtra[grupoExtraName]);
+    } else {
+        grupos[originalGroupName] = [...gruposExtra[grupoExtraName]];
+    }
+}
+
+for (const grupoName in grupos) {
+    grupos[grupoName] = [...new Set(grupos[grupoName])].sort(); // Eliminar duplicados y ordenar
+}
+
+// Estilos y emojis para cada grupo
+const groupStyles = {
+    "Cianofitas": { color: "#66BB6A", emoji: "🌿" }, // Verde suave
+    "Diatomeas": { color: "#FFD54F", emoji: "🔬" }, // Amarillo ámbar suave
+    "Dinoflagelados": { color: "#BA68C8", emoji: "✨" }, // Púrpura suave
+    "Clorofitas": { color: "#4FC3F7", emoji: "💧" }, // Azul cielo suave
+    "Euglenofitas": { color: "#FF8A65", emoji: "🦠" }, // Naranja suave
+    "Feofitas": { color: "#A1887F", emoji: "🍂" }, // Marrón suave
+    "Rodofitas": { color: "#F06292", emoji: "🌸" }  // Rosa suave
+};
+
+// Obtiene referencias a los elementos del DOM
 const catalogo = document.getElementById("catalogo");
 const algaSeleccionada = document.getElementById("algaSeleccionada");
 const imagenAlga = document.getElementById("imagenAlga");
 const botonImagen = document.getElementById("buscarImagen");
 const contenedorImagen = document.getElementById("contenedorImagen");
 const cargando = document.getElementById("cargando");
+const searchInput = document.getElementById("search-input");
+const modeToggle = document.getElementById("mode-toggle");
 
-// Genera dinámicamente las secciones de grupos y listas de microalgas
-for (const grupo in grupos) {
-    const divGrupo = document.createElement("div");
-    divGrupo.className = "grupo";
-    divGrupo.setAttribute("role", "group");
-    divGrupo.setAttribute("aria-labelledby", `grupo-${grupo.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`); // Limpiar ID
+let allAlgas = []; // Almacena todas las algas para el buscador
 
-    const h2 = document.createElement("h2");
-    h2.textContent = grupo;
-    h2.id = `grupo-${grupo.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`; // Limpiar ID para evitar caracteres especiales
-    divGrupo.appendChild(h2);
+/**
+ * Muestra la imagen de la microalga en el contenedor de resultados.
+ * @param {string} url - La URL de la imagen.
+ * @param {string} altText - Texto alternativo para la imagen.
+ */
+function mostrarImagen(url, altText) {
+    imagenAlga.src = url;
+    imagenAlga.alt = altText;
+    cargando.style.display = "none";
+    contenedorImagen.style.display = "inline-block";
+    contenedorImagen.classList.remove('animate__fadeIn');
+    void contenedorImagen.offsetWidth; // Trigger reflow
+    contenedorImagen.classList.add('animate__animated', 'animate__fadeIn');
+}
 
-    const ul = document.createElement("ul");
-    ul.setAttribute("role", "list");
-
-    grupos[grupo].forEach(nombre => {
-        const li = document.createElement("li");
-        li.textContent = nombre;
-        li.onclick = () => mostrarAlga(nombre);
-        li.setAttribute("role", "listitem");
-        li.setAttribute("tabindex", "0");
-        li.setAttribute("aria-label", `Seleccionar ${nombre}`);
-        li.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                mostrarAlga(nombre);
-            }
-        });
-        ul.appendChild(li);
+/**
+ * Verifica si una imagen se puede cargar correctamente.
+ * @param {string} url - La URL de la imagen a verificar.
+ * @returns {Promise<boolean>} True si la imagen carga, false en caso contrario.
+ */
+function verificarImagen(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
     });
-    divGrupo.appendChild(ul);
-    catalogo.appendChild(divGrupo);
 }
 
-async function mostrarAlga(nombre) {
-    algaSeleccionada.textContent = nombre;
-    contenedorImagen.style.display = "none";
-    cargando.style.display = "flex";
-    botonImagen.style.display = "inline-block";
-    botonImagen.dataset.nombre = nombre;
-    localStorage.setItem('ultimaAlgaSeleccionada', nombre);
-
-    await buscarImagenAutomatica(nombre);
-}
-
-async function buscarImagenAutomatica(nombre) {
-    try {
-        const imagenEspecifica = obtenerImagenEspecifica(nombre);
-        if (imagenEspecifica) {
-            const esValida = await verificarImagen(imagenEspecifica);
-            if (esValida) {
-                mostrarImagen(imagenEspecifica, `${nombre} - Vista microscópica`);
-                return;
-            } else {
-                console.warn(`La imagen específica para ${nombre} no cargó: ${imagenEspecifica}`);
-            }
-        }
-
-        const imagenWiki = await buscarEnWikimediaCommons(nombre);
-        if (imagenWiki) {
-            const esValida = await verificarImagen(imagenWiki);
-            if (esValida) {
-                mostrarImagen(imagenWiki, `${nombre} - Wikimedia Commons`);
-                return;
-            } else {
-                console.warn(`La imagen de Wikimedia para ${nombre} no cargó: ${imagenWiki}`);
-            }
-        }
-
-        const imagenINaturalist = await buscarEnINaturalist(nombre);
-        if (imagenINaturalist) {
-            const esValida = await verificarImagen(imagenINaturalist);
-            if (esValida) {
-                mostrarImagen(imagenINaturalist, `${nombre} - iNaturalist Ecuador`);
-                return;
-            } else {
-                console.warn(`La imagen de iNaturalist para ${nombre} no cargó: ${imagenINaturalist}`);
-            }
-        }
-
-        cargando.style.display = "none";
-        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">No se encontró imagen disponible</small>`;
-    } catch (error) {
-        console.error("Error buscando imagen automáticamente:", error);
-        cargando.style.display = "none";
-        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">Error al cargar imagen</small>`;
-    }
-}
-
+/**
+ * Contiene las URLs de imágenes específicas para cada microalga.
+ */
 function obtenerImagenEspecifica(nombre) {
     const imagenesEspecificas = {
-        // Cianofitas Originales
+        // Cianofitas Originales y Extra
         "Spirulina": "https://atlasofcyanobacteria.com/Cyanobacteria/Spirulinales/Spirulinaceae/Spirulina/major/spirulina-major-151.jpg",
-        "Oscillatoria": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Oscillatoria_limosa.jpg/400px-Oscillatoria_limosa.jpg",
-        "Merismopedia": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Merismopedia_elegans.jpg/400px-Merismopedia_elegans.jpg",
+        "Oscillatoria": "https://teamaquafix.com/wp-content/uploads/Oscillatoria.jpg",
+        "Merismopedia": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTu04rXr3k_Nw0j2P_meBnyoM1NkEoeCuZYQ&s",
         "Rivularia": "https://atlasofcyanobacteria.com/Cyanobacteria/Nostocales/Rivulariaceae/Rivularia/minutula/rivularia-minutula-473.jpg",
-        "Nostoc": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Nostoc_commune.jpg/400px-Nostoc_commune.jpg",
+        "Nostoc": "https://inaturalist-open-data.s3.amazonaws.com/photos/31323984/large.jpg",
         "Anabaena": "https://atlasofcyanobacteria.com/Cyanobacteria/Nostocales/Nostocaceae/Anabaena/oscillarioides/anabaena-oscillarioides-624.jpg",
-        "Microcystis": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Microcystis_aeruginosa.jpg/400px-Microcystis_aeruginosa.jpg",
-
-        // Diatomeas Originales
-        "Skeletonema": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Skeletonema_costatum.jpg/400px-Skeletonema_costatum.jpg",
-        "Chaetocero": "https://inaturalist-open-data.s3.amazonaws.com/photos/82380/original.png",
-        "Rhizosolenia": "https://cfb.unh.edu/phycokey/Choices/Bacillariophyceae/Centric/Centric_Unicells/RHIZOSOLENIA/Rhizosolenia_08_600x452.jpg",
-        "Coscinodiscus": "https://inaturalist-open-data.s3.amazonaws.com/photos/5578370/original.jpeg",
-        "Tabellaría": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tabellaria_fenestrata.jpg/400px-Tabellaria_fenestrata.jpg",
-        "Navícula": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Navicula_sp.jpg/400px-Navicula_sp.jpg",
-        "Pinnularia": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Pinnularia_viridis.jpg/400px-Pinnularia_viridis.jpg",
-
-        // Dinoflagelados Originales
-        "Ceratium": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ceratium_hirundinella.jpg/400px-Ceratium_hirundinella.jpg",
-        "Noctiluca": "https://live.staticflickr.com/4406/36620227182_24e2553a93_b.jpg",
-        "Peridinium": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Peridinium_willei.jpg/400px-Peridinium_willei.jpg",
-
-        // Clorofitas Originales
-        "Tetraselmis": "https://inaturalist-open-data.s3.amazonaws.com/photos/197884735/large.jpg",
-        "Dunaliella": "https://www.researchgate.net/publication/281482708/figure/fig4/AS:1088567342309377@1636546087119/Dunaliella-sp-microalga-48.jpg",
-        "Chlorella": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chlorella_vulgaris.jpg/400px-Chlorella_vulgaris.jpg",
-        "Ulva": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Meersalat-Ulva-lactuca.jpg",
-        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C/Oedogonium-filaments-oogonia.jpg",
-        "Scenedesmus": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Scenedesmus_quadricauda.jpg/400px-Scenedesmus_quadricauda.jpg",
-        "Volvox": "https://cdn.britannica.com/04/40604-004-AFBDAA4A/Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg",
-        "Spirogyra": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Spirogyra_sp.jpg/400px-Spirogyra_sp.jpg",
-        "Ankistrodesmus": "https://img.algaebase.org/images/AC1F05100321923A15IUB4E5FD00/e1w3pbYnHD9H.jpg",
-
-        // Euglenofitas Originales
-        "Euglena": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Euglena_gracilis.jpg/400px-Euglena_gracilis.jpg",
-        "Phacus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Phacus_longicauda.jpg/400px-Phacus_longicauda.jpg",
-        "Paranema": "https://live.staticflickr.com/3262/2657110932_5a19728509_c.jpg",
-
-        // Feofitas Originales
-        "Padina": "https://www.cibsub.cat/rcs_gene/Padina_pavonica000.jpg",
-        "Sargassum": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg/960px-Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg",
-
-        // Rodofitas Originales
-        "Corallina": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Corallina_officinalis.jpg/400px-Corallina_officinalis.jpg",
-
-        // --- Nuevas Algas (puedes añadir URLs específicas aquí si las tienes) ---
-        // Cianofitas (Extra)
+        "Microcystis": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Microcystis_aeruginosa.jpeg",
+        "Lyngbya": "https://atlasofcyanobacteria.com/Cyanobacteria/Oscillatoriales/Oscillatoriaceae/Lyngbya/sp/lyngbya-198.jpg",
+        "Micrasterias": "https://upload.wikimedia.org/wikipedia/commons/4/47/Micrasterias_radiata.jpg",
         "Nodularia": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Nodularia_spumigena_02.jpg/400px-Nodularia_spumigena_02.jpg",
-        "Arthrospira": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Arthrospira_platensis.jpg/400px-Arthrospira_platensis.jpg",
+        "Arthrospira": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Spirul2.jpg",
         "Aphanizomenom": "https://img.algaebase.org/images/5B7BE95A076ca2A24CplH2C4D9E6/QH2wrmBHskRF.jpg",
         "Cylindrospermun": "https://www.shetlandlochs.com/site/assets/files/2785/v49_r6.jpg",
         "Gloeocapsa": "https://inaturalist-open-data.s3.amazonaws.com/photos/7956217/large.jpg",
         "Anacystis": "https://inaturalist-open-data.s3.amazonaws.com/photos/45077704/medium.jpg",
 
-        // Diatomeas (Extra)
+        // Diatomeas Originales y Extra
+        "Skeletonema": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Skeletonema_costatum.jpg/400px-Skeletonema_costatum.jpg",
+        "Chaetocero": "https://inaturalist-open-data.s3.amazonaws.com/photos/82380/original.png",
+        "Rhizosolenia": "https://inaturalist-open-data.s3.amazonaws.com/photos/2307922/original.jpg",
+        "Biddulphia": "https://static.inaturalist.org/photos/7566711/large.jpg",
+        "Thalassiosira": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Thalassiosira_weissflogii.jpg/400px-Thalassiosira_weissflogii.jpg",
+        "Coscinodiscus": "https://inaturalist-open-data.s3.amazonaws.com/photos/5578370/original.jpeg",
+        "Pleurosigma": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pleurosigma_angulatum_SEM.jpg/400px-Pleurosigma_angulatum_SEM.jpg",
+        "Gyrosigma": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Gyrosigma_attenuatum.jpg/400px-Gyrosigma_attenuatum.jpg",
+        "Ditylum": "https://inaturalist-open-data.s3.amazonaws.com/photos/344056772/large.jpg",
+        "Navícula": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Navicula_sp.jpg/400px-Navicula_sp.jpg",
+        "Pinnularia": "https://upload.wikimedia.org/wikipedia/commons/7/76/Pinnularia_major.jpg",
+        "Asterionella": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Asterionella_formosa.jpg/400px-Asterionella_formosa.jpg",
+        "Tabellaría": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tabellaria_fenestrata.jpg/400px-Tabellaria_fenestrata.jpg",
         "Melosira": "https://inaturalist-open-data.s3.amazonaws.com/photos/21305667/original.jpg",
         "Bacteriastrum": "https://www.biol.lu.se/fytoplankton/diatoms/Bacteriastrum_hyalinum.jpg",
         "Lithodesmium": "https://static.inaturalist.org/photos/217423517/large.png",
         "Triceratium": "https://img.algaebase.org/images/60162F0911c080308AWkr31A74EB/VEGLiw3Z5Sca.jpg",
-        "Asterionella": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Asterionella_formosa.jpg/400px-Asterionella_formosa.jpg",
-        "Nitzchia": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Nitzschia_acicularis.jpg/400px-Nitzschia_acicularis.jpg",
+        "Thalassiothrix": "https://inaturalist-open-data.s3.amazonaws.com/photos/1368855/large.jpg",
+        "Nitzchia": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Nitzschia_sp.jpeg",
         "Surilella": "https://live.staticflickr.com/3155/2831738286_1d6e6cae35_c.jpg",
         "Diploneis": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Diploneis_smithii_var._dilatata.jpg/400px-Diploneis_smithii_var._dilatata.jpg",
         "Amphora": "https://inaturalist-open-data.s3.amazonaws.com/photos/449576/original.jpg",
-        "Dictyocha": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Dictyocha_speculum.jpg/400px-Dictyocha_speculum.jpg",
+        "Dictyocha": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Dictyocha_speculum.jpg",
         "Meridion": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Meridion_circulare.jpg/400px-Meridion_circulare.jpg",
         "Gompkonema": "https://www.landcareresearch.co.nz/assets/Tools-And-Resources/Identification/algae/gomphonema1000__ScaleWidthWzEwMjRd.jpg",
         "Fragilaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fragilaria_crotonensis.jpg/400px-Fragilaria_crotonensis.jpg",
-        "Thalassiothrix": "https://marinebiodiversity.org.bd/wp-content/uploads/2024/01/Thalassionema-spp._-GBIF.jpg",
 
-        // Euglenofitas (Extra)
-        "Astasia": "https://live.staticflickr.com/2236/3533572343_bbdf18f6dd_c.jpg",
+        // Dinoflagelados Originales y Extra
+        "Ceratium": "https://upload.wikimedia.org/wikipedia/commons/5/50/Ceratium_sp_umitunoobimusi.jpg",
+        "Dinophysis": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Dinophysis_acuminata.jpg",
+        "Noctiluca": "https://live.staticflickr.com/4406/36620227182_24e2553a93_b.jpg",
+        "Peridinium": "https://inaturalist-open-data.s3.amazonaws.com/photos/432497560/large.jpg",
+        "Gymnodinium": "https://inaturalist-open-data.s3.amazonaws.com/photos/7600474/large.jpg",
 
-        // Clorofitas (Extra)
+        // Clorofitas Originales y Extra
+        "Tetraselmis": "https://inaturalist-open-data.s3.amazonaws.com/photos/197884735/large.jpg",
+        "Dunaliella": "https://www.researchgate.net/publication/281482708/figure/fig4/AS:1088567342309377@1636546087119/Dunaliella-sp-microalga-48.jpg",
+        "Chlorella": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chlorella_vulgaris.jpg/400px-Chlorella_vulgaris.jpg",
+        "Pediastrum": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Pediastrum_duplex.jpg/400px-Pediastrum_duplex.jpg",
+        "Closterium": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Closterium_venus.jpg/400px-Closterium_venus.jpg",
+        "Cosmarium": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cosmarium_botrytis.jpg/400px-Cosmarium_botrytis.jpg",
+        "Ankistrodesmus": "https://img.algaebase.org/images/AC1F05100321923A15IUB4E5FD00/e1w3pbYnHD9H.jpg",
+        "Scenedesmus": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Scenedesmus_quadricauda.jpg/400px-Scenedesmus_quadricauda.jpg",
+        "Volvox": "https://cdn.britannica.com/04/40604-004-AFBDAA4A/Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg",
+        "Spirogyra": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Spirogyra_sp.jpg/400px-Spirogyra_sp.jpg",
+        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C/Oedogonium-filaments-oogonia.jpg",
+        "Zygnema": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Zygnema_sp.jpg/400px-Zygnema_sp.jpg",
+        "Ulva": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Meersalat-Ulva-lactuca.jpg",
+        "Codium": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Codium_fragile.jpg/400px-Codium_fragile.jpg",
         "Pandorina": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Pandorina_morum.jpg/400px-Pandorina_morum.jpg",
         "Gonium": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gonium_pectorale_2.jpg/400px-Gonium_pectorale_2.jpg",
         "Staurastrum": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Staurastrum_cingulum.jpg/400px-Staurastrum_cingulum.jpg",
-        "Chlamydomonas": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Chlamydomonas_reinhardtii.jpg/400px-Chlamydomonas_reinhardtii.jpg",
+        "Chlamydomonas": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwHXFQ-EsXWCUq-WWHNwRO0HFvBYCw8RmK5Q&s",
         "Nitella": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Nitella_flexilis.jpg/400px-Nitella_flexilis.jpg",
         "Caulerpa": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Caulerpa_taxifolia.jpg/400px-Caulerpa_taxifolia.jpg",
         "Enteromorpha": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ulva_intestinalis_-_gut_weed.jpg/400px-Ulva_intestinalis_-_gut_weed.jpg",
@@ -650,30 +987,41 @@ function obtenerImagenEspecifica(nombre) {
         "Palmella": "https://img.algaebase.org/images/AC1F25A604fc430D59wKB5097BFA/mtWA32AnPEGt.jpg",
         "Coelastrum": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Coelastrum_sphaericum.jpg/400px-Coelastrum_sphaericum.jpg",
         "Chlorococcum": "https://inaturalist-open-data.s3.amazonaws.com/photos/366346219/original.jpg",
-        "Hidrodictium": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Hydrodictyon_amimidoro01.jpg/250px-Hydrodictyon_amimidoro01.jpg",
+        "Hidrodictium": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Hydrodictyon_amimidoro01.jpg/250px-Hidrodictium_amimidoro01.jpg",
 
-        // Feofitas (Extra)
+        // Euglenofitas Originales y Extra
+        "Euglena": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Euglena_gracilis.jpg/400px-Euglena_gracilis.jpg",
+        "Phacus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Phacus_longicauda.jpg/400px-Phacus_longicauda.jpg",
+        "Paranema": "https://live.staticflickr.com/3262/2657110932_5a19728509_c.jpg",
+        "Astasia": "https://live.staticflickr.com/2236/3533572343_bbdf18f6dd_c.jpg",
+
+        // Feofitas Originales y Extra
+        "Padina": "https://www.cibsub.cat/rcs_gene/Padina_pavonica000.jpg",
+        "Sargassum": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg/960px-Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg",
         "Laminaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Laminaria_digitata_-_NHMW-Botanik.jpg/400px-Laminaria_digitata_-_NHMW-Botanik.jpg",
         "Undaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Undaria_pinnatifida_alga.jpg/400px-Undaria_pinnatifida_alga.jpg",
         "Colpomenia": "https://inaturalist-open-data.s3.amazonaws.com/photos/6723579/large.jpeg",
         "Dicyota": "https://inaturalist-open-data.s3.amazonaws.com/photos/314113912/original.jpeg",
 
-        // Rodofitas (Extra)
+        // Rodofitas Originales y Extra
+        "Corallina": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Corallinapinnatifolia.JPG",
         "Gracilaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Gracilaria_salicornia.jpg/400px-Gracilaria_salicornia.jpg",
-        "Gigartina": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gigartina_pistillata_1.jpg/400px-Gigartina_pistillata_1.jpg",
+        "Gigartina": "https://upload.wikimedia.org/wikipedia/commons/a/af/Chondrus_crispus_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-034_cropped.jpg",
         "Chondrus": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Chondrus_crispus_at_low_tide.jpg/400px-Chondrus_crispus_at_low_tide.jpg",
         "Kappaphycus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Kappaphycus_alvarezii_farm.jpg/400px-Kappaphycus_alvarezii_farm.jpg"
     };
-
     return imagenesEspecificas[nombre] || null;
 }
 
+/**
+ * Busca una imagen en Wikimedia Commons utilizando la API de MediaWiki.
+ */
 async function buscarEnWikimediaCommons(nombre) {
     try {
-        const queries = [`${nombre}`, `${nombre} algae`, `${nombre} microalgae`];
+        const queries = [`${nombre} microalga`, `${nombre} algae`, `${nombre} phytoplankton`];
 
         for (const query of queries) {
-            const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&srlimit=3&origin=*`;
+            const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&srlimit=3&srprop=titlesnippet&origin=*`;
             const response = await fetch(url);
             const data = await response.json();
 
@@ -681,7 +1029,6 @@ async function buscarEnWikimediaCommons(nombre) {
                 for (const resultado of data.query.search) {
                     const archivo = resultado.title.replace('File:', '');
                     const imagenUrl = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(archivo)}`;
-
                     if (await verificarImagen(imagenUrl)) {
                         return imagenUrl;
                     }
@@ -689,11 +1036,14 @@ async function buscarEnWikimediaCommons(nombre) {
             }
         }
     } catch (error) {
-        console.log("Error en Wikimedia:", error);
+        console.log("Error buscando en Wikimedia Commons:", error);
     }
     return null;
 }
 
+/**
+ * Busca una imagen en iNaturalist Ecuador utilizando su API.
+ */
 async function buscarEnINaturalist(nombre) {
     try {
         const queries = [
@@ -714,86 +1064,310 @@ async function buscarEnINaturalist(nombre) {
                         if (observation.photos && observation.photos.length > 0) {
                             const foto = observation.photos[0];
                             const imagenUrl = foto.url.replace('square', 'original');
-
                             if (await verificarImagen(imagenUrl)) {
                                 return imagenUrl;
                             }
                         }
                     }
                 }
-            } catch (error) {
-                console.log(`Error con query "${query}" en iNaturalist:`, error);
-                continue;
+            } catch (innerError) {
+                console.warn(`Error al buscar "${query}" en iNaturalist:`, innerError);
             }
         }
     } catch (error) {
-        console.log("Error general en iNaturalist:", error);
+        console.log("Error general en la búsqueda de iNaturalist:", error);
     }
     return null;
 }
 
-async function verificarImagen(url) {
-    if (!url) return false;
-
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = url;
-
-        setTimeout(() => {
-            if (!img.complete || img.naturalWidth === 0) {
-                resolve(false);
+/**
+ * Intenta encontrar una imagen para la microalga.
+ */
+async function buscarImagenAutomatica(nombre) {
+    try {
+        const imagenEspecifica = obtenerImagenEspecifica(nombre);
+        if (imagenEspecifica) {
+            const esValida = await verificarImagen(imagenEspecifica);
+            if (esValida) {
+                mostrarImagen(imagenEspecifica, `${nombre} - Vista microscópica`);
+                return;
+            } else {
+                console.warn(`La imagen específica para ${nombre} no cargó o no es válida: ${imagenEspecifica}`);
             }
-        }, 4000);
+        }
+
+        const imagenWiki = await buscarEnWikimediaCommons(nombre);
+        if (imagenWiki) {
+            const esValida = await verificarImagen(imagenWiki);
+            if (esValida) {
+                mostrarImagen(imagenWiki, `${nombre} - Wikimedia Commons`);
+                return;
+            } else {
+                console.warn(`La imagen de Wikimedia para ${nombre} no cargó o no es válida: ${imagenWiki}`);
+            }
+        }
+
+        const imagenINaturalist = await buscarEnINaturalist(nombre);
+        if (imagenINaturalist) {
+            const esValida = await verificarImagen(imagenINaturalist);
+            if (esValida) {
+                mostrarImagen(imagenINaturalist, `${nombre} - iNaturalist Ecuador`);
+                return;
+            } else {
+                console.warn(`La imagen de iNaturalist para ${nombre} no cargó o no es válida: ${imagenINaturalist}`);
+            }
+        }
+
+        cargando.style.display = "none";
+        contenedorImagen.style.display = "none";
+        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">No se encontró imagen disponible. Haz clic en 'Buscar en Google Imágenes' para explorar más.</small>`;
+
+    } catch (error) {
+        console.error("Error general en la búsqueda automática de imagen:", error);
+        cargando.style.display = "none";
+        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">Error al buscar imagen.</small>`;
+    }
+}
+
+
+/**
+ * Renderiza el catálogo de microalgas.
+ * @param {Object} filteredGrupos - Los grupos de algas a mostrar (puede ser el objeto 'grupos' completo o filtrado).
+ */
+function renderCatalogo(filteredGrupos) {
+    catalogo.innerHTML = ''; // Limpiar catálogo existente
+    allAlgas = []; // Resetear la lista de todas las algas
+
+    for (const grupoName in filteredGrupos) {
+        const divGrupo = document.createElement("div");
+        divGrupo.className = "grupo animate__animated animate__fadeInUp";
+        divGrupo.setAttribute("role", "group");
+        divGrupo.setAttribute("aria-labelledby", `grupo-${grupoName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`);
+
+        const h2 = document.createElement("h2");
+        const groupStyle = groupStyles[grupoName];
+        h2.innerHTML = `${groupStyle.emoji} ${grupoName}`; // Añadir emoji
+        h2.style.backgroundColor = groupStyle.color; // Color de fondo único
+        h2.id = `grupo-${grupoName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`;
+        h2.onclick = () => toggleAccordion(divGrupo);
+        h2.setAttribute("tabindex", "0");
+        h2.setAttribute("aria-expanded", "false");
+        h2.setAttribute("aria-controls", `list-${grupoName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`);
+        h2.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleAccordion(divGrupo);
+            }
+        });
+        divGrupo.appendChild(h2);
+
+        const ul = document.createElement("ul");
+        ul.id = `list-${grupoName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`;
+        ul.setAttribute("role", "list");
+        ul.setAttribute("aria-hidden", "true");
+
+        filteredGrupos[grupoName].forEach(nombre => {
+            const li = document.createElement("li");
+            li.textContent = nombre;
+            li.onclick = () => mostrarAlga(nombre);
+            li.setAttribute("role", "listitem");
+            li.setAttribute("tabindex", "0");
+            li.setAttribute("aria-label", `Seleccionar ${nombre}`);
+            li.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    mostrarAlga(nombre);
+                }
+            });
+            ul.appendChild(li);
+            allAlgas.push({ name: nombre, group: grupoName, element: li });
+        });
+        divGrupo.appendChild(ul);
+        catalogo.appendChild(divGrupo);
+    }
+}
+
+/**
+ * Abre/cierra el acordeón de un grupo.
+ * @param {HTMLElement} divGrupo - El elemento div del grupo.
+ */
+function toggleAccordion(divGrupo) {
+    const ul = divGrupo.querySelector('ul');
+    const h2 = divGrupo.querySelector('h2');
+    const isActive = divGrupo.classList.contains('active');
+
+    // Cerrar todos los demás acordeones
+    document.querySelectorAll('.grupo.active').forEach(openGrupo => {
+        if (openGrupo !== divGrupo) {
+            openGrupo.classList.remove('active');
+            openGrupo.querySelector('ul').style.maxHeight = null;
+            openGrupo.querySelector('ul').setAttribute('aria-hidden', 'true');
+            openGrupo.querySelector('h2').setAttribute('aria-expanded', 'false');
+        }
     });
+
+    if (isActive) {
+        divGrupo.classList.remove('active');
+        ul.style.maxHeight = null;
+        h2.setAttribute("aria-expanded", "false");
+        ul.setAttribute("aria-hidden", "true");
+    } else {
+        divGrupo.classList.add('active');
+        // Forzar un max-height muy grande para asegurar que todo el contenido sea visible y desplazable
+        ul.style.maxHeight = "2000px"; 
+        h2.setAttribute("aria-expanded", "true");
+        ul.setAttribute("aria-hidden", "false");
+    }
 }
 
-function mostrarImagen(url, descripcion) {
-    cargando.style.display = "none";
-    imagenAlga.src = url;
-    imagenAlga.alt = descripcion;
-    imagenAlga.setAttribute('aria-label', `Imagen de ${descripcion}`);
-    contenedorImagen.style.display = "inline-block";
+/**
+ * Muestra la información de una microalga seleccionada y busca su imagen.
+ * @param {string} nombre - El nombre de la microalga a mostrar.
+ */
+async function mostrarAlga(nombre) {
+    algaSeleccionada.textContent = nombre;
+    contenedorImagen.style.display = "none";
+    cargando.style.display = "flex";
+    botonImagen.style.display = "inline-block";
+    botonImagen.dataset.nombre = nombre;
+    localStorage.setItem('ultimaAlgaSeleccionada', nombre);
+
+    // Desactivar el highlight anterior
+    document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+
+    // Resaltar la alga seleccionada
+    const selectedLi = allAlgas.find(alga => alga.name === nombre)?.element;
+    if (selectedLi) {
+        selectedLi.classList.add('highlight');
+        // Asegurarse de que el grupo esté abierto y el elemento sea visible
+        const parentUl = selectedLi.closest('ul');
+        const parentGrupo = selectedLi.closest('.grupo');
+        if (parentGrupo && !parentGrupo.classList.contains('active')) {
+            toggleAccordion(parentGrupo);
+        }
+        selectedLi.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    await buscarImagenAutomatica(nombre);
 }
 
+
+// Abre el modal de pantalla completa
 function abrirPantallaCompleta() {
     const modal = document.getElementById("modalImagen");
     const imagenModal = document.getElementById("imagenModal");
-
     imagenModal.src = imagenAlga.src;
     imagenModal.alt = imagenAlga.alt;
-    imagenModal.setAttribute('aria-label', `Imagen ampliada de ${imagenAlga.alt}`);
     modal.style.display = "block";
-    document.body.style.overflow = "hidden";
+    modal.classList.add('animate__animated', 'animate__fadeIn');
+    document.body.style.overflow = 'hidden';
 }
 
+// Cierra el modal de pantalla completa
 function cerrarModal() {
     const modal = document.getElementById("modalImagen");
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
+    modal.classList.remove('animate__fadeIn');
+    modal.classList.add('animate__animated', 'animate__fadeOut');
+    modal.addEventListener('animationend', function handler() {
+        modal.style.display = "none";
+        modal.classList.remove('animate__fadeOut');
+        modal.removeEventListener('animationend', handler);
+        document.body.style.overflow = '';
+    });
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        cerrarModal();
+// Busca la microalga en Google Images
+function buscarEnGoogleImages() {
+    const nombre = botonImagen.dataset.nombre;
+    if (nombre) {
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(nombre)}+microalga&tbm=isch`, '_blank');
+    }
+}
+
+// Función para redirigir al formulario de recomendación
+function recomendarAlgas() {
+    window.open("https://docs.google.com/forms/d/e/1FAIpQLScKt3p1B_aV5KCY2r5icR33LhkexEpVjzoRWiHY6WSa-HmXQA/viewform?usp=sharing&ouid=105505351182673319030", "_blank");
+}
+
+// Lógica del buscador
+searchInput.addEventListener('keyup', (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredGrupos = {};
+
+    for (const grupoName in grupos) {
+        const matchingAlgas = grupos[grupoName].filter(alga =>
+            alga.toLowerCase().includes(searchTerm)
+        );
+        if (matchingAlgas.length > 0) {
+            filteredGrupos[grupoName] = matchingAlgas;
+        }
+    }
+
+    renderCatalogo(filteredGrupos);
+
+    if (searchTerm.length > 0) {
+        document.querySelectorAll('.grupo').forEach(groupDiv => {
+            const groupNameFromId = groupDiv.querySelector('h2').id.replace('grupo-', '');
+            const originalGroupName = Object.keys(grupos).find(key => key.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() === groupNameFromId);
+
+            if (filteredGrupos[originalGroupName] && filteredGrupos[originalGroupName].length > 0) {
+                groupDiv.classList.add('active');
+                const ul = groupDiv.querySelector('ul');
+                // Al abrir por búsqueda, también asegurar que se expanda completamente
+                ul.style.maxHeight = "2000px"; /* Ajustado a 2000px */
+                groupDiv.querySelector('h2').setAttribute("aria-expanded", "true");
+                ul.setAttribute("aria-hidden", "false");
+            } else {
+                groupDiv.classList.remove('active');
+                groupDiv.querySelector('ul').style.maxHeight = null;
+                groupDiv.querySelector('h2').setAttribute("aria-expanded", "false");
+                groupDiv.querySelector('ul').setAttribute("aria-hidden", "true");
+            }
+
+            groupDiv.querySelectorAll('li').forEach(li => {
+                if (li.textContent.toLowerCase().includes(searchTerm)) {
+                    li.classList.add('search-highlight');
+                } else {
+                    li.classList.remove('search-highlight');
+                }
+            });
+        });
+    } else {
+        document.querySelectorAll('.search-highlight').forEach(el => el.classList.remove('search-highlight'));
+        document.querySelectorAll('.grupo.active').forEach(groupDiv => {
+            groupDiv.classList.remove('active');
+            groupDiv.querySelector('ul').style.maxHeight = null;
+            groupDiv.querySelector('h2').setAttribute("aria-expanded", "false");
+            groupDiv.querySelector('ul').setAttribute("aria-hidden", "true");
+        });
     }
 });
 
-function buscarEnGoogleImages() {
-    const nombre = botonImagen.dataset.nombre;
-    const query = `${nombre} microalga microscope`;
-    const url = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(query)}`;
-    window.open(url, '_blank');
-}
+// Lógica de modo oscuro
+modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    modeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+    modeToggle.setAttribute('aria-label', isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+});
 
+// Cargar preferencia de modo oscuro al iniciar
 document.addEventListener('DOMContentLoaded', () => {
-    const ultimaAlga = localStorage.getItem('ultimaAlgaSeleccionada');
-    if (ultimaAlga) {
-        mostrarAlga(ultimaAlga);
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'true') {
+        document.body.classList.add('dark-mode');
+        modeToggle.textContent = '☀️';
+        modeToggle.setAttribute('aria-label', 'Cambiar a modo claro');
+    } else {
+        modeToggle.textContent = ' ';
+        modeToggle.setAttribute('aria-label', 'Cambiar a modo oscuro');
     }
+
+    renderCatalogo(grupos);
 });
 
 </script>
 </body>
 </html>
+ 
