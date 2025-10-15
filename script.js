@@ -1,3 +1,13 @@
+// ====================================================================================
+// 🚨 ¡ATENCIÓN! CORRECCIÓN DE RUTA CRUCIAL PARA GITHUB PAGES
+// ====================================================================================
+
+// 1. REEMPLAZA 'TU_NOMBRE_DE_REPOSITORIO_AQUI' con el nombre EXACTO de tu repositorio (ej: 'catalogo-microalgas')
+// 2. SI TU PROYECTO ESTÁ EN LA RAÍZ DE UN DOMINIO PERSONALIZADO (ej: micatalogo.com), DÉJALO VACÍO ('')
+const REPO_NAME = 'algae'; 
+
+// ====================================================================================
+
 // Estilos y emojis para cada grupo
 const groupStyles = {
     "Cianofitas": { color: "#66BB6A", emoji: "🌿" }, // Verde suave
@@ -121,7 +131,7 @@ function obtenerImagenEspecifica(nombre) {
         "Scenedesmus": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Scenedesmus_quadricauda.jpg/400px-Scenedesmus_quadricauda.jpg",
         "Volvox": "https://cdn.britannica.com/04/40604-004-AFBDAA4A-Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg",
         "Spirogyra": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Spirogyra_sp.jpg/400px-Spirogyra_sp.jpg",
-        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C/Oedogonium-filaments-oogonia.jpg",
+        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C-Oedogonium-filaments-oogonia.jpg",
         "Zygnema": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Zygnema_sp.jpg/400px-Zygnema_sp.jpg",
         "Ulva": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Meersalat-Ulva-lactuca.jpg",
         "Codium": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Codium_fragile.jpg/400px-Codium_fragile.jpg",
@@ -508,23 +518,26 @@ modeToggle.addEventListener('click', () => {
 
 
 /**
- * NUEVA FUNCIÓN: Carga los datos de microalgas desde el archivo JSON y renderiza el catálogo.
+ * Carga los datos de microalgas desde el archivo JSON y renderiza el catálogo.
  */
 async function fetchDataAndRender() {
     try {
-        // 🚨 ATENCIÓN: RUTA CORREGIDA PARA GITHUB PAGES.
-        // Si sigue fallando con error 404, pruebe añadiendo el nombre de su repositorio.
-        // Ejemplo: const response = await fetch('/nombre-del-repo/data/microalgas.json');
-        const response = await fetch('/algae/data/microalgas.json');
+        // CONSTRUCCIÓN DINÁMICA DE LA RUTA: Añade el nombre del repositorio si existe.
+        const basePath = REPO_NAME ? `/${REPO_NAME}` : '';
+        const fetchURL = `${basePath}/data/microalgas.json`;
+        
+        console.log("Intentando cargar JSON desde:", fetchURL); // Diagnóstico útil
+        
+        const response = await fetch(fetchURL); 
         
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status} - Path used: ${fetchURL}`);
         }
         grupos = await response.json(); // Los datos cargados ahora llenan la variable 'grupos'
         renderCatalogo(grupos); // Llama a la función de renderizado con los datos
     } catch (error) {
         console.error("Fallo al cargar los datos del catálogo:", error);
-        catalogo.innerHTML = '<p class="error">⚠️ Error al cargar el catálogo. Verifique el archivo JSON y la ruta en script.js.</p>';
+        catalogo.innerHTML = `<p class="error">⚠️ Error al cargar el catálogo. Por favor, revisa la Consola (F12) para el error. Mensaje: ${error.message}</p>`;
     }
 }
 
@@ -545,4 +558,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llama a la nueva función de carga asíncrona en lugar de renderizar directamente
     fetchDataAndRender(); 
 });
-
