@@ -1,12 +1,82 @@
-// ====================================================================================
-// 🚨 ¡ATENCIÓN! CORRECCIÓN DE RUTA CRUCIAL PARA GITHUB PAGES
-// ====================================================================================
+// Define los grupos de microalgas originales
+const gruposOriginales = {
+    "Cianofitas": [
+        "Spirulina", "Oscillatoria", "Merismopedia", "Rivularia", "Nostoc",
+        "Anabaena", "Microcystis", "Lyngbya", "Micrasterias"
+    ],
+    "Diatomeas": [
+        "Skeletonema", "Chaetocero", "Rhizosolenia", "Biddulphia", "Thalassiosira",
+        "Coscinodiscus", "Pleurosigma", "Gyrosigma", "Ditylum", "Navícula",
+        "Pinnularia", "Asterionella", "Tabellaría"
+    ],
+    "Dinoflagelados": [
+        "Ceratium", "Dinophysis", "Noctiluca", "Peridinium", "Gymnodinium"
+    ],
+    "Clorofitas": [
+        "Tetraselmis", "Dunaliella", "Chlorella", "Pediastrum",
+        "Closterium", "Cosmarium", "Ankistrodesmus", "Scenedesmus", "Volvox",
+        "Spirogyra", "Oedogonium", "Zygnema", "Ulva", "Codium"
+    ],
+    "Euglenofitas": [
+        "Euglena", "Phacus", "Paranema"
+    ],
+    "Feofitas": [
+        "Padina", "Sargassum"
+    ],
+    "Rodofitas": [
+        "Corallina"
+    ]
+};
 
-// 1. REEMPLAZA 'TU_NOMBRE_DE_REPOSITORIO_AQUI' con el nombre EXACTO de tu repositorio (ej: 'catalogo-microalgas')
-// 2. SI TU PROYECTO ESTÁ EN LA RAÍZ DE UN DOMINIO PERSONALIZADO (ej: micatalogo.com), DÉJALO VACÍO ('')
-const REPO_NAME = 'algae'; 
+// Define los grupos de microalgas extras
+const gruposExtra = {
+    "Cianofitas (Extra)": [
+        "Nodularia", "Arthrospira", "Aphanizomenom", "Cylindrospermun", "Gloeocapsa",
+        "Anacystis"
+    ],
+    "Diatomeas (Extra)": [
+        "Melosira", "Bacteriastrum", "Lithodesmium", "Triceratium", "Thalassiothrix",
+        "Nitzchia", "Surilella", "Diploneis", "Amphora", "Dictyocha", "Meridion",
+        "Gompkonema", "Fragilaria"
+    ],
+    "Euglenofitas (Extra)": [
+        "Astasia"
+    ],
+    "Clorofitas (Extra)": [
+        "Pandorina", "Gonium", "Staurastrum", "Chlamydomonas", "Nitella", "Caulerpa",
+        "Enteromorpha", "Ulothrix", "Chaetomorpha", "Rhizoclonium", "Halimeda",
+        "Euastrium", "Palmella", "Coelastrum", "Chlorococcum", "Hidrodictium"
+    ],
+    "Feofitas (Extra)": [
+        "Laminaria", "Undaria", "Colpomenia", "Dicyota"
+    ],
+    "Rodofitas (Extra)": [
+        "Gracilaria", "Gigartina", "Chondrus", "Kappaphycus"
+    ]
+};
 
-// ====================================================================================
+// Unificar grupos y eliminar duplicados
+const grupos = {};
+function getOriginalGroupName(extraGroupName) {
+    return extraGroupName.replace(' (Extra)', '');
+}
+
+for (const grupoName in gruposOriginales) {
+    grupos[grupoName] = [...gruposOriginales[grupoName]];
+}
+
+for (const grupoExtraName in gruposExtra) {
+    const originalGroupName = getOriginalGroupName(grupoExtraName);
+    if (grupos[originalGroupName]) {
+        grupos[originalGroupName] = grupos[originalGroupName].concat(gruposExtra[grupoExtraName]);
+    } else {
+        grupos[originalGroupName] = [...gruposExtra[grupoExtraName]];
+    }
+}
+
+for (const grupoName in grupos) {
+    grupos[grupoName] = [...new Set(grupos[grupoName])].sort(); // Eliminar duplicados y ordenar
+}
 
 // Estilos y emojis para cada grupo
 const groupStyles = {
@@ -19,12 +89,70 @@ const groupStyles = {
     "Rodofitas": { color: "#F06292", emoji: "🌸" }  // Rosa suave
 };
 
-// Variables para los datos cargados
-let grupos = {}; // ESTA VARIABLE SERÁ LLENADA POR EL JSON
+// OBJETO: Detalles biológicos por grupo (proporcionado por el usuario)
+const detallesGrupo = {
+    "Cianofitas": {
+        "Tipo Celular / Reino": "Procariota (Cianobacterias)",
+        "Pigmentos Clave": "Clorofila A, Ficobilinas (ficocianina, ficoeritrina)",
+        "Pared Celular / Cubierta": "Peptidoglucano (como en bacterias) y vaina de mucílago.",
+        "Almacenamiento de Reserva": "Almidón de Cianofíceas (Glucógeno)",
+        "Características Distintivas": "No se mueven por flagelos (algunas por oscilación). Pueden tener Heterocitos (fijan N) y Acinetos (células de resistencia). Realizan fotosíntesis oxigénica.",
+        "Importancia en Acuicultura": "Biofertilizantes (fijación de N). Riesgo de Toxinas (FANs) letales.",
+    },
+    "Diatomeas": {
+        "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
+        "Pigmentos Clave": "Clorofila A y C, Fucoxantina (dominante)",
+        "Pared Celular / Cubierta": "Frústula de Sílice (Vidrio) con ornamentaciones.",
+        "Almacenamiento de Reserva": "Crisolaminarina y Aceites",
+        "Características Distintivas": "Únicas con pared de sílice (vidrio). Reproducción sexual y asexual. Son los productores primarios más importantes del océano.",
+        "Importancia en Acuicultura": "Alimento clave para larvas de moluscos y camarones.",
+    },
+    "Dinoflagelados": {
+        "Tipo Celular / Reino": "Eucariota (Protista, Dinophyta)",
+        "Pigmentos Clave": "Clorofila A y C, Peridinina (dominante)",
+        "Pared Celular / Cubierta": "Teca de placas de celulosa (armadura) o desnudos.",
+        "Almacenamiento de Reserva": "Almidón y Aceites",
+        "Características Distintivas": "Dos Flagelos: uno transversal y otro longitudinal (movimiento giratorio). Pueden ser Bioluminiscentes.",
+        "Importancia en Acuicultura": "Doble rol: Alimento para larvas. Causan Mareas Rojas y liberan Toxinas potentes (ej. Saxitoxinas).",
+    },
+    "Euglenofitas": {
+        "Tipo Celular / Reino": "Eucariota (Protista, Euglenophyta)",
+        "Pigmentos Clave": "Clorofila A y B, Beta-caroteno",
+        "Pared Celular / Cubierta": "Carecen de pared celular. Tienen una Película proteica flexible.",
+        "Almacenamiento de Reserva": "Paramilón",
+        "Características Distintivas": "Combinan características de plantas y animales. Unicelulares con 1 o 2 flagelos. Viven en agua dulce con alta materia orgánica.",
+        "Importancia en Acuicultura": "Indicadores de contaminación. Potencial en biomasa (crecimiento mixotrófico).",
+    },
+    "Clorofitas": {
+        "Tipo Celular / Reino": "Eucariota (Algas Verdes)",
+        "Pigmentos Clave": "Clorofila A y B (misma que plantas terrestres), Carotenos",
+        "Pared Celular / Cubierta": "Celulosa (estructura rígida).",
+        "Almacenamiento de Reserva": "Almidón (similar al de plantas)",
+        "Características Distintivas": "Gran diversidad morfológica (uni, filamentosas, coloniales, macroalgas). Comparten ancestro común con plantas terrestres.",
+        "Importancia en Acuicultura": "Fuente de Alimento Larval (Chlorella, Tetraselmis). Causan Eutrofización (hipoxia al morir).",
+    },
+    "Feofitas": {
+        "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
+        "Pigmentos Clave": "Clorofila A y C, Fucoxantina (domina y da el color pardo)",
+        "Pared Celular / Cubierta": "Celulosa + Alginato (ácido algínico).",
+        "Almacenamiento de Reserva": "Laminarina y Aceites",
+        "Características Distintivas": "Macroalgas pluricelulares (las más grandes, como el Kelp). Estructuras de flotación (Neumatocistos). Carecen de tejidos vasculares.",
+        "Importancia en Acuicultura": "Valor industrial por el Alginato (espesante/gelificante). Cultivo de especies comestibles (Wakame).",
+    },
+    "Rodofitas": {
+        "Tipo Celular / Reino": "Eucariota (Algas Rojas)",
+        "Pigmentos Clave": "Clorofila A, Ficoeritrina (domina y da el color rojo) y Ficocianina",
+        "Pared Celular / Cubierta": "Celulosa + Agar y Carragenina (Ficocoloides).",
+        "Almacenamiento de Reserva": "Almidón de Florídeas",
+        "Características Distintivas": "Ausencia total de flagelos. Pueden vivir a mayores profundidades (por Ficoeritrina). Incluyen algas coralinas.",
+        "Importancia en Acuicultura": "Extrema importancia por el Agar y la Carragenina (cultivo industrial de Gracilaria, Porphyra).",
+    }
+};
 
 // Obtiene referencias a los elementos del DOM
 const catalogo = document.getElementById("catalogo");
 const algaSeleccionada = document.getElementById("algaSeleccionada");
+const detallesAlga = document.getElementById("detalles-alga"); // Referencia al nuevo contenedor
 const imagenAlga = document.getElementById("imagenAlga");
 const botonImagen = document.getElementById("buscarImagen");
 const contenedorImagen = document.getElementById("contenedorImagen");
@@ -33,6 +161,16 @@ const searchInput = document.getElementById("search-input");
 const modeToggle = document.getElementById("mode-toggle");
 
 let allAlgas = []; // Almacena todas las algas para el buscador
+
+// NUEVA FUNCIÓN: Busca a qué grupo pertenece una microalga por su nombre
+function obtenerGrupoDeAlga(nombreAlga) {
+    for (const grupoName in grupos) {
+        if (grupos[grupoName].includes(nombreAlga)) {
+            return grupoName;
+        }
+    }
+    return null;
+}
 
 /**
  * Muestra la imagen de la microalga en el contenedor de resultados.
@@ -78,7 +216,7 @@ function obtenerImagenEspecifica(nombre) {
         "Microcystis": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Microcystis_aeruginosa.jpeg",
         "Lyngbya": "https://atlasofcyanobacteria.com/Cyanobacteria/Oscillatoriales/Oscillatoriaceae/Lyngbya/sp/lyngbya-198.jpg",
         "Micrasterias": "https://upload.wikimedia.org/wikipedia/commons/4/47/Micrasterias_radiata.jpg",
-        "Nodularia": "https://inaturalist-open-data.s3.amazonaws.com/photos/34529518/large.jpg",
+        "Nodularia": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Nodularia_spumigena_02.jpg/400px-Nodularia_spumigena_02.jpg",
         "Arthrospira": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Spirul2.jpg",
         "Aphanizomenom": "https://img.algaebase.org/images/5B7BE95A076ca2A24CplH2C4D9E6/QH2wrmBHskRF.jpg",
         "Cylindrospermun": "https://www.shetlandlochs.com/site/assets/files/2785/v49_r6.jpg",
@@ -129,9 +267,9 @@ function obtenerImagenEspecifica(nombre) {
         "Cosmarium": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cosmarium_botrytis.jpg/400px-Cosmarium_botrytis.jpg",
         "Ankistrodesmus": "https://img.algaebase.org/images/AC1F05100321923A15IUB4E5FD00/e1w3pbYnHD9H.jpg",
         "Scenedesmus": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Scenedesmus_quadricauda.jpg/400px-Scenedesmus_quadricauda.jpg",
-        "Volvox": "https://cdn.britannica.com/04/40604-004-AFBDAA4A-Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg",
+        "Volvox": "https://cdn.britannica.com/04/40604-004-AFBDAA4A/Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg",
         "Spirogyra": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Spirogyra_sp.jpg/400px-Spirogyra_sp.jpg",
-        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C-Oedogonium-filaments-oogonia.jpg",
+        "Oedogonium": "https://cdn.britannica.com/13/42313-050-CDC1171C/Oedogonium-filaments-oogonia.jpg",
         "Zygnema": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Zygnema_sp.jpg/400px-Zygnema_sp.jpg",
         "Ulva": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Meersalat-Ulva-lactuca.jpg",
         "Codium": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Codium_fragile.jpg/400px-Codium_fragile.jpg",
@@ -245,36 +383,57 @@ async function buscarEnINaturalist(nombre) {
 
 /**
  * Intenta encontrar una imagen para la microalga.
- * Retorna la URL de la primera imagen válida encontrada.
  */
 async function buscarImagenAutomatica(nombre) {
     try {
         const imagenEspecifica = obtenerImagenEspecifica(nombre);
-        if (imagenEspecifica && await verificarImagen(imagenEspecifica)) {
-            return imagenEspecifica;
+        if (imagenEspecifica) {
+            const esValida = await verificarImagen(imagenEspecifica);
+            if (esValida) {
+                mostrarImagen(imagenEspecifica, `${nombre} - Vista microscópica`);
+                return;
+            } else {
+                console.warn(`La imagen específica para ${nombre} no cargó o no es válida: ${imagenEspecifica}`);
+            }
         }
 
         const imagenWiki = await buscarEnWikimediaCommons(nombre);
-        if (imagenWiki && await verificarImagen(imagenWiki)) {
-            return imagenWiki;
+        if (imagenWiki) {
+            const esValida = await verificarImagen(imagenWiki);
+            if (esValida) {
+                mostrarImagen(imagenWiki, `${nombre} - Wikimedia Commons`);
+                return;
+            } else {
+                console.warn(`La imagen de Wikimedia para ${nombre} no cargó o no es válida: ${imagenWiki}`);
+            }
         }
 
         const imagenINaturalist = await buscarEnINaturalist(nombre);
-        if (imagenINaturalist && await verificarImagen(imagenINaturalist)) {
-            return imagenINaturalist;
+        if (imagenINaturalist) {
+            const esValida = await verificarImagen(imagenINaturalist);
+            if (esValida) {
+                mostrarImagen(imagenINaturalist, `${nombre} - iNaturalist Ecuador`);
+                return;
+            } else {
+                console.warn(`La imagen de iNaturalist para ${nombre} no cargó o no es válida: ${imagenINaturalist}`);
+            }
         }
 
-        return null;
+        cargando.style.display = "none";
+        contenedorImagen.style.display = "none";
+        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">No se encontró imagen disponible. Haz clic en 'Buscar en Google Imágenes' para explorar más.</small>`;
+
     } catch (error) {
         console.error("Error general en la búsqueda automática de imagen:", error);
-        return null;
+        cargando.style.display = "none";
+        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">Error al buscar imagen.</small>`;
     }
 }
 
 
 /**
  * Renderiza el catálogo de microalgas.
- * @param {Object} filteredGrupos - Los grupos de algas a mostrar.
+ * @param {Object} filteredGrupos - Los grupos de algas a mostrar (puede ser el objeto 'grupos' completo o filtrado).
  */
 function renderCatalogo(filteredGrupos) {
     catalogo.innerHTML = ''; // Limpiar catálogo existente
@@ -364,7 +523,6 @@ function toggleAccordion(divGrupo) {
 
 /**
  * Muestra la información de una microalga seleccionada y busca su imagen.
- * >>> IMPLEMENTACIÓN DE CACHING <<<
  * @param {string} nombre - El nombre de la microalga a mostrar.
  */
 async function mostrarAlga(nombre) {
@@ -374,6 +532,26 @@ async function mostrarAlga(nombre) {
     botonImagen.style.display = "inline-block";
     botonImagen.dataset.nombre = nombre;
     localStorage.setItem('ultimaAlgaSeleccionada', nombre);
+
+    // OBTENER Y MOSTRAR DETALLES BIOLÓGICOS DEL GRUPO
+    const grupo = obtenerGrupoDeAlga(nombre);
+    if (grupo && detallesGrupo[grupo]) {
+        const detalles = detallesGrupo[grupo];
+        let htmlContent = `<h3>Detalles Clave del Grupo: ${grupo}</h3><dl>`;
+        for (const key in detalles) {
+            // Usamos <dt> (término) para la clave y <dd> (definición) para el valor
+            htmlContent += `<dt>${key}</dt><dd>${detalles[key]}</dd>`;
+        }
+        htmlContent += `</dl>`;
+        detallesAlga.innerHTML = htmlContent;
+        detallesAlga.style.display = "block";
+        detallesAlga.classList.remove('animate__fadeIn');
+        void detallesAlga.offsetWidth; // Trigger reflow
+        detallesAlga.classList.add('animate__animated', 'animate__fadeIn');
+    } else {
+        detallesAlga.style.display = "none";
+        detallesAlga.innerHTML = '';
+    }
 
     // Desactivar el highlight anterior
     document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
@@ -391,28 +569,7 @@ async function mostrarAlga(nombre) {
         selectedLi.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // --- 🚀 Lógica de Caching ---
-    const CACHE_KEY = `img_cache_${nombre}`;
-    const cachedUrl = localStorage.getItem(CACHE_KEY);
-
-    if (cachedUrl) {
-        // Usar caché si está disponible
-        mostrarImagen(cachedUrl, `${nombre} - Cached`);
-        return;
-    }
-    // --- Fin Lógica de Caching ---
-    
-    // Si no está en caché, buscar la imagen automáticamente
-    const url = await buscarImagenAutomatica(nombre);
-
-    if (url) {
-        mostrarImagen(url, `${nombre} - Imagen Encontrada`);
-        localStorage.setItem(CACHE_KEY, url); // Guardar en caché para futuras visitas
-    } else {
-        cargando.style.display = "none";
-        contenedorImagen.style.display = "none";
-        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: #ffcc00; font-size: 0.8em;">No se encontró imagen disponible. Haz clic en 'Buscar en Google Imágenes' para explorar más.</small>`;
-    }
+    await buscarImagenAutomatica(nombre);
 }
 
 
@@ -516,33 +673,7 @@ modeToggle.addEventListener('click', () => {
     modeToggle.setAttribute('aria-label', isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
 });
 
-
-/**
- * Carga los datos de microalgas desde el archivo JSON y renderiza el catálogo.
- */
-async function fetchDataAndRender() {
-    try {
-        // CONSTRUCCIÓN DINÁMICA DE LA RUTA: Añade el nombre del repositorio si existe.
-        const basePath = REPO_NAME ? `/${REPO_NAME}` : '';
-        const fetchURL = `${basePath}/data/microalgas.json`;
-        
-        console.log("Intentando cargar JSON desde:", fetchURL); // Diagnóstico útil
-        
-        const response = await fetch(fetchURL); 
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status} - Path used: ${fetchURL}`);
-        }
-        grupos = await response.json(); // Los datos cargados ahora llenan la variable 'grupos'
-        renderCatalogo(grupos); // Llama a la función de renderizado con los datos
-    } catch (error) {
-        console.error("Fallo al cargar los datos del catálogo:", error);
-        catalogo.innerHTML = `<p class="error">⚠️ Error al cargar el catálogo. Por favor, revisa la Consola (F12) para el error. Mensaje: ${error.message}</p>`;
-    }
-}
-
-
-// Cargar preferencia de modo oscuro y datos al iniciar
+// Cargar preferencia de modo oscuro al iniciar
 document.addEventListener('DOMContentLoaded', () => {
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode === 'true') {
@@ -550,12 +681,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modeToggle.textContent = '☀️';
         modeToggle.setAttribute('aria-label', 'Cambiar a modo claro');
     } else {
-        // Asegurarse de que el icono inicial sea la luna
-        modeToggle.textContent = '🌙'; 
+        modeToggle.textContent = '🌙'; // Asegurar que muestre la luna en modo claro al inicio
         modeToggle.setAttribute('aria-label', 'Cambiar a modo oscuro');
     }
 
-    // Llama a la nueva función de carga asíncrona en lugar de renderizar directamente
-    fetchDataAndRender(); 
+    renderCatalogo(grupos);
 });
-
