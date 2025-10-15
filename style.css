@@ -71,7 +71,6 @@ body.dark-mode .grupo:hover {
 }
 
 body.dark-mode .grupo h2 {
-    /* El color de fondo de h2 se manejará con JS para los colores únicos */
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
@@ -131,6 +130,16 @@ body.dark-mode #buscarImagen:hover {
     box-shadow: 0 8px 15px var(--shadow-color-dark);
 }
 
+body.dark-mode #recomendarAlgas {
+    background-color: #28a745;
+    box-shadow: 0 5px 12px var(--shadow-color-dark);
+}
+
+body.dark-mode #recomendarAlgas:hover {
+    background-color: #218838;
+    box-shadow: 0 8px 15px var(--shadow-color-dark);
+}
+
 body.dark-mode #mode-toggle {
     background-color: var(--button-bg-dark);
     box-shadow: 0 4px 10px var(--shadow-color-dark);
@@ -154,6 +163,76 @@ body.dark-mode #search-input::placeholder {
 body.dark-mode #search-input:focus {
     box-shadow: 0 6px 15px var(--shadow-color-dark);
 }
+
+/* Estilos para el nuevo contenedor de detalles */
+.detalles-contenedor {
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--list-bg-light); /* Fondo suave */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    transition: background-color 0.5s ease;
+    border: 1px solid var(--card-border-light);
+}
+
+body.dark-mode .detalles-contenedor {
+    background-color: var(--list-bg-dark);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border-dark);
+}
+
+.detalles-contenedor h3 {
+    text-align: center;
+    color: var(--button-bg-light);
+    border-bottom: 2px solid var(--button-bg-light);
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.5em;
+    text-shadow: none;
+    transition: color 0.5s ease, border-color 0.5s ease;
+}
+
+body.dark-mode .detalles-contenedor h3 {
+    color: var(--button-bg-dark);
+    border-bottom: 2px solid var(--button-bg-dark);
+}
+
+.detalles-contenedor dl {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.detalles-contenedor dt {
+    font-weight: 700;
+    color: var(--text-color-light); /* En claro, un color oscuro */
+    padding: 5px 0;
+    transition: color 0.5s ease;
+}
+
+body.dark-mode .detalles-contenedor dt {
+    color: var(--text-color-dark); /* En oscuro, un color claro */
+}
+
+.detalles-contenedor dd {
+    margin-left: 0;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .detalles-contenedor dd {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.detalles-contenedor dd:last-child {
+    border-bottom: none;
+}
+/* Fin de estilos de detalles */
+
 
 /* Estilos generales */
 body {
@@ -684,6 +763,12 @@ body.dark-mode li.search-highlight {
         bottom: 10px;
         left: 10px;
         padding: 3px 8px;
+    }
+    .detalles-contenedor dl {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+    .detalles-contenedor dd {
+        margin-left: 10px; /* Indentar en móvil */
     }
 }
 
