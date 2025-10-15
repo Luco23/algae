@@ -78,7 +78,7 @@ function obtenerImagenEspecifica(nombre) {
         "Microcystis": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Microcystis_aeruginosa.jpeg",
         "Lyngbya": "https://atlasofcyanobacteria.com/Cyanobacteria/Oscillatoriales/Oscillatoriaceae/Lyngbya/sp/lyngbya-198.jpg",
         "Micrasterias": "https://upload.wikimedia.org/wikipedia/commons/4/47/Micrasterias_radiata.jpg",
-        "Nodularia": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Nodularia_spumigena_02.jpg/400px-Nodularia_spumigena_02.jpg",
+        "Nodularia": "https://inaturalist-open-data.s3.amazonaws.com/photos/34529518/large.jpg",
         "Arthrospira": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Spirul2.jpg",
         "Aphanizomenom": "https://img.algaebase.org/images/5B7BE95A076ca2A24CplH2C4D9E6/QH2wrmBHskRF.jpg",
         "Cylindrospermun": "https://www.shetlandlochs.com/site/assets/files/2785/v49_r6.jpg",
@@ -558,3 +558,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llama a la nueva función de carga asíncrona en lugar de renderizar directamente
     fetchDataAndRender(); 
 });
+
