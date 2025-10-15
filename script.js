@@ -515,7 +515,7 @@ async function fetchDataAndRender() {
         // 🚨 ATENCIÓN: RUTA CORREGIDA PARA GITHUB PAGES.
         // Si sigue fallando con error 404, pruebe añadiendo el nombre de su repositorio.
         // Ejemplo: const response = await fetch('/nombre-del-repo/data/microalgas.json');
-        const response = await fetch('./data/microalgas.json'); 
+        const response = await fetch('/algae/data/microalgas.json');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -545,3 +545,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llama a la nueva función de carga asíncrona en lugar de renderizar directamente
     fetchDataAndRender(); 
 });
+
