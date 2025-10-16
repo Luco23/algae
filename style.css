@@ -84,12 +84,12 @@ body.dark-mode li {
 
 body.dark-mode li:hover {
     background-color: var(--list-item-hover-bg-dark);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    /* Se han movido los estilos de hover al bloque li:hover específico para un mejor control */
 }
 
 body.dark-mode li:focus {
     background-color: var(--list-item-hover-bg-dark);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    /* Se han movido los estilos de focus al bloque li:focus específico para un mejor control */
 }
 
 body.dark-mode #result {
@@ -428,40 +428,67 @@ ul {
     overflow-y: auto; /* Permite el desplazamiento vertical si el contenido excede el max-height */
 }
 
+/* ESTILOS DE LISTA MEJORADOS (li) */
 li {
-    margin: 5px 20px;
+    margin: 5px 15px; /* Reducir margen horizontal para dar espacio a la sombra */
     cursor: pointer;
-    color: var(--list-item-color-light); /* Color mejorado para legibilidad */
-    transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease;
-    padding: 8px 10px;
+    color: var(--list-item-color-light); 
+    padding: 8px 15px; /* Aumentar padding */
     font-size: 1.1em;
     outline: none;
-    border-radius: 5px;
+    border-radius: 20px; /* Bordes redondeados modernos */
+    transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, transform 0.2s, box-shadow 0.3s;
+    text-align: left; /* Asegurar la alineación */
 }
 
-/* Asegura que el texto sea visible en modo claro y oscuro */
+/* Asegura el color en modo claro */
 .grupo.active li {
-    color: var(--text-color-light); /* En modo claro, usa un color oscuro para el texto */
+    color: var(--list-item-color-light); 
 }
 
-body.dark-mode .grupo.active li {
-    color: #ffffff; /* En modo oscuro, usa blanco para el texto */
-}
-
+/* Estilo al pasar el mouse (hover) - CLARO */
 li:hover {
-    color: #ffffff;
-    text-decoration: underline;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    color: var(--text-color-light); /* En modo claro, un color oscuro para el texto hover */
+    text-decoration: none; /* Quitar el subrayado para un look más limpio */
+    text-shadow: none;
     background-color: var(--list-item-hover-bg-light);
+    transform: translateY(-2px); /* Pequeño levantamiento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
 }
 
+/* Estilo al enfocar (focus) - CLARO */
 li:focus {
-    color: #ffffff;
-    text-decoration: underline;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    color: var(--text-color-light);
+    text-decoration: none;
+    text-shadow: none;
     background-color: var(--list-item-hover-bg-light);
-    border-radius: 5px;
+    border-radius: 20px;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+/* Asegura el color en modo oscuro */
+body.dark-mode .grupo.active li {
+    color: var(--list-item-color-dark); /* Mantener el color claro de la variable */
+}
+
+/* Adaptar el hover para modo oscuro */
+body.dark-mode li:hover {
+    color: var(--text-color-dark);
+    background-color: var(--list-item-hover-bg-dark);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15); /* Sombra suave en modo oscuro */
+    text-shadow: none;
+}
+
+/* Adaptar el focus para modo oscuro */
+body.dark-mode li:focus {
+    color: var(--text-color-dark);
+    background-color: var(--list-item-hover-bg-dark);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+    text-shadow: none;
+}
+/* FIN DE ESTILOS DE LISTA MEJORADOS */
+
 
 /* Resaltado para la búsqueda */
 li.search-highlight {
