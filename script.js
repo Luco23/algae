@@ -299,7 +299,7 @@ function obtenerImagenEspecifica(nombre) {
         // Feofitas Originales y Extra
         "Padina": "https://www.cibsub.cat/rcs_gene/Padina_pavonica000.jpg",
         "Sargassum": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg/960px-Sargassum_muticum_Yendo_Fensholt_1955_Lamiot_WimmereuxHautsDeFrance_Estran_Juillet_2016a4.jpg",
-        "Laminaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Laminaria_digitata_-_NHMW-Botanik.jpg/400px-Laminaria_digitata_-_NHMW-Botanik.jpg",
+        "Laminaria": "https://faipsygaia.com/cdn/shop/files/Extracto_de_Alga_Laminaria_Digitata.png?crop=center&v=1750190459&width=800",
         "Undaria": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Undaria_pinnatifida_alga.jpg/400px-Undaria_pinnatifida_alga.jpg",
         "Colpomenia": "https://inaturalist-open-data.s3.amazonaws.com/photos/6723579/large.jpeg",
         "Dicyota": "https://inaturalist-open-data.s3.amazonaws.com/photos/314113912/original.jpeg",
@@ -764,5 +764,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
