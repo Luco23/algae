@@ -685,6 +685,82 @@ document.addEventListener('DOMContentLoaded', () => {
         modeToggle.setAttribute('aria-label', 'Cambiar a modo oscuro');
     }
 
-    renderCatalogo(grupos);
+    // Solo renderizar el catálogo si NO estamos en la página de administración
+    if (!document.getElementById('admin-panel')) {
+        renderCatalogo(grupos);
+    }
 });
 
+// =========================================================
+// LÓGICA DEL PANEL DE ADMINISTRACIÓN (admin.html)
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Solo ejecuta esta lógica si estamos en la página de administración
+    if (document.getElementById('admin-panel')) {
+        const selectClases = document.getElementById('alga-class');
+        const form = document.getElementById('add-alga-form');
+        const messageDiv = document.getElementById('message');
+
+        // 1. Cargar las clases existentes
+        function cargarClases() {
+            // Usamos las claves de los grupos definidos al inicio de script.js
+            const clases = Object.keys(grupos);
+            
+            // Asegurarse de que el select esté vacío excepto por la opción por defecto
+            selectClases.innerHTML = '<option value="" disabled selected>Selecciona una clase</option>';
+
+            clases.forEach(clase => {
+                const option = document.createElement('option');
+                option.value = clase;
+                option.textContent = clase;
+                selectClases.appendChild(option);
+            });
+        }
+        
+        cargarClases();
+
+        // 2. Manejar el envío del formulario
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const alga = document.getElementById('new-alga-name').value.trim();
+            const clase = selectClases.value;
+
+            if (alga && clase) {
+                // --- SIMULACIÓN DE GUARDADO EN DATOS LOCALES (Solo para desarrollo) ---
+                // Agrega el alga al objeto JavaScript en memoria
+                if (grupos[clase] && !grupos[clase].includes(alga)) {
+                    grupos[clase].push(alga);
+                    grupos[clase].sort(); // Opcional: mantener la lista ordenada
+                    mostrarMensaje(`✔️ Alga '${alga}' agregada a ${clase}. (Simulado)`, 'success');
+                    
+                    form.reset();
+                    document.getElementById('alga-class').value = "";
+                } else if (grupos[clase] && grupos[clase].includes(alga)) {
+                     mostrarMensaje(`⚠️ El alga '${alga}' ya existe en la clase ${clase}.`, 'error');
+                } else {
+                    // Si la clase no existía (muy improbable con la carga inicial), la crea
+                    grupos[clase] = [alga];
+                    mostrarMensaje(`✔️ Nueva clase '${clase}' creada y alga '${alga}' agregada. (Simulado)`, 'success');
+                    form.reset();
+                    document.getElementById('alga-class').value = "";
+                }
+                // ---------------------------------------------------------------------
+
+            } else {
+                mostrarMensaje('⚠️ Por favor, completa todos los campos.', 'error');
+            }
+        });
+
+        function mostrarMensaje(mensaje, tipo) {
+            messageDiv.textContent = mensaje;
+            messageDiv.className = ''; // Limpiar clases anteriores
+            messageDiv.classList.add(tipo); // 'success' o 'error'
+            messageDiv.style.display = 'block';
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+    }
+});
