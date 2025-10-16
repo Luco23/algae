@@ -96,7 +96,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "Clorofila A, Ficobilinas (ficocianina, ficoeritrina)",
         "Pared Celular / Cubierta": "Peptidoglucano (como en bacterias) y vaina de mucílago.",
         "Almacenamiento de Reserva": "Almidón de Cianofíceas (Glucógeno)",
-        "Características Distintivas": "No se mueven por flagelos (algunas por oscilación). Pueden tener Heterocitos (fijan N) y Acinetos (células de resistencia). Realizan fotosíntesis oxigénica.",
+        "Características Distintivas": "No se mueven por flagelos (algunas por oscilación). Pueden tener Heterocitos (fijan N) y Acinetos (células de resistencia). Realizan fotosíntesis oxigénica. Son unicelulares,filamentosas(Oscillatoria) y tambien pueden ser coloniales.",
         "Importancia en Acuicultura": "Biofertilizantes (fijación de N). Riesgo de Toxinas (FANs) letales.",
     },
     "Diatomeas": {
@@ -104,7 +104,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "Clorofila A y C, Fucoxantina (dominante)",
         "Pared Celular / Cubierta": "Frústula de Sílice (Vidrio) con ornamentaciones.",
         "Almacenamiento de Reserva": "Crisolaminarina y Aceites",
-        "Características Distintivas": "Únicas con pared de sílice (vidrio). Reproducción sexual y asexual. Son los productores primarios más importantes del océano.",
+        "Características Distintivas": "Únicas con pared de sílice (vidrio). Reproducción sexual y asexual. Son los productores primarios más importantes del océano. Son unicelulares y tambien pueden ser coloniales.",
         "Importancia en Acuicultura": "Alimento clave para larvas de moluscos y camarones.",
     },
     "Dinoflagelados": {
@@ -112,7 +112,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "Clorofila A y C, Peridinina (dominante)",
         "Pared Celular / Cubierta": "Teca de placas de celulosa (armadura) o desnudos.",
         "Almacenamiento de Reserva": "Almidón y Aceites",
-        "Características Distintivas": "Dos Flagelos: uno transversal y otro longitudinal (movimiento giratorio). Pueden ser Bioluminiscentes.",
+        "Características Distintivas": "Dos Flagelos: uno transversal y otro longitudinal (movimiento giratorio). Pueden ser Bioluminiscentes. Son solo unicelulares",
         "Importancia en Acuicultura": "Doble rol: Alimento para larvas. Causan Mareas Rojas y liberan Toxinas potentes (ej. Saxitoxinas).",
     },
     "Euglenofitas": {
@@ -128,7 +128,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "Clorofila A y B (misma que plantas terrestres), Carotenos",
         "Pared Celular / Cubierta": "Celulosa (estructura rígida).",
         "Almacenamiento de Reserva": "Almidón (similar al de plantas)",
-        "Características Distintivas": "Gran diversidad morfológica (uni, filamentosas, coloniales, macroalgas). Comparten ancestro común con plantas terrestres.",
+        "Características Distintivas": "Gran diversidad morfológica (uni, filamentosas, coloniales, macroalgas). Comparten ancestro común con plantas terrestres. Presentan la mayor diversidad: Unicelular (Chlamydomonas, Chlorella), Colonial (Volvox), Filamentosa (cadenas de células, como Spirogyra o Ulothrix), y Pluricelular/Laminar (macroalgas como Ulva o Leathesia).",
         "Importancia en Acuicultura": "Fuente de Alimento Larval (Chlorella, Tetraselmis). Causan Eutrofización (hipoxia al morir).",
     },
     "Feofitas": {
@@ -136,7 +136,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "Clorofila A y C, Fucoxantina (domina y da el color pardo)",
         "Pared Celular / Cubierta": "Celulosa + Alginato (ácido algínico).",
         "Almacenamiento de Reserva": "Laminarina y Aceites",
-        "Características Distintivas": "Macroalgas pluricelulares (las más grandes, como el Kelp). Estructuras de flotación (Neumatocistos). Carecen de tejidos vasculares.",
+        "Características Distintivas": "Pluricelular (Macroalgas),laminarias (hojas), arbustivas o arborescentes (los bosques de kelp) y tambien pueden ser filamentosas. Estructuras de flotación (Neumatocistos). Carecen de tejidos vasculares.",
         "Importancia en Acuicultura": "Valor industrial por el Alginato (espesante/gelificante). Cultivo de especies comestibles (Wakame).",
     },
     "Rodofitas": {
@@ -144,7 +144,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "Clorofila A, Ficoeritrina (domina y da el color rojo) y Ficocianina",
         "Pared Celular / Cubierta": "Celulosa + Agar y Carragenina (Ficocoloides).",
         "Almacenamiento de Reserva": "Almidón de Florídeas",
-        "Características Distintivas": "Ausencia total de flagelos. Pueden vivir a mayores profundidades (por Ficoeritrina). Incluyen algas coralinas.",
+        "Características Distintivas": "Ausencia total de flagelos. Pueden vivir a mayores profundidades (por Ficoeritrina). Pueden ser Unicelular , Filamentosa  y Pluricelular (forma más común, con crecimiento pseudoparenquimático, donde los filamentos se unen para formar un "falso tejido" denso, o como algas coralinas calcificadas).",
         "Importancia en Acuicultura": "Extrema importancia por el Agar y la Carragenina (cultivo industrial de Gracilaria, Porphyra).",
     }
 };
@@ -764,3 +764,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
