@@ -113,7 +113,7 @@ const detallesGrupo = {
         "Pared Celular / Cubierta": "Teca de placas de celulosa (armadura) o desnudos.",
         "Almacenamiento de Reserva": "Almidón y Aceites",
         "Características Distintivas": "Dos Flagelos: uno transversal y otro longitudinal (movimiento giratorio). Pueden ser Bioluminiscentes. Son solo unicelulares",
-        "Importancia en Acuicultura": "Doble rol: Alimento para larvas. Causan Mareas Rojas y liberan Toxinas potentes (ej. Saxitoxinas).",
+        "Importancia en Acuicultura": "Causan Mareas Rojas y liberan Toxinas potentes (ej. Saxitoxinas).",
     },
     "Euglenofitas": {
         "Tipo Celular / Reino": "Eucariota (Protista, Euglenophyta)",
@@ -764,6 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
