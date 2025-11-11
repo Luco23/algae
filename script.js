@@ -93,7 +93,8 @@ const groupStyles = {
 const detallesGrupo = {
     "Cianofitas": {
         "Tipo Celular / Reino": "Procariota (Cianobacterias)",
-        "Pigmentos Clave": "Clorofila A, Ficobilinas (ficocianina, ficoeritrina)",
+        "Habitad":"Generalmente agua salobre,pero también estan en agua dulce y salada",
+        "Pigmentos Clave": "Clorofila A, Ficobilinas (ficocianina(azul), ficoeritrina(rojo))",
         "Pared Celular / Cubierta": "Peptidoglucano (como en bacterias) y vaina de mucílago.",
         "Almacenamiento de Reserva": "Almidón de Cianofíceas (Glucógeno)",
         "Características Distintivas": "No se mueven por flagelos (algunas por oscilación). Pueden tener Heterocitos (fijan N) y Acinetos (células de resistencia). Realizan fotosíntesis oxigénica.",
@@ -764,6 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
