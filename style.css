@@ -226,14 +226,13 @@ body.dark-mode .detalles-contenedor dt {
     color: var(--text-color-dark); /* En oscuro, un color claro */
 }
 
-.detalles-contenedor dd {
-    margin-left: 0;
-    padding: 5px 0;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+.detalles-contenedor dd strong {
+    color: var(--group-color, var(--group-color-light));
+    font-weight: 900; 
 }
 
-body.dark-mode .detalles-contenedor dd {
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+body.dark-mode .detalles-contenedor dd strong {
+    color: var(--group-color, var(--group-color-dark));
 }
 
 .detalles-contenedor dd:last-child {
