@@ -98,7 +98,7 @@ const detallesGrupo = {
         "Pigmentos Clave": "🎨 **CLOROFILA A** | **FICOBILINAS** (Ficocianina **AZUL**, Ficoeritrina **ROJO**)",
         "Pared Celular / Cubierta": "🧱 **PEPTIDOGLUCANO** (Como en bacterias) y **VAINA DE MUCÍLAGO**",
         "Almacenamiento de Reserva": "🍚 **ALMIDÓN DE CIANOFÍCEAS** (**GLUCÓGENO**)",
-        "Características Distintivas": "✨ No se mueven por **FLAGELOS** (algunas por **OSCILACIÓN**). Pueden tener **HETEROCITOS** (**FIJAN N**) y **ACINETOS** (Células de resistencia). Realizan **FOTOSÍNTESIS OXIGÉNICA**.",
+        "Características Distintivas": "✨ No se mueven por **FLAGELOS** (algunas por **OSCILACIÓN**). Pueden tener **HETEROCITOS** (**FIJAN N**) y **ACINETOS** (Células de resistencia).",
         "Importancia en Acuicultura": "⚠️ **RIESGO DE TOXINAS** (**FANs** ¡LE-TA-LES!) | **BIOFERTILIZANTES** (**Fijación de N**)"
     },
     "Diatomeas": {
@@ -766,6 +766,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
