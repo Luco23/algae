@@ -92,13 +92,15 @@ const groupStyles = {
 // OBJETO: Detalles biológicos por grupo (proporcionado por el usuario)
 const detallesGrupo = {
     "Cianofitas": {
-        "Tipo Celular / Reino": "Procariota (Cianobacterias)",
-        "Habitad":"Generalmente agua salobre,pero también estan en agua dulce y salada",
-        "Pigmentos Clave": "Clorofila A, Ficobilinas (ficocianina(azul), ficoeritrina(rojo))",
-        "Pared Celular / Cubierta": "Peptidoglucano (como en bacterias) y vaina de mucílago.",
-        "Almacenamiento de Reserva": "Almidón de Cianofíceas (Glucógeno)",
-        "Características Distintivas": "No se mueven por flagelos (algunas por oscilación). Pueden tener Heterocitos (fijan N) y Acinetos (células de resistencia). Realizan fotosíntesis oxigénica.",
-        "Importancia en Acuicultura": "Biofertilizantes (fijación de N). Riesgo de Toxinas (FANs) letales.",
+        "Tipo Celular / Reino": "🔬 **PROCARIOTA** (Cianobacterias)",
+        "Habitad": "💧 Generalmente **AGUA SALOBRE**, pero también están en **AGUA DULCE** y **SALADA**",
+        "Reproducción": "🚫 Solo **ASEXUAL**: Fisión binaria, **FRAGMENTACIÓN** y por **ESPORAS**",
+        "Pigmentos Clave": "🎨 **CLOROFILA A** | **FICOBILINAS** (Ficocianina **AZUL**, Ficoeritrina **ROJO**)",
+        "Pared Celular / Cubierta": "🧱 **PEPTIDOGLUCANO** (Como en bacterias) y **VAINA DE MUCÍLAGO**",
+        "Almacenamiento de Reserva": "🍚 **ALMIDÓN DE CIANOFÍCEAS** (**GLUCÓGENO**)",
+        "Características Distintivas": "✨ No se mueven por **FLAGELOS** (algunas por **OSCILACIÓN**). Pueden tener **HETEROCITOS** (**FIJAN N**) y **ACINETOS** (Células de resistencia). Realizan **FOTOSÍNTESIS OXIGÉNICA**.",
+        "Importancia en Acuicultura": "⚠️ **RIESGO DE TOXINAS** (**FANs** ¡LE-TA-LES!) | **BIOFERTILIZANTES** (**Fijación de N**)"
+}
     },
     "Diatomeas": {
         "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
@@ -765,6 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
