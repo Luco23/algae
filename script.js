@@ -92,14 +92,14 @@ const groupStyles = {
 // OBJETO: Detalles biológicos por grupo (proporcionado por el usuario)
 const detallesGrupo = {
     "Cianofitas": {
-        "Tipo Celular / Reino": "🔬 **PROCARIOTA** (Cianobacterias)",
-        "Habitad": "💧 Generalmente **AGUA SALOBRE**, pero también están en **AGUA DULCE** y **SALADA**",
-        "Reproducción": "🚫 Solo **ASEXUAL**: Fisión binaria, **FRAGMENTACIÓN** y por **ESPORAS**",
-        "Pigmentos Clave": "🎨 **CLOROFILA A** | **FICOBILINAS** (Ficocianina **AZUL**, Ficoeritrina **ROJO**)",
-        "Pared Celular / Cubierta": "🧱 **PEPTIDOGLUCANO** (Como en bacterias) y **VAINA DE MUCÍLAGO**",
-        "Almacenamiento de Reserva": "🍚 **ALMIDÓN DE CIANOFÍCEAS** (**GLUCÓGENO**)",
-        "Características Distintivas": "✨ No se mueven por **FLAGELOS** (algunas por **OSCILACIÓN**). Pueden tener **HETEROCITOS** (**FIJAN N**) y **ACINETOS** (Células de resistencia).",
-        "Importancia en Acuicultura": "⚠️ **RIESGO DE TOXINAS** (**FANs** ¡LE-TA-LES!) | **BIOFERTILIZANTES** (**Fijación de N**)"
+        "Tipo Celular / Reino": "PROCARIOTA (Cianobacterias)",
+        "Habitad": "💧 Generalmente AGUA SALOBRE, pero también están en AGUA DULCE y SALADA",
+        "Reproducción": "🚫 Solo ASEXUAL: Fisión binaria, FRAGMENTACIÓN y por ESPORAS",
+        "Pigmentos Clave": "🎨 CLOROFILA A | FICOBILINAS (Ficocianina AZUL, Ficoeritrina ROJO)",
+        "Pared Celular / Cubierta": "🧱 PEPTIDOGLUCANO (Como en bacterias) y VAINA DE MUCÍLAGO",
+        "Almacenamiento de Reserva": "🍚 ALMIDÓN DE CIANOFÍCEAS** (GLUCÓGENO)",
+        "Características Distintivas": "✨ No se mueven por FLAGELOS (algunas por OSCILACIÓN). Pueden tener HETEROCITOS (FIJAN N) y ACINETOS (Células de resistencia).",
+        "Importancia en Acuicultura": "⚠️ RIESGO DE TOXINAS (FANs ¡LE-TA-LES!) | BIOFERTILIZANTES (Fijación de N)"
     },
     "Diatomeas": {
         "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
@@ -539,6 +539,8 @@ async function mostrarAlga(nombre) {
     const grupo = obtenerGrupoDeAlga(nombre);
     if (grupo && detallesGrupo[grupo]) {
         const detalles = detallesGrupo[grupo];
+        const colorDelGrupo = groupStyles[grupo] ? groupStyles[grupo].color : 'var(--button-bg-light)';
+        detallesAlga.style.setProperty('--group-color', colorDelGrupo);
         let htmlContent = `<h3>Detalles Clave del Grupo: ${grupo}</h3><dl>`;
         for (const key in detalles) {
             // Usamos <dt> (término) para la clave y <dd> (definición) para el valor
@@ -766,6 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
