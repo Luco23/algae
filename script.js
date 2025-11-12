@@ -100,7 +100,6 @@ const detallesGrupo = {
         "Almacenamiento de Reserva": "🍚 **ALMIDÓN DE CIANOFÍCEAS** (**GLUCÓGENO**)",
         "Características Distintivas": "✨ No se mueven por **FLAGELOS** (algunas por **OSCILACIÓN**). Pueden tener **HETEROCITOS** (**FIJAN N**) y **ACINETOS** (Células de resistencia). Realizan **FOTOSÍNTESIS OXIGÉNICA**.",
         "Importancia en Acuicultura": "⚠️ **RIESGO DE TOXINAS** (**FANs** ¡LE-TA-LES!) | **BIOFERTILIZANTES** (**Fijación de N**)"
-}
     },
     "Diatomeas": {
         "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
@@ -767,6 +766,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
