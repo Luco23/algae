@@ -479,7 +479,9 @@ function renderCatalogo(filteredGrupos) {
             li.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
                     event.preventDefault();
-                    mostrarAlga(nombre);
+                   let detalleTexto = detalles[key];
+                   let textoProcesado = detalleTexto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                   htmlContent += `<dt>${key}</dt><dd>${textoProcesado}</dd>`;
                 }
             });
             ul.appendChild(li);
@@ -736,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Agrega el alga al objeto JavaScript en memoria
                 if (grupos[clase] && !grupos[clase].includes(alga)) {
                     grupos[clase].push(alga);
-                    grupos[clase].sort(); // Opcional: mantener la lista ordenada
+                    grupos[clase].sort(); // Opcional: mantener la lista ordenada            
                     mostrarMensaje(`✔️ Alga '${alga}' agregada a ${clase}. (Simulado)`, 'success');
                     
                     form.reset();
@@ -768,6 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
