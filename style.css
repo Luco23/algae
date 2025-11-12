@@ -84,12 +84,10 @@ body.dark-mode li {
 
 body.dark-mode li:hover {
     background-color: var(--list-item-hover-bg-dark);
-    /* Se han movido los estilos de hover al bloque li:hover específico para un mejor control */
 }
 
 body.dark-mode li:focus {
     background-color: var(--list-item-hover-bg-dark);
-    /* Se han movido los estilos de focus al bloque li:focus específico para un mejor control */
 }
 
 body.dark-mode #result {
@@ -178,33 +176,28 @@ body.dark-mode #search-input:focus {
 
     border: 2px solid var(--group-color, var(--group-color-light));
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), 0 0 12px var(--group-color, var(--group-color-light));
-    
+
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 body.dark-mode .detalles-contenedor {
     background-color: var(--list-bg-dark);
-    
+
     border: 2px solid var(--group-color, var(--group-color-dark));
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 0 12px var(--group-color, var(--group-color-dark));
 }
 
 .detalles-contenedor h3 {
     text-align: center;
-    
+
     color: var(--group-color, var(--group-color-light));
     border-bottom: 2px solid var(--group-color, var(--group-color-light));
-    
+
     padding-bottom: 10px;
     margin-top: 0;
     font-size: 1.5em;
     text-shadow: none;
     transition: color 0.5s ease, border-color 0.5s ease;
-}
-
-body.dark-mode .detalles-contenedor h3 {
-    color: var(--button-bg-dark);
-    border-bottom: 2px solid var(--button-bg-dark);
 }
 
 .detalles-contenedor dl {
@@ -213,6 +206,7 @@ body.dark-mode .detalles-contenedor h3 {
     gap: 10px;
     margin: 0;
     padding: 0;
+    align-items: center; /* Alinea verticalmente dt y dd */
 }
 
 .detalles-contenedor dt {
@@ -226,17 +220,23 @@ body.dark-mode .detalles-contenedor dt {
     color: var(--text-color-dark); /* En oscuro, un color claro */
 }
 
+.detalles-contenedor dd {
+    margin-left: 0;
+    padding: 8px 0; /* Aumentado para más espacio */
+    /* Se elimina el borde punteado */
+}
+
+/* Estilo de alto contraste para el texto importante (negrita) */
 .detalles-contenedor dd strong {
-    color: var(--group-color, var(--group-color-light));
-    font-weight: 900; 
+    color: #001a33; 
+    font-weight: 900;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
 }
 
 body.dark-mode .detalles-contenedor dd strong {
-    color: var(--group-color, var(--group-color-dark));
-}
-
-.detalles-contenedor dd:last-child {
-    border-bottom: none;
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 /* Fin de estilos de detalles */
 
@@ -292,7 +292,7 @@ h1 {
     max-width: 90%;
     width: auto;
     box-sizing: border-box;
-    animation: pulse 2.5s infinite alternate ease-in-out;
+    /* Se elimina la animación 'pulse' infinita */
     transition: transform 0.3s ease, background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
@@ -364,6 +364,31 @@ h1::before {
     max-width: 1200px;
     width: 100%;
     margin-bottom: 30px;
+}
+
+/* Estilo para mensaje de "No hay resultados" */
+.search-no-results {
+    color: var(--text-color-light);
+    font-size: 1.2em;
+    text-align: center;
+    width: 100%;
+    background-color: var(--card-bg-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+body.dark-mode .search-no-results {
+    color: var(--text-color-dark);
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 6px 15px var(--shadow-color-dark);
+}
+.search-no-results strong {
+    color: var(--button-bg-light);
+    font-weight: 700;
+}
+body.dark-mode .search-no-results strong {
+    color: var(--button-bg-dark);
 }
 
 /* Estilo de la tarjeta de grupo (acordeón) */
