@@ -293,7 +293,7 @@ function obtenerImagenEspecifica(nombre) {
         "Hidrodictium": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Hydrodictyon_amimidoro01.jpg/250px-Hidrodictium_amimidoro01.jpg",
 
         // Euglenofitas Originales y Extra
-        "Euglena": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Euglena_gracilis.jpg/400px-Euglena_gracilis.jpg",
+        "Euglena": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Euglenoid_movement.jpg",
         "Phacus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Phacus_longicauda.jpg/400px-Phacus_longicauda.jpg",
         "Paranema": "https://live.staticflickr.com/3262/2657110932_5a19728509_c.jpg",
         "Astasia": "https://live.staticflickr.com/2236/3533572343_bbdf18f6dd_c.jpg",
@@ -766,6 +766,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
