@@ -8,65 +8,77 @@
     "Feofitas": { "color": "#A1887F", "emoji": "🍂" },
     "Rodofitas": { "color": "#F06292", "emoji": "🌸" }
   },
-  "groupDetails": {
-    "Cianofitas": {
-        "Tipo Celular / Reino": "🔬 **PROCARIOTA** (Cianobacterias)",
-        "Habitad": "💧 Generalmente **AGUA SALOBRE**, pero también están en **AGUA DULCE** y **SALADA**",
-        "Reproducción": "🚫 Solo **ASEXUAL**: Fisión binaria, **FRAGMENTACIÓN** y por **ESPORAS**",
-        "Pigmentos Clave": "🎨 **CLOROFILA A** | **FICOBILINAS** (Ficocianina **AZUL**, Ficoeritrina **ROJO**)",
-        "Pared Celular / Cubierta": "🧱 **PEPTIDOGLUCANO** (Como en bacterias) y **VAINA DE MUCÍLAGO**",
-        "Almacenamiento de Reserva": "🍚 **ALMIDÓN DE CIANOFÍCEAS** (**GLUCÓGENO**)",
-        "Características Distintivas": "✨ No se mueven por **FLAGELOS** (algunas por **OSCILACIÓN**). Pueden tener **HETEROCITOS** (**FIJAN N**) y **ACINETOS** (Células de resistencia).",
-        "Importancia en Acuicultura": "⚠️ **RIESGO DE TOXINAS** (**FANs** ¡LE-TA-LES!) | **BIOFERTILIZANTES** (**Fijación de N**)"
-    },
-    "Diatomeas": {
-        "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
-        "Pigmentos Clave": "Clorofila A y C, Fucoxantina (dominante)",
-        "Pared Celular / Cubierta": "Frústula de Sílice (Vidrio) con ornamentaciones.",
-        "Almacenamiento de Reserva": "Crisolaminarina y Aceites",
-        "Características Distintivas": "Únicas con pared de sílice (vidrio). Reproducción sexual y asexual.Son los productores primarios más importantes del océano.Son unicelulares y tambien pueden ser coloniales.",
-        "Importancia en Acuicultura": "Alimento clave para larvas de moluscos y camarones."
-    },
-    "Dinoflagelados": {
-        "Tipo Celular / Reino": "Eucariota (Protista, Dinophyta)",
-        "Pigmentos Clave": "Clorofila A y C, Peridinina (dominante)",
-        "Pared Celular / Cubierta": "Teca de placas de celulosa (armadura) o desnudos.",
-        "Almacenamiento de Reserva": "Almidón y Aceites",
-        "Características Distintivas": "Dos Flagelos: uno transversal y otro longitudinal (movimiento giratorio). Pueden ser Bioluminiscentes. Son solo unicelulares",
-        "Importancia en Acuicultura": "Causan Mareas Rojas y liberan Toxinas potentes (ej. Saxitoxinas)."
-    },
-    "Euglenofitas": {
-        "Tipo Celular / Reino": "Eucariota (Protista, Euglenophyta)",
-        "Pigmentos Clave": "Clorofila A y B, Beta-caroteno",
-        "Pared Celular / Cubierta": "Carecen de pared celular. Tienen una Película proteica flexible.",
-        "Almacenamiento de Reserva": "Paramilón",
-        "Características Distintivas": "Combinan características de plantas y animales. Unicelulares con 1 o 2 flagelos. Viven en agua dulce con alta materia orgánica.",
-        "Importancia en Acuicultura": "Indicadores de contaminación. Potencial en biomasa (crecimiento mixotrófico)."
-    },
-    "Clorofitas": {
-        "Tipo Celular / Reino": "Eucariota (Algas Verdes)",
-        "Pigmentos Clave": "Clorofila A y B (misma que plantas terrestres), Carotenos",
-        "Pared Celular / Cubierta": "Celulosa (estructura rígida).",
-        "Almacenamiento de Reserva": "Almidón (similar al de plantas)",
-        "Características Distintivas": "Gran diversidad morfológica (uni, filamentosas, coloniales, macroalgas).",
-        "Importancia en Acuicultura": "Fuente de Alimento Larval (Chlorella, Tetraselmis)."
-    },
-    "Feofitas": {
-        "Tipo Celular / Reino": "Eucariota (Protista, Heterokontophyta)",
-        "Pigmentos Clave": "Clorofila A y C, Fucoxantina (domina y da el color pardo)",
-        "Pared Celular / Cubierta": "Celulosa + Alginato (ácido algínico).",
-        "Almacenamiento de Reserva": "Laminarina y Aceites",
-        "Características Distintivas": "Pluricelular (Macroalgas),laminarias (hojas), arbustivas o arborescentes (los bosques de kelp) y tambien pueden ser filamentosas. Estructuras de flotación (Neumatocistos). Carecen de tejidos vasculares.",
-        "Importancia en Acuicultura": "Valor industrial por el Alginato (espesante/gelificante). Cultivo de especies comestibles (Wakame)."
-    },
-    "Rodofitas": {
-        "Tipo Celular / Reino": "Eucariota (Algas Rojas)",
-        "Pigmentos Clave": "Clorofila A, Ficoeritrina (domina y da el color rojo) y Ficocianina",
-        "Pared Celular / Cubierta": "Celulosa + Agar y Carragenina (Ficocoloides).",
-        "Almacenamiento de Reserva": "Almidón de Florídeas",
-        "Características Distintivas": "Ausencia total de flagelos. Pueden vivir a mayores profundidades (por Ficoeritrina). Pueden ser Unicelular , Filamentosa  y Pluricelular (forma más común, con crecimiento pseudoparenquimático, donde los filamentos se unen para formar un falso tejido denso, o como algas coralinas calcificadas).",
-        "Importancia en Acuicultura": "Extrema importancia por el Agar y la Carragenina (cultivo industrial de Gracilaria, Porphyra)."
-    }
+      "groupDetails": {
+          "Cianofitas": {
+              "Tipo Celular / Reino": "🔬 <strong>PROCARIOTA</strong> (Cianobacterias)",
+              "Habitad": "💧 Generalmente <strong>AGUA SALOBRE</strong>, pero también están en <strong>AGUA DULCE</strong> y <strong>SALADA</strong>",
+              "Reproducción": "🚫 Solo <strong>ASEXUAL</strong>: Fisión binaria, <strong>FRAGMENTACIÓN</strong> y por <strong>ESPORAS</strong>",
+              "Pigmentos Clave": "🎨 <span class='pigment-chloro-a'>CLOROFILA A</span> | <strong>FICOBILINAS</strong> (<span class='pigment-fico-c'>Ficocianina AZUL</span>, <span class='pigment-fico-e'>Ficoeritrina ROJO</span>)",
+              "Pared Celular / Cubierta": "🧱 <strong>PEPTIDOGLUCANO</strong> (Como en bacterias) y <strong>VAINA DE MUCÍLAGO</strong>",
+              "Almacenamiento de Reserva": "🍚 <strong>ALMIDÓN DE CIANOFÍCEAS</strong> (<strong>GLUCÓGENO</strong>)",
+              "Características Distintivas": "✨ No se mueven por <strong>FLAGELOS</strong> (algunas por <strong>OSCILACIÓN</strong>). Pueden tener <span class='text-success'>HETEROCITOS</span> (<strong>FIJAN N</strong>) y <span class='text-warning'>ACINETOS</span> (Células de resistencia).",
+              "Importancia en Acuicultura": "⚠️ <span class='text-danger'>RIESGO DE TOXINAS</span> (<span class='text-danger'>FANs</span> ¡LE-TA-LES!) | <span class='text-success'>BIOFERTILIZANTES</span> (<strong>Fijación de N</strong>)"
+          },
+          "Diatomeas": {
+              "Tipo Celular / Reino": "<strong>Eucariota</strong> (Protista, Heterokontophyta)",
+              "Habitad": "🌊 <strong>Cosmopolitas</strong>: Viven en <strong>AGUA DULCE</strong>, <strong>SALOBRE</strong> y <strong>MARINA</strong> (plancton) y en <strong>SUELOS HÚMEDOS</strong>.",
+              "Reproducción": "➗ Principalmente <strong>ASEXUAL</strong> (fisión binaria). También <strong>SEXUAL</strong> (formación de <span class='text-info'>auxosporas</span>) para restaurar su tamaño.",
+              "Pigmentos Clave": "<span class='pigment-chloro-a'>Clorofila A</span> y <span class='pigment-chloro-c'>C</span>, <span class='pigment-fuco'>Fucoxantina</span> (dominante)",
+              "Pared Celular / Cubierta": "<strong>Frústula de Sílice</strong> (Vidrio) con ornamentaciones.",
+              "Almacenamiento de Reserva": "<strong>Crisolaminarina</strong> y <strong>Aceites</strong>",
+              "Características Distintivas": "Únicas con pared de <strong>sílice (vidrio)</strong>. Son los <span class='text-success'>productores primarios</span> más importantes del océano. Son <strong>unicelulares</strong> y tambien pueden ser <strong>coloniales</strong>.",
+              "Importancia en Acuicultura": "<span class='text-success'>Alimento clave</span> para larvas de moluscos y camarones."
+          },
+          "Dinoflagelados": {
+              "Tipo Celular / Reino": "<strong>Eucariota</strong> (Protista, Dinophyta)",
+              "Habitad": "🌊 Mayormente <strong>MARINOS</strong> (plancton), pero también en <strong>AGUA DULCE</strong>, <strong>SALOBRE</strong> e incluso en la <strong>NIEVE</strong>.",
+              "Reproducción": "➗ Principalmente <strong>ASEXUAL</strong> (fisión binaria). La reproducción <strong>SEXUAL</strong> es menos frecuente y se induce por estrés ambiental (formando <strong>quistes</strong>).",
+              "Pigmentos Clave": "<span class='pigment-chloro-a'>Clorofila A</span> y <span class='pigment-chloro-c'>C</span>, <span class='pigment-peri'>Peridinina</span> (dominante)",
+              "Pared Celular / Cubierta": "<strong>Teca de placas de celulosa</strong> (armadura) o <strong>desnudos</strong>.",
+              "Almacenamiento de Reserva": "<strong>Almidón</strong> y <strong>Aceites</strong>",
+              "Características Distintivas": "<strong>Dos Flagelos</strong> (movimiento giratorio). Pueden ser <span class='text-special'>Bioluminiscentes</span>. Son solo <strong>unicelulares</strong>",
+              "Importancia en Acuicultura": "Causan <span class='text-danger'>Mareas Rojas</span> y liberan <span class='text-danger'>Toxinas potentes</span> (ej. Saxitoxinas)."
+          },
+           "Clorofitas": {
+              "Tipo Celular / Reino": "<strong>Eucariota</strong> (Algas Verdes)",
+              "Habitad": "🌎 <strong>MUY DIVERSO</strong>: Viven en <strong>AGUA DULCE</strong> (mayoría), <strong>MARINOS</strong>, <strong>TERRESTRES</strong> (suelos, rocas) y <strong>SIMBIONTES</strong> (líquenes).",
+              "Reproducción": "🔄 <strong>Muy variable</strong>. Reproducción <strong>ASEXUAL</strong> (zoosporas, fragmentación) y <strong>SEXUAL</strong> (isogamia, anisogamia, oogamia).",
+              "Pigmentos Clave": "<span class='pigment-chloro-a'>Clorofila A</span> y <span class='pigment-chloro-b'>B</span> (misma que plantas terrestres), <strong>Carotenos</strong>",
+              "Pared Celular / Cubierta": "<strong>Celulosa</strong> (estructura rígida).",
+              "Almacenamiento de Reserva": "<strong>Almidón</strong> (similar al de plantas)",
+              "Características Distintivas": "Gran <strong>diversidad morfológica</strong> (uni, filamentosas, coloniales, macroalgas).",
+              "Importancia en Acuicultura": "<span class='text-success'>Fuente de Alimento Larval</span> (Chlorella, Tetraselmis)."
+          },
+          "Euglenofitas": {
+              "Tipo Celular / Reino": "<strong>Eucariota</strong> (Protista, Euglenophyta)",
+              "Habitad": "💧 Casi exclusivamente de <strong>AGUA DULCE</strong> (estanques, charcos), especialmente con <span class='text-warning'>alta materia orgánica</span>.",
+              "Reproducción": "🚫 Solo <strong>ASEXUAL</strong> (fisión binaria longitudinal). <span class='text-warning'>No se conoce reproducción sexual</span> en este grupo.",
+              "Pigmentos Clave": "<span class='pigment-chloro-a'>Clorofila A</span> y <span class='pigment-chloro-b'>B</span>, <span class='pigment-beta'>Beta-caroteno</span>",
+              "Pared Celular / Cubierta": "<span class='text-warning'>Carecen de pared celular</span>. Tienen una <strong>Película proteica</strong> flexible.",
+              "Almacenamiento de Reserva": "<strong>Paramilón</strong>",
+              "Características Distintivas": "Combinan características de plantas y animales. Unicelulares con <strong>1 o 2 flagelos</strong>.",
+              "Importancia en Acuicultura": "<span class='text-warning'>Indicadores de contaminación</span>. Potencial en biomasa (crecimiento mixotrófico)."
+          },
+          "Feofitas": {
+              "Tipo Celular / Reino": "<strong>Eucariota</strong> (Protista, Heterokontophyta)",
+              "Habitad": "🌊 Casi exclusivamente <strong>MARINOS</strong>. Dominan las <strong>COSTAS ROCOSAS</strong> en aguas <strong>FRÍAS Y TEMPLADAS</strong> (ej. bosques de Kelp).",
+              "Reproducción": "🔄 Ciclos complejos con <strong>ALTERNANCIA DE GENERACIONES</strong> (esporofito y gametofito). Reproducción <strong>ASEXUAL</strong> (zoosporas) y <strong>SEXUAL</strong> (oogamia).",
+              "Pigmentos Clave": "<span class='pigment-chloro-a'>Clorofila A</span> y <span class='pigment-chloro-c'>C</span>, <span class='pigment-fuco'>Fucoxantina</span> (domina y da el color pardo)",
+              "Pared Celular / Cubierta": "<strong>Celulosa + Alginato</strong> (ácido algínico).",
+              "Almacenamiento de Reserva": "<strong>Laminarina</strong> y <strong>Aceites</strong>",
+              "Características Distintivas": "<strong>Pluricelular (Macroalgas)</strong>, laminarias (hojas), arbustivas o arborescentes (los <span class='text-success'>bosques de kelp</span>). Estructuras de flotación (Neumatocistos). <span class='text-warning'>Carecen de tejidos vasculares</span>.",
+              "Importancia en Acuicultura": "Valor industrial por el <span class='text-info'>Alginato (espesante/gelificante)</span>. Cultivo de especies comestibles (Wakame)."
+          },
+          "Rodofitas": {
+              "Tipo Celular / Reino": "<strong>Eucariota</strong> (Algas Rojas)",
+              "Habitad": "🌊 Mayormente <strong>MARINOS</strong>, abundantes en costas <strong>TROPICALES Y TEMPLADAS</strong>. Pueden vivir a <span class='text-info'>gran profundidad</span>.",
+              "Reproducción": "🔄 Ciclo de vida <strong>TRIFÁSICO</strong> (muy complejo). <strong>ASEXUAL</strong> (monosporas) y <strong>SEXUAL</strong>. <span class='text-warning'>AUSENCIA TOTAL DE FLAGELOS</span> en todas sus etapas.",
+              "Pigmentos Clave": "<span class='pigment-chloro-a'>Clorofila A</span>, <span class='pigment-fico-e'>Ficoeritrina</span> (domina y da el color rojo) y <span class='pigment-fico-c'>Ficocianina</span>",
+              "Pared Celular / Cubierta": "<strong>Celulosa + Agar y Carragenina</strong> (Ficocoloides).",
+              "Almacenamiento de Reserva": "<strong>Almidón de Florídeas</strong>",
+              "Características Distintivas": "<span class='text-warning'>Ausencia total de flagelos</span>. Pueden vivir a <strong>mayores profundidades</strong> (por Ficoeritrina). Pueden ser <strong>Unicelular</strong>, <strong>Filamentosa</strong> y <strong>Pluricelular</strong>.",
+              "Importancia en Acuicultura": "Extrema importancia por el <span class='text-info'>Agar y la Carragenina</span> (cultivo industrial de Gracilaria, Porphyra)."
+          }
   },
   "algae": [
     { "name": "Anabaena", "group": "Cianofitas", "img": "https://atlasofcyanobacteria.com/Cyanobacteria/Nostocales/Nostocaceae/Anabaena/oscillarioides/anabaena-oscillarioides-624.jpg" },
@@ -132,7 +144,7 @@
     { "name": "Hidrodictium", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Hydrodictyon_amimidoro01.jpg/250px-Hidrodictium_amimidoro01.jpg" },
     { "name": "Nitella", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Nitella_flexilis.jpg/400px-Nitella_flexilis.jpg" },
     { "name": "Oedogonium", "group": "Clorofitas", "img": "https://cdn.britannica.com/13/42313-050-CDC1171C/Oedogonium-filaments-oogonia.jpg" },
-    { "name": "Palmella", "group": "Clorofitas", "img": "https://img.algaebase.org/images/AC1F25A604fc430D59wKB5097BFA/mtWA32AnPEGt.jpg" },
+    { "name": "Palmella", "group": "Clorofitas", "img": "httpshttps://img.algaebase.org/images/AC1F25A604fc430D59wKB5097BFA/mtWA32AnPEGt.jpg" },
     { "name": "Pandorina", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Pandorina_morum.jpg/400px-Pandorina_morum.jpg" },
     { "name": "Pediastrum", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Pediastrum_duplex.jpg/400px-Pediastrum_duplex.jpg" },
     { "name": "Rhizoclonium", "group": "Clorofitas", "img": "https://www.landcareresearch.co.nz/assets/Tools-And-Resources/Identification/algae/rhizoclonium640__ScaleWidthWzEwMjRd.jpg" },
