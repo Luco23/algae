@@ -306,11 +306,10 @@
             const detalles = groupDetails[grupo];
             let htmlContent = `<h3>Detalles Clave del Grupo: ${grupo}</h3><dl>`;
 
-            for (const key in detalles) {
+           for (const key in detalles) {
                 let detalleTexto = detalles[key];
-                // Convierte **texto** en <strong>texto</strong>
-                let textoProcesado = detalleTexto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                htmlContent += `<dt>${key}</dt><dd>${textoProcesado}</dd>`;
+                // Ahora simplemente usamos el texto/HTML tal como viene del JSON
+                htmlContent += `<dt>${key}</dt><dd>${detalleTexto}</dd>`;
             }
             htmlContent += `</dl>`;
             detallesAlga.innerHTML = htmlContent;
