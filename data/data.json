@@ -10,13 +10,13 @@
   },
       "groupDetails": {
           "Cianofitas": {
-              "Tipo Celular / Reino": "🔬 <strong>PROCARIOTA</strong> (Cianobacterias)",
+              "Tipo Celular / Reino": " <strong>PROCARIOTA</strong> (Cianobacterias)",
               "Habitad": "💧 Generalmente <strong>AGUA SALOBRE</strong>, pero también están en <strong>AGUA DULCE</strong> y <strong>SALADA</strong>",
               "Reproducción": "🚫 Solo <strong>ASEXUAL</strong>: Fisión binaria, <strong>FRAGMENTACIÓN</strong> y por <strong>ESPORAS</strong>",
-              "Pigmentos Clave": "🎨 <span class='pigment-chloro-a'>CLOROFILA A</span> | <strong>FICOBILINAS</strong> (<span class='pigment-fico-c'>Ficocianina AZUL</span>, <span class='pigment-fico-e'>Ficoeritrina ROJO</span>)",
-              "Pared Celular / Cubierta": "🧱 <strong>PEPTIDOGLUCANO</strong> (Como en bacterias) y <strong>VAINA DE MUCÍLAGO</strong>",
-              "Almacenamiento de Reserva": "🍚 <strong>ALMIDÓN DE CIANOFÍCEAS</strong> (<strong>GLUCÓGENO</strong>)",
-              "Características Distintivas": "✨ No se mueven por <strong>FLAGELOS</strong> (algunas por <strong>OSCILACIÓN</strong>). Pueden tener <span class='text-success'>HETEROCITOS</span> (<strong>FIJAN N</strong>) y <span class='text-warning'>ACINETOS</span> (Células de resistencia).",
+              "Pigmentos Clave": " <span class='pigment-chloro-a'>CLOROFILA A</span> | <strong>FICOBILINAS</strong> (<span class='pigment-fico-c'>Ficocianina AZUL</span>, <span class='pigment-fico-e'>Ficoeritrina ROJO</span>)",
+              "Pared Celular / Cubierta": "<strong>PEPTIDOGLUCANO</strong> (Como en bacterias) y <strong>VAINA DE MUCÍLAGO</strong>",
+              "Almacenamiento de Reserva": "<strong>ALMIDÓN DE CIANOFÍCEAS</strong> (<strong>GLUCÓGENO</strong>)",
+              "Características Distintivas": " No se mueven por <strong>FLAGELOS</strong> (algunas por <strong>OSCILACIÓN</strong>). Pueden tener <span class='text-success'>HETEROCITOS</span> (<strong>FIJAN N</strong>) y <span class='text-warning'>ACINETOS</span> (Células de resistencia).",
               "Importancia en Acuicultura": "⚠️ <span class='text-danger'>RIESGO DE TOXINAS</span> (<span class='text-danger'>FANs</span> ¡LE-TA-LES!) | <span class='text-success'>BIOFERTILIZANTES</span> (<strong>Fijación de N</strong>)"
           },
           "Diatomeas": {
@@ -173,3 +173,4 @@
     { "name": "Kappaphycus", "group": "Rodofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Kappaphycus_alvarezii_farm.jpg/400px-Kappaphycus_alvarezii_farm.jpg" }
   ]
 }
+
