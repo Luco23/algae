@@ -14,6 +14,10 @@
 <div class="main-content">
     <div id="search-container" class="animate__animated animate__fadeIn">
         <input type="text" id="search-input" placeholder="Buscar microalga por nombre..." aria-label="Buscar microalga">
+
+        <button id="surprise-btn" aria-label="Mostrar un alga aleatoria">🎲 ¡Sorpréndeme!</button>
+        <button id="compare-groups-btn" aria-label="Comparar grupos de algas">⚖️ Comparar Grupos</button>
+        <button id="start-quiz-btn" aria-label="Iniciar el quiz de identificación">🧠 Iniciar Quiz</button>
     </div>
 
     <div id="catalogo" class="animate__animated animate__fadeInUp"></div>
@@ -22,15 +26,15 @@
         <h2 id="algaSeleccionada">Selecciona una microalga</h2>
 
         <div id="detalles-alga" class="detalles-contenedor animate__animated animate__fadeIn" style="display:none;"></div>
-        
+
         <div id="cargando" style="display:none;">
             <div class="spinner"></div>
             CARGANDO, ESPERA...
         </div>
         <div class="imagen-container" style="display:none;" id="contenedorImagen">
-            <img id="imagenAlga" src="" alt="Imagen de microalga">
+            <img id="imagenAlga" src="" alt="Imagen de microalga" loading="lazy">
             <button class="pantalla-completa-btn" onclick="abrirPantallaCompleta()" aria-label="Ampliar imagen de la microalga">🔍 Ampliar</button>
-            <div class="watermark">Desarrollada Por Luis Cordova 🌿</div>
+            <div class="watermark">Desarrollado por Luis Córdova🌿</div>
         </div>
         <br>
         <button id="buscarImagen" onclick="buscarEnGoogleImages()" aria-label="Buscar esta microalga en Google Imágenes">Buscar en Google Imágenes</button>
@@ -42,6 +46,87 @@
     <span class="cerrar-modal" onclick="cerrarModal()" aria-label="Cerrar imagen en pantalla completa">×</span>
     <div class="modal-content">
         <img id="imagenModal" src="" alt="Imagen ampliada de microalga">
+    </div>
+</div>
+
+<div id="compare-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="compare-modal-title">
+    <div class="modal-content-large">
+        <span id="close-compare-modal" class="cerrar-modal-dark">×</span>
+        <h2 id="compare-modal-title">Comparar Grupos</h2>
+
+        <div id="compare-controls">
+            <div class="select-group-wrapper">
+                <label for="group-select-1">Grupo 1:</label>
+                <select id="group-select-1"></select>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="select-group-wrapper">
+                <label for="group-select-2">Grupo 2:</label>
+                <select id="group-select-2"></select>
+            </div>
+            <button id="do-compare-btn">Comparar</button>
+        </div>
+
+        <div id="compare-table-container">
+            <p class="placeholder-text">Selecciona dos grupos y pulsa "Comparar" para ver las diferencias.</p>
+        </div>
+    </div>
+</div>
+
+<div id="quiz-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
+    <div class="modal-content-quiz">
+        <span id="close-quiz-modal" class="cerrar-modal-dark">×</span>
+
+        <div id="quiz-setup">
+            <h2 class="quiz-title">🎓 Configuración del Quiz</h2>
+            <p>¿Cómo quieres practicar hoy?</p>
+
+            <div class="quiz-mode-buttons">
+                <button id="quiz-mode-all" class="quiz-mode-btn">
+                    <span class="mode-icon">🌍</span>
+                    <span class="mode-text">Todas las Algas</span>
+                </button>
+                <button id="quiz-mode-group" class="quiz-mode-btn">
+                    <span class="mode-icon">🌿</span>
+                    <span class="mode-text">Por Grupo Específico</span>
+                </button>
+            </div>
+
+            <div id="quiz-group-selection" style="display: none;">
+                <label for="quiz-group-dropdown">Selecciona el grupo:</label>
+                <select id="quiz-group-dropdown"></select>
+                <button id="quiz-start-group-btn" class="action-btn">¡Comenzar!</button>
+            </div>
+        </div>
+
+        <div id="quiz-game" style="display: none;">
+            <div id="quiz-header">
+                <div id="quiz-progress">Pregunta 1/10</div>
+                <div id="quiz-score">Puntos: 0</div>
+            </div>
+
+            <div id="quiz-body">
+                <div id="quiz-image-container">
+                    <div id="quiz-spinner" class="spinner" style="display: none;"></div>
+                    <img id="quiz-image" src="" alt="Imagen de alga para identificar" style="display: none;">
+                    <div id="quiz-feedback"></div>
+                </div>
+                <h3 class="quiz-question-text">¿Qué alga es esta?</h3>
+                <div id="quiz-options">
+                    </div>
+            </div>
+        </div>
+
+        <div id="quiz-results" style="display: none;">
+            <h2 class="quiz-title">🏆 Quiz Terminado</h2>
+            <div class="final-score-circle">
+                <span id="quiz-final-score-number">0</span>
+                <span class="total-questions">/ 10</span>
+            </div>
+            <p id="quiz-final-message">¡Bien hecho!</p>
+            <button id="quiz-restart-btn" class="action-btn">Jugar de Nuevo</button>
+            <button id="quiz-home-btn" class="secondary-btn">Volver al Menú</button>
+        </div>
     </div>
 </div>
 
