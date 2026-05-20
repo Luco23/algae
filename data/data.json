@@ -171,5 +171,6 @@
     { "name": "Gigartina", "group": "Rodofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/a/af/Chondrus_crispus_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-034_cropped.jpg" },
     { "name": "Gracilaria", "group": "Rodofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Gracilaria_salicornia.jpg/400px-Gracilaria_salicornia.jpg" },
     { "name": "Kappaphycus", "group": "Rodofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Kappaphycus_alvarezii_farm.jpg/400px-Kappaphycus_alvarezii_farm.jpg" }
+    { "name": "Scenedesmus", "group": "Clorofitas", "img": "https://www.carolina.com/images/product/large/152510.jpg" }
   ]
 }
