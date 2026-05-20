@@ -156,6 +156,7 @@
     { "name": "Ulva", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Meersalat-Ulva-lactuca.jpg" },
     { "name": "Volvox", "group": "Clorofitas", "img": "https://cdn.britannica.com/04/40604-004-AFBDAA4A/Colonies-thousands-cells-Volvox-globator-flagella-cell.jpg" },
     { "name": "Zygnema", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Zygnema_sp.jpg/400px-Zygnema_sp.jpg" },
+    { "name": "Scenedesmus", "group": "Clorofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/6/63/Scenedesmus_GLERL.jpg" },
     { "name": "Astasia", "group": "Euglenofitas", "img": "https://live.staticflickr.com/2236/3533572343_bbdf18f6dd_c.jpg" },
     { "name": "Euglena", "group": "Euglenofitas", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Euglenoid_movement.jpg" },
     { "name": "Paranema", "group": "Euglenofitas", "img": "https://live.staticflickr.com/3262/2657110932_5a19728509_c.jpg" },
