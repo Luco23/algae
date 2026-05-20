@@ -132,14 +132,17 @@
 
     // --- FUNCIONES DE BÚSQUEDA Y MOSTRADO ---
 
-    function verificarImagen(url) {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = url;
-        });
-    }
+function verificarImagen(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        
+        const separador = url.includes('?') ? '&' : '?';
+
+        img.src = `${url}${separador}t=${new Date().getTime()}`;
+    });
+}
 
     async function buscarEnWikimediaCommons(nombre) {
         try {
