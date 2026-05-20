@@ -391,7 +391,7 @@
         loadQuizQuestion();
     }
 
-async function loadQuizQuestion() {
+    async function loadQuizQuestion() {
         if (currentQuizQuestion >= quizQuestions.length) {
             finishQuiz();
             return;
@@ -407,15 +407,13 @@ async function loadQuizQuestion() {
 
         const questionTextEl = document.querySelector('.quiz-question-text');
 
-        // CORRECCIÓN: Forzar el comportamiento visual según el tipo de pregunta actual
         if (q.isTheory === true) {
-            // Ocultar por completo el contenedor de imágenes para que no se quede cargando
             document.getElementById('quiz-image-container').style.display = 'none';
             quizImage.style.display = 'none';
+            quizImage.src = ''; 
             quizSpinner.style.display = 'none';
             questionTextEl.textContent = q.questionText;
         } else {
-            // Asegurar que el contenedor de imágenes se muestre en el quiz visual
             document.getElementById('quiz-image-container').style.display = 'flex';
             quizImage.style.display = 'none';
             quizSpinner.style.display = 'block';
@@ -459,11 +457,11 @@ async function loadQuizQuestion() {
         if (selected === correct) {
             quizScore++;
             quizFeedback.textContent = "👍";
-            quizFeedback.classList.add('correct');
+            quizFeedback.className = 'correct';
         } else {
             btnElement.classList.add('wrong');
             quizFeedback.textContent = "👎";
-            quizFeedback.classList.add('wrong');
+            quizFeedback.className = 'wrong';
         }
 
         setTimeout(() => {
