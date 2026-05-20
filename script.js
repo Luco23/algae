@@ -180,57 +180,55 @@ function verificarImagen(url) {
     }
 
 async function mostrarAlga(nombre) {
-    document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'start' });
-    algaSeleccionada.textContent = nombre;
-    contenedorImagen.style.display = "none";
-    cargando.style.display = "flex";
-    botonImagen.style.display = "inline-block";
-    botonImagen.dataset.nombre = nombre;
+        document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'start' });
+        algaSeleccionada.textContent = nombre;
+        contenedorImagen.style.display = "none";
+        cargando.style.display = "flex";
+        botonImagen.style.display = "inline-block";
+        botonImagen.dataset.nombre = nombre;
 
-    const algaData = allAlgaeData.find(a => a.name === nombre);
-    const grupo = algaData ? algaData.group : null;
+        const algaData = allAlgaeData.find(a => a.name === nombre);
+        const grupo = algaData ? algaData.group : null;
 
-    if (grupo && groupDetails[grupo]) {
-        const color = groupStyles[grupo] ? groupStyles[grupo].color : '#0096c7';
-        detallesAlga.style.setProperty('--group-color', color);
-        let html = `<h3>Detalles: ${grupo}</h3><dl>`;
-        for (const key in groupDetails[grupo]) {
-            html += `<dt>${key}</dt><dd>${groupDetails[grupo][key]}</dd>`;
+        if (grupo && groupDetails[grupo]) {
+            const color = groupStyles[grupo] ? groupStyles[grupo].color : '#0096c7';
+            detallesAlga.style.setProperty('--group-color', color);
+            let html = `<h3>Detalles: ${grupo}</h3><dl>`;
+            for (const key in groupDetails[grupo]) {
+                html += `<dt>${key}</dt><dd>${groupDetails[grupo][key]}</dd>`;
+            }
+            detallesAlga.innerHTML = html + "</dl>";
+            detallesAlga.style.display = "block";
+        } else {
+            detallesAlga.style.display = "none";
         }
-        detallesAlga.innerHTML = html + "</dl>";
-        detallesAlga.style.display = "block";
-    } else {
-        detallesAlga.style.display = "none";
-    }
 
-    // --- BLOQUE DE CONTROL DE IMAGEN Y CACHÉ ---
-    let imgUrl = algaData?.img;
-    let valid = imgUrl ? await verificarImagen(imgUrl) : false;
+        let imgUrl = algaData?.img;
+        let valid = false;
 
-    // Si la imagen de data.json falla, busca en repositorios externos
-    if (!valid) {
-        imgUrl = await buscarEnWikimediaCommons(nombre);
-        if (!imgUrl) imgUrl = await buscarEnINaturalist(nombre);
-        valid = !!imgUrl;
-    }
+        if (imgUrl && imgUrl.trim() !== "" && imgUrl.startsWith('http')) {
+            valid = true;
+        } else {
+            imgUrl = await buscarEnWikimediaCommons(nombre);
+            if (!imgUrl) imgUrl = await buscarEnINaturalist(nombre);
+            valid = !!imgUrl;
+        }
 
-    if (valid) {
-        // Rompemos la caché inyectando un parámetro de tiempo único (?t=timestamp)
-        const separador = imgUrl.includes('?') ? '&' : '?';
-        imagenAlga.src = `${imgUrl}${separador}t=${new Date().getTime()}`;
-        
-        cargando.style.display = "none";
-        contenedorImagen.style.display = "inline-block";
-        
-        // Reiniciar y activar la animación de entrada
-        contenedorImagen.classList.remove('animate__fadeIn');
-        void contenedorImagen.offsetWidth; // Truco de reflujo (reflow) para forzar la animación
-        contenedorImagen.classList.add('animate__animated', 'animate__fadeIn');
-    } else {
-        cargando.style.display = "none";
-        algaSeleccionada.innerHTML = `${nombre}<br><small style="color: orange">Sin imagen disponible.</small>`;
+        if (valid) {
+            const separador = imgUrl.includes('?') ? '&' : '?';
+            imagenAlga.src = `${imgUrl}${separador}t=${new Date().getTime()}`;
+            
+            cargando.style.display = "none";
+            contenedorImagen.style.display = "inline-block";
+            
+            contenedorImagen.classList.remove('animate__fadeIn');
+            void contenedorImagen.offsetWidth;
+            contenedorImagen.classList.add('animate__animated', 'animate__fadeIn');
+        } else {
+            cargando.style.display = "none";
+            algaSeleccionada.innerHTML = `${nombre}<br><small style="color: orange">Sin imagen disponible.</small>`;
+        }
     }
-}
 
     function mostrarAlgaAleatoria() {
         if (allAlgaeData.length === 0) return;
