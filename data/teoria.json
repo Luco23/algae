@@ -1,0 +1,501 @@
+{
+  "Cianofitas": [
+    {
+      "q": "¿Cuál es el tipo celular característico de las Cianofitas?",
+      "options": ["Eucariota vegetal", "Procariota", "Eucariota protista", "Arqueobacteria"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué pigmento accesorio hidrosoluble le otorga el color azul característico a las cianobacterias?",
+      "options": ["Ficocianina", "Ficoeritrina", "Fucoxantina", "Peridinina"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué estructura especializada de las Cianofitas se encarga de la fijación de nitrógeno molecular (N2)?",
+      "options": ["Acineto", "Heterocito", "Carboxisoma", "Frústula"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es la principal célula de resistencia o reposo latente que forman las Cianofitas ante estrés ambiental?",
+      "options": ["Heterocito", "Acineto", "Auxospora", "Quiste de resistencia"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el compuesto principal de reserva química en el grupo de las Cianofitas?",
+      "options": ["Almidón de Florídeas", "Almidón de cianofíceas (glucógeno)", "Paramilón", "Crisolaminarina"],
+      "correct": 1
+    },
+    {
+      "q": "¿De qué componentes químicos estructurales está constituida la pared celular de las Cianofitas?",
+      "options": ["Sílice y pectina", "Peptidoglucano y vaina de mucílago", "Celulosa pura", "Celulosa y alginato"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué tipo de reproducción es la única biológicamente documentada en las Cianofitas?",
+      "options": ["Solo asexual (fisión, fragmentación, esporas)", "Isogamia obligada", "Alternancia trifásica", "Oogamia"],
+      "correct": 0
+    },
+    {
+      "q": "En acuicultura, ¿qué riesgo letal directo presentan los florecimientos de Cianofitas (FANs)?",
+      "options": ["Obstrucción por frústulas", "Liberación de potentes hepatotoxinas y neurotoxinas", "Pérdida de elasticidad celular", "Exceso de sedimentación de sílice"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cómo se conoce al movimiento que realizan algunas Cianofitas filamentosas al carecer de flagelos?",
+      "options": ["Movimiento giratorio binario", "Movimiento por oscilación o deslizamiento", "Movimiento contráctil vacuolar", "Natación flagelar apical"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué coloración macroscópica le confiere el pigmento Ficoeritrina a ciertas especies de Cianofitas?",
+      "options": ["Azul brillante", "Verde pasto", "Rojo o pardo rojizo", "Amarillo dorado"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué estructura de almacenamiento interno de carbono poseen las Cianofitas para optimizar la fotosíntesis?",
+      "options": ["Pirinoide", "Carboxisoma", "Frústula", "Teca"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros pertenece al grupo de las Cianofitas?",
+      "options": ["Navícula", "Anabaena", "Euglena", "Ceratium"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué función acuícola positiva cumplen los géneros de Cianofitas capaces de fijar nitrógeno?",
+      "options": ["Actúan como biofertilizantes naturales", "Espesantes de agua", "Alimento directo para larvas de camarón", "Filtradores de sílice"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué caracteriza a la vaina de mucílago que recubre la pared de Peptidoglucano de las Cianofitas?",
+      "options": ["Es una armadura rígida calcificada", "Es una cubierta gelatinosa de protección e hidratación", "Es una capa delgada de lípidos hidrofóbicos", "Está hecha de placas articuladas de celulosa"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué fotosistema fotosintético poseen las Cianofitas al realizar fotosíntesis oxigénica?",
+      "options": ["Solo Fotosistema I", "Solo Fotosistema II", "Tanto Fotosistema I como Fotosistema II", "Ninguno, son quimiótrofas"],
+      "correct": 2
+    }
+  ],
+  "Diatomeas": [
+    {
+      "q": "¿A qué reino y filo pertenecen taxonómicamente las Diatomeas?",
+      "options": ["Procariota / Cyanobacteria", "Eucariota / Protista (Heterokontophyta)", "Plantae / Chlorophyta", "Fungi / Microsporidia"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cómo se denomina estructuralmente la pared celular rígida y ornamentada de las Diatomeas?",
+      "options": ["Teca", "Frústula", "Película", "Vaina"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué componente mineral inorgánico compone la estructura de la frústula de las Diatomeas?",
+      "options": ["Carbonato de calcio", "Sílice (dióxido de silicio)", "Celulosa hidratada", "Ácido algínico"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuáles son las dos mitades imbricadas que componen una frústula de Diatomea?",
+      "options": ["Epiteca e Hipoteca", "Epitrompa e Hipotrompa", "Valva superior y Teca inferior", "Cíngulo y Flagelo"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cuál es el pigmento carotenoide dominante que le confiere el color pardo-dorado a las Diatomeas?",
+      "options": ["Peridinina", "Ficocianina", "Fucoxantina", "Clorofila b"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué compuestos químicos utilizan las Diatomeas como sustancias de reserva a largo plazo?",
+      "options": ["Crisolaminarina y Aceites (lípidos)", "Almidón verdadero", "Paramilón", "Almidón de Florídeas"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué tipo de reproducción sexual emplean las Diatomeas para recuperar su tamaño celular óptimo tras divisiones asexuales consecutivas?",
+      "options": ["Fisión binaria longitudinal", "Formación de auxosporas", "Fragmentación tricotómica", "Fisión múltiple esporular"],
+      "correct": 1
+    },
+    {
+      "q": "En la acuicultura de larvas de camarón y moluscos, ¿qué papel crucial juegan las Diatomeas?",
+      "options": ["Son bioindicadores de contaminación fecal", "Constituyen el alimento vivo clave e indispensable en etapas iniciales", "Son agentes patógenos oportunistas", "Regulan la temperatura mediante flotación"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuáles son los dos grandes grupos morfológicos en los que se dividen las Diatomeas según su simetría?",
+      "options": ["Unicelulares y Pluricelulares", "Céntricas (simetría radial) y Pennadas (simetría bilateral)", "Desnudas y Tecadas", "Flageladas y Ciliadas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué estructura de la frústula de algunas Diatomeas pennadas les permite deslizarse sobre superficies sólidas?",
+      "options": ["El rafe", "El cíngulo", "La sutura", "El neumatocisto"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué combinación de clorofilas se encuentra presente en los plastidios de las Diatomeas?",
+      "options": ["Clorofila a y b", "Clorofila a y c", "Clorofila b y c", "Solo Clorofila a"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros es un ejemplo clásico de Diatomea céntrica colonial muy usada en larvicultura?",
+      "options": ["Chaetoceros", "Euglena", "Chlorella", "Anabaena"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué ocurre con el tamaño promedio de una población de Diatomeas durante la reproducción asexual continua por fisión binaria?",
+      "options": ["Aumenta progresivamente", "Se mantiene exactamente igual en todas las células", "Disminuye progresivamente en una de las líneas celulares", "Se duplica en cada ciclo horario"],
+      "correct": 2
+    },
+    {
+      "q": "¿Cuál es el hábitat general de distribución ecológica de las Diatomeas?",
+      "options": ["Cosmopolitas: agua dulce, salobre, marina y suelos húmedos", "Exclusivamente abisales marinas", "Únicamente aguas termales hipersalinas", "Estrictamente endosimbiontes de corales"],
+      "correct": 0
+    },
+    {
+      "q": "Debido a la naturaleza mineral de su cubierta celular, ¿en qué se convierten los sedimentos de Diatomeas muertas a nivel industrial?",
+      "options": ["Yacimientos de carbón vegetal", "Tierra de diatomeas (agente filtrante y aislante)", "Yacimientos de caliza pura", "Depósitos de celulosa microcristalina"],
+      "correct": 1
+    }
+  ],
+  "Dinoflagelados": [
+    {
+      "q": "¿Qué característica morfológica de locomoción define estructuralmente a los Dinoflagelados?",
+      "options": ["Ausencia de cilios y flagelos", "Presencia de dos flagelos que producen un movimiento giratorio", "Un penacho de flagelos apicales idénticos", "Un flagelo único con mastigonemas rígidos"],
+      "correct": 1
+    },
+    {
+      "q": "¿De qué material químico están compuestas las placas de la armadura o teca de los Dinoflagelados tecados?",
+      "options": ["Sílice hidratada", "Carbonato de calcio", "Celulosa", "Peptidoglucano"],
+      "correct": 2
+    },
+    {
+      "q": "¿Cuál es el pigmento carotenoide marcador y dominante en la gran mayoría de los Dinoflagelados fotosintéticos?",
+      "options": ["Fucoxantina", "Peridinina", "Ficocianina", "Luteína"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué tipos de clorofila se encuentran presentes en los Dinoflagelados clorofílicos?",
+      "options": ["Clorofila a y b", "Clorofila a y c", "Clorofila b y c", "Solo Clorofila a"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué compuestos químicos utilizan los Dinoflagelados para el almacenamiento interno de energía de reserva?",
+      "options": ["Almidón y Aceites", "Crisolaminarina pura", "Paramilón", "Almidón de Florídeas"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué espectacular propiedad visual poseen géneros marinos de Dinoflagelados como Noctiluca ante estímulos mecánicos?",
+      "options": ["Fijación de nitrógeno visible", "Bioluminiscencia", "Contracción celular rítmica", "Cambio cromático instantáneo"],
+      "correct": 1
+    },
+    {
+      "q": "En el contexto acuícola y ambiental, ¿qué grave fenómeno perjudicial provocan los Dinoflagelados?",
+      "options": ["Floraciones de Mareas Rojas con liberación de potentes toxinas", "Eutrofización por consumo excesivo de sílice", "Disminución drástica del pH por calcificación", "Fijación masiva de fósforo orgánico"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cómo se orientan espacialmente los dos flagelos característicos de un dinoflagelado típico?",
+      "options": ["Ambos son anteriores y paralelos", "Uno se ubica en un surco transversal (cíngulo) y otro en un surco longitudinal (sulco)", "Ambos son posteriores y de longitudes desiguales", "Se distribuyen uniformemente en hileras por toda la periferia"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el estado de organización morfológica celular dominante de los Dinoflagelados?",
+      "options": ["Estrictamente pluricelulares filamentosos", "Son exclusivamente unicelulares", "Forman colonias macroscópicas ramificadas", "Organización tisular compleja"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué potente neurotoxina causante del envenenamiento paralizante por mariscos (EPM) es producida por ciertos Dinoflagelados?",
+      "options": ["Microcistina", "Saxitoxina", "Ácido domoico", "Anatoxina-a"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué induce la reproducción sexual en los Dinoflagelados, derivando en la formación de quistes de resistencia hipnocigotos?",
+      "options": ["Condiciones óptimas de luz y nutrientes", "Estrés ambiental o agotamiento drástico de nutrientes", "Estabilidad térmica del agua", "Bajas concentraciones de oxígeno disuelto únicamente"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué nombre reciben los Dinoflagelados simbiontes carentes de teca que viven en los tejidos de corales e invertebrados marinos?",
+      "options": ["Cianelas", "Zooxantelas", "Frústulas", "Acinetos"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros representa un Dinoflagelado fotosintético común con prolongaciones en forma de cuernos?",
+      "options": ["Ceratium", "Navícula", "Chlorella", "Euglena"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué particularidad presenta el núcleo celular de los Dinoflagelados (Dinocarión)?",
+      "options": ["Carece por completo de membrana nuclear", "Los cromosomas permanecen permanentemente condensados y carecen de histonas clásicas", "Posee múltiples nucléolos gigantes móviles", "Sufre mitosis abierta con centriolos verdaderos"],
+      "correct": 1
+    }
+  ],
+  "Clorofitas": [
+    {
+      "q": "¿Cómo se conoce comúnmente al grupo de las Clorofitas debido a su pigmentación dominante?",
+      "options": ["Algas pardas", "Algas rojas", "Algas verdes", "Algas doradas"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué combinación exacta de pigmentos fotosintéticos clorofílicos define a las Clorofitas?",
+      "options": ["Clorofila a y c", "Clorofila a y b", "Clorofila b y c", "Solo Clorofila a con ficobilinas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el principal polisacárido de reserva energética acumulado por las Clorofitas dentro de sus plastidios?",
+      "options": ["Crisolaminarina", "Almidón verdadero (similar al de plantas terrestres)", "Paramilón", "Laminarina"],
+      "correct": 1
+    },
+    {
+      "q": "¿De qué componente estructural principal está compuesta la pared celular de la mayoría de las Clorofitas?",
+      "options": ["Sílice amorfa", "Celulosa", "Ácido algínico y fucano", "Peptidoglucano"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el grado de diversidad morfológica que presentan las Clorofitas?",
+      "options": ["Estrictamente unicelulares flageladas", "Exclusivamente macroalgas marinas", "Muy diverso: unicelulares, coloniales, filamentosas y macroalgas pluricelulares", "Únicamente cenocíticas ramificadas"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué géneros de Clorofitas unicelulares son ampliamente cultivados en acuicultura como fuente primaria de alimento larval?",
+      "options": ["Chlorella y Tetraselmis", "Sargassum y Laminaria", "Anabaena y Microcystis", "Noctiluca y Gymnodinium"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cuál es el hábitat principal de distribución geográfica de la mayor diversidad de Clorofitas?",
+      "options": ["Casi exclusivamente marinas de aguas frías", "Principalmente en agua dulce, aunque habitan ambientes marinos, terrestres y simbiontes", "Estrictamente suelos áridos y desérticos", "Aguas termales sulfurosas profundas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué estructura celular interna de los cloroplastos de las Clorofitas se asocia con la síntesis y polimerización del almidón?",
+      "options": ["El carboxisoma", "El pirinoide", "El rafe", "El neumatocisto"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué tipos de reproducción sexual se pueden manifestar dentro del diverso filo Chlorophyta?",
+      "options": ["Únicamente isogamia asexual", "Isogamia, anisogamia y oogamia", "Solo conjugación bacteriana", "Alternancia trifásica obligatoria sin gametos"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué nombre reciben las esporas asexuales móviles y flageladas producidas por las Clorofitas?",
+      "options": ["Aplanosporas", "Zoosporas", "Auxosporas", "Monosporas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros representa una Clorofita colonial esférica altamente compleja y móvil?",
+      "options": ["Volvox", "Spirogyra", "Navícula", "Euglena"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué organismo simbionte forman frecuentemente las Clorofitas al asociarse con hongos ascomicetos?",
+      "options": ["Micorrizas", "Líquenes", "Nódulos radicales", "Micetomas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué característica presentan los flagelos de las células reproductivas móviles de las Clorofitas?",
+      "options": ["Generalmente 2 o 4 flagelos isocontos (iguales en estructura y longitud) insertados apicalmente", "Un flagelo liso y otro plumoso heterocontos", "Flagelos distribuidos peritricamente", "Ausencia estructural absoluta de aparato flagelar"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros es una Clorofita filamentosa famosa por sus cloroplastos en forma de hélice o espiral?",
+      "options": ["Scenedesmus", "Spirogyra", "Ulva", "Dunaliella"],
+      "correct": 1
+    }
+  ],
+  "Euglenofitas": [
+    {
+      "q": "¿Cuál es el hábitat de distribución casi exclusivo de las Euglenofitas?",
+      "options": ["Aguas marinas oceánicas de alta salinidad", "Casi exclusivamente cuerpos de agua dulce, especialmente aquellos ricos en materia orgánica", "Costas rocosas intermareales", "Suelos desérticos alcalinos"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué particularidad estructural drástica presenta la periferia celular de las Euglenofitas en comparación con las plantas?",
+      "options": ["Poseen una frústula mineralizada pesada", "Carecen por completo de pared celular y tienen una película proteica interna flexible", "Tienen una teca rígida hecha de sílice", "Presentan una doble capa de Peptidoglucano denso"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el carbohidrato beta-1,3-glucano único de reserva que acumulan las Euglenofitas?",
+      "options": ["Almidón verdadero", "Crisolaminarina", "Paramilón", "Almidón de Florídeas"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué tipo de reproducción ocurre de manera exclusiva en el grupo de las Euglenofitas?",
+      "options": ["Solo asexual por fisión binaria longitudinal", "Reproducción sexual por oogamia estricta", "Ciclo trifásico haplo-diplonte", "Fragmentación colonial vegetativa"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué combinación de clorofilas poseen los cloroplastos de las Euglenofitas fotosintéticas?",
+      "options": ["Clorofila a y c", "Clorofila a y b", "Clorofila b y c", "Solo Clorofila a con ficobilinas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué estructura fotorreceptora pigmentada de color rojo (mancha ocular) poseen las Euglenofitas cerca de la base del flagelo?",
+      "options": ["Pirinoide", "Estigma", "Rafe", "Vacuola contráctil"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué capacidad nutricional exhiben muchas Euglenofitas al alternar entre fotosíntesis y la absorción directa de nutrientes orgánicos?",
+      "options": ["Quimiolitotrofia pura", "Mixotrofia (pueden actuar como autótrofas o heterótrofas)", "Heterotrofia parásita obligada", "Fotoautotrofia estricta irreversible"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuántos flagelos funcionales emergen típicamente de la invaginación anterior (reservorio) de una Euglena?",
+      "options": ["Múltiples flagelos dispuestos en corona", "Generalmente 1 o 2 flagelos visibles con hileras de mastigonemas finos", "Ausencia total de flagelos en el reservorio", "Cuatro flagelos isocontos idénticos"],
+      "correct": 1
+    },
+    {
+      "q": "En monitoreo ambiental y acuicultura, ¿de qué es un indicador biológico la abundancia masiva de Euglenofitas?",
+      "options": ["Excelente calidad de agua libre de nutrientes", "Alta contaminación por materia orgánica y eutrofización", "Déficit absoluto de nitrógeno y fósforo", "Presencia masiva de sílice disuelta"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cómo se conoce al movimiento metabólico de deformación corporal flexible que realizan las Euglenofitas gracias a su película proteica?",
+      "options": ["Movimiento saltatorio ciliar", "Movimiento euglenoide o metabolia", "Deslizamiento por rafe", "Oscilación rígida unidireccional"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros pertenece inequívocamente al grupo de las Euglenofitas y es incoloro (heterótrofo obligado)?",
+      "options": ["Astasia", "Euglena", "Phacus", "Chlorella"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cuál es el nivel de organización celular de todas las especies pertenecientes a Euglenophyta?",
+      "options": ["Son exclusivamente organismos unicelulares", "Forman filamentos pluricelulares verdaderos", "Forman colonias globulares multicelulares", "Presentan organización de tejidos diferenciados"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué organelo celular utilizan las Euglenofitas de agua dulce para regular su presión osmótica expulsando el exceso de agua?",
+      "options": ["El cloroplasto", "La vacuola contráctil", "El pirinoide", "El estigma"],
+      "correct": 1
+    }
+  ],
+  "Feofitas": [
+    {
+      "q": "¿Cuál es el nombre común que reciben las algas pertenecientes al grupo de las Feofitas?",
+      "options": ["Algas rojas", "Algas verdes", "Algas pardas o cafés", "Algas azul-verdosas"],
+      "correct": 2
+    },
+    {
+      "q": "¿Cuál es el hábitat casi exclusivo donde se desarrollan las macroalgas Feofitas?",
+      "options": ["Ambientes de agua dulce estancada", "Ambientes exclusivamente marinos, dominando costas rocosas de aguas frías y templadas", "Suelos continentales húmedos", "Simbiosis estricta en lagunas hipersalinas interperiódicas"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué pigmento carotenoide accesorio domina en las Feofitas, enmascarando a las clorofilas y otorgándoles su color pardo?",
+      "options": ["Ficoeritrina", "Ficocianina", "Fucoxantina", "Peridinina"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué tipo de organización celular y morfológica presentan todas las especies de Feofitas?",
+      "options": ["Son exclusivamente pluricelulares (macroalgas de organización compleja)", "Son todas unicelulares planctónicas", "Muestran formas exclusivamente coloniales microscópicas", "Alternan formas unicelulares con agregados filamentosos móviles"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cuáles son los compuestos químicos de reserva almacenados por las Feofitas fuera de sus plastidios?",
+      "options": ["Almidón verdadero y paramilón", "Laminarina y Aceites (lípidos)", "Almidón de Florídeas", "Glucógeno bacteriano"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué componentes polímeros de alto valor industrial componen la pared celular de las Feofitas junto con la celulosa?",
+      "options": ["Sílice y pectinas finas", "Celulosa combinada con Alginatos (ácido algínico)", "Agar y carragenina", "Peptidoglucano puro"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué nombre reciben las grandes estructuras llenas de gas que permiten la flotación vertical de las frondas de las Feofitas?",
+      "options": ["Rafe", "Neumatocistos (aerocistos)", "Heterocitos", "Acinetos"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué tipo de ciclos de vida caracterizan la reproducción de la mayoría de las Feofitas?",
+      "options": ["Ciclos complejos con alternancia de generaciones (esporofito y gametofito)", "Reproducción estrictamente asexual por fisión longitudinal", "Ciclo trifásico exclusivamente mitótico", "Conjugación citoplasmática directa sin esporas"],
+      "correct": 0
+    },
+    {
+      "q": "En la industria acuícola y biotecnológica, ¿por qué son intensamente cultivadas macroalgas como Undaria (Wakame) y Laminaria?",
+      "options": ["Por su valor industrial de ficocoloides espesantes (alginato) y consumo humano directo", "Para extraer sílice de vidrio óptico", "Como destructores de toxinas FAN", "Como fijadores masivos de nitrógeno molecular marino"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué combinación de clorofilas se encuentra en el aparato fotosintético de las Feofitas?",
+      "options": ["Clorofila a y b", "Clorofila a y c", "Clorofila b y c", "Solo Clorofila a"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué nombre reciben las células reproductivas móviles (zoosporas o gametos) de las Feofitas y cómo son sus flagelos?",
+      "options": ["Células piriformes con dos flagelos laterales desiguales (uno liso y otro plumoso)", "Células esféricas con flagelos apicales idénticos isocontos", "Células inmóviles carentes por completo de flagelos", "Células flageladas uniformemente peritricas"],
+      "correct": 0
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros representa una Feofita macroscópica flotante que forma inmensos mares en el Atlántico?",
+      "options": ["Sargassum", "Padina", "Ulva", "Gracilaria"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué gran ecosistema marino templado es estructurado principalmente por los mantos densos de Feofitas gigantes del orden Laminariales?",
+      "options": ["Arrecifes de coral profundo", "Bosques de Kelp (quelpos)", "Praderas de macrófitas dulceacuícolas", "Manglares estuarinos"],
+      "correct": 1
+    }
+  ],
+  "Rodofitas": [
+    {
+      "q": "¿Cómo se conoce comúnmente al grupo de las Rodofitas debido a su color característico?",
+      "options": ["Algas verdes", "Algas pardas", "Algas rojas", "Algas doradas"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué pigmento accesorio hidrosoluble domina el espectro de absorción de las Rodofitas, dándoles su color rojo?",
+      "options": ["Ficocianina", "Ficoeritrina", "Fucoxantina", "Peridinina"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué característica absoluta sobre la movilidad celular define a todo el ciclo biológico de las Rodofitas?",
+      "options": ["Poseen células flageladas isocontas", "Presentan ausencia total de flagelos y cilios en todas las etapas de su ciclo de vida", "Se mueven por pseudópodos contráctiles", "Tienen zoosporas con flagelos heterocontos"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el principal polisacárido de reserva energética acumulado por las Rodofitas en el citoplasma celular?",
+      "options": ["Almidón verdadero", "Almidón de Florídeas", "Paramilón", "Crisolaminarina"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué dos polisacáridos (ficocoloides) de inmenso valor comercial e industrial componen la matriz de la pared celular de las Rodofitas?",
+      "options": ["Alginato y fucoidano", "Agar-agar y Carragenina", "Sílice y peptidoglucano", "Celulosa pura y vaina de mucílago"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál es el hábitat de distribución geográfica predominante de las Rodofitas?",
+      "options": ["Casi exclusivamente de agua dulce estancada", "Mayormente marinas, abundantes en costas tropicales y templadas, capaces de vivir a gran profundidad", "Sueldos áridos continentales exclusivamente", "Cuerpos de agua salobre continentales estacionalmente secos"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué tipo de ciclo de vida, único y altamente complejo por involucrar tres fases consecutivas, poseen muchas Rodofitas?",
+      "options": ["Ciclo trifásico (con fases gametofito, carposporofito y tetrasporofito)", "Ciclo asexual por fisión binaria longitudinal estricta", "Alternancia isomórfica simple sin esporas", "Conjugación directa y fisión múltiple combinada"],
+      "correct": 0
+    },
+    {
+      "q": "En acuicultura industrial, ¿cuáles son los géneros de Rodofitas más cultivados para la extracción comercial de Agar y Carrageninas?",
+      "options": ["Gracilaria y Kappaphycus", "Sargassum y Laminaria", "Chlorella y Tetraselmis", "Anabaena y Microcystis"],
+      "correct": 0
+    },
+    {
+      "q": "¿Qué clorofila es la única presente de forma universal en los plastidios de las Rodofitas?",
+      "options": ["Clorofila a y b", "Clorofila a y c", "Solo Clorofila a", "Clorofila b y c"],
+      "correct": 2
+    },
+    {
+      "q": "¿Qué grados de organización morfológica corporal pueden manifestar las Rodofitas?",
+      "options": ["Únicamente formas unicelulares libres", "Estructuras exclusivamente flotantes gigantes no fijas", "Diversas: desde formas unicelulares, filamentosas, hasta formas pluricelulares complejas macrófitas", "Exclusivamente cenocíticas laminares sin tabiques"],
+      "correct": 2
+    },
+    {
+      "q": "¿Por qué las Rodofitas tienen la capacidad ecológica de habitar a mayores profundidades marinas que las algas verdes y pardas?",
+      "options": ["Porque sus paredes celulares toleran presiones extremas", "Porque la Ficoeritrina absorbe eficazmente la luz azul-verdosa, que es la que penetra más profundo en la columna de agua", "Porque realizan nutrición quimiótrofa en la oscuridad abisal", "Porque almacenan aceites que disminuyen su peso relativo"],
+      "correct": 1
+    },
+    {
+      "q": "¿Qué nombre reciben las algas rojas que depositan carbonato de calcio en sus paredes celulares, jugando un rol estructural clave en arrecifes coralinos?",
+      "options": ["Algas diatómicas", "Algas corallináceas", "Algas euglenoides", "Algas tecadas de celulosa"],
+      "correct": 1
+    },
+    {
+      "q": "¿Cuál de los siguientes géneros representa una Rodofita de gran valor alimentario tradicional conocida como Nori?",
+      "options": ["Porphyra", "Chondrus", "Ulva", "Sargassum"],
+      "correct": 0
+    }
+  ]
+}
