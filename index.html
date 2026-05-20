@@ -77,10 +77,20 @@
     <div class="modal-content-quiz">
         <span id="close-quiz-modal" class="cerrar-modal-dark">×</span>
 
-        <div id="quiz-setup">
+<div id="quiz-setup">
             <h2 class="quiz-title">🎓 Configuración del Quiz</h2>
-            <p>¿Cómo quieres practicar hoy?</p>
+            
+            <div class="quiz-type-selection" style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                <p style="font-weight: bold; margin-bottom: 10px;">1. Selecciona la modalidad del Quiz:</p>
+                <label style="margin-right: 20px; cursor: pointer;">
+                    <input type="radio" name="quiz-type" value="visual" checked id="type-visual-radio"> 🖼️ Reconocimiento Visual
+                </label>
+                <label style="cursor: pointer;">
+                    <input type="radio" name="quiz-type" value="teoria" id="type-teoria-radio"> 📚 Cuestionario Teórico
+                </label>
+            </div>
 
+            <p style="font-weight: bold; margin-bottom: 10px;">2. ¿Cómo quieres practicar hoy?</p>
             <div class="quiz-mode-buttons">
                 <button id="quiz-mode-all" class="quiz-mode-btn">
                     <span class="mode-icon">🌍</span>
@@ -88,14 +98,23 @@
                 </button>
                 <button id="quiz-mode-group" class="quiz-mode-btn">
                     <span class="mode-icon">🌿</span>
-                    <span class="mode-text">Por Grupo Específico</span>
+                    <span class="mode-text">Por Grupos Específicos</span>
                 </button>
             </div>
 
-            <div id="quiz-group-selection" style="display: none;">
-                <label for="quiz-group-dropdown">Selecciona el grupo:</label>
-                <select id="quiz-group-dropdown"></select>
-                <button id="quiz-start-group-btn" class="action-btn">¡Comenzar!</button>
+            <div id="quiz-group-selection" style="display: none; text-align: left; margin-top: 20px; background: rgba(0,0,0,0.02); padding: 15px; border-radius: 8px;">
+                <div id="quiz-single-group-container">
+                    <label for="quiz-group-dropdown" style="font-weight: bold; display: block; margin-bottom: 8px;">Selecciona el grupo taxonómico:</label>
+                    <select id="quiz-group-dropdown" style="width: 100%; max-width: 300px; margin-bottom: 15px;"></select>
+                </div>
+                
+                <div id="quiz-multiple-group-container" style="display: none;">
+                    <p style="font-weight: bold; margin-bottom: 8px;">Selecciona uno o varios grupos para combinar:</p>
+                    <div id="quiz-checkboxes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 15px;">
+                    </div>
+                </div>
+                
+                <button id="quiz-start-group-btn" class="action-btn" style="width: 100%;">¡Comenzar Desafío!</button>
             </div>
         </div>
 
