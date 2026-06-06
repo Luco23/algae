@@ -325,7 +325,7 @@ body.dark-mode .cerrar-modal-dark:hover { color: #fff; }
     position: relative; background-color: #f9f9f9;
     margin: 5% auto; padding: 30px; border-radius: 15px;
     width: 90%; max-width: 800px; color: #333; text-shadow: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;
 }
 body.dark-mode .modal-content-large, body.dark-mode .modal-content-quiz {
     background-color: #2d3748; color: #e2e8f0;
@@ -373,6 +373,20 @@ body.dark-mode .compare-table td { border-color: #4a5568; }
 
 /* --- ESTILOS QUIZ MEJORADO --- */
 .quiz-title { font-size: 1.8em; margin-bottom: 20px; }
+
+/* Pantalla de Carga Táctica */
+.quiz-loading-overlay {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--card-bg-light); z-index: 2000; border-radius: 15px;
+    backdrop-filter: blur(8px);
+}
+body.dark-mode .quiz-loading-overlay { background-color: var(--card-bg-dark); }
+.quiz-loading-text { color: var(--text-color-light); margin-bottom: 20px; font-size: 1.5em; text-align: center; font-weight: bold; }
+body.dark-mode .quiz-loading-text { color: var(--text-color-dark); }
+.progress-bar-container { width: 80%; max-width: 400px; background-color: rgba(0,0,0,0.1); border-radius: 10px; height: 25px; overflow: hidden; border: 1px solid rgba(0,0,0,0.2); }
+body.dark-mode .progress-bar-container { background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+#quiz-progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, #4CAF50, #8BC34A); transition: width 0.3s ease-out; }
 
 /* Setup Screen */
 #quiz-setup { text-align: center; padding: 20px; }
