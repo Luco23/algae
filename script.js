@@ -16,6 +16,9 @@
     let quizImage, quizSpinner, quizOptions, quizFeedback, quizProgress, quizScoreEl;
     let quizFinalScoreNumber, quizFinalMessage, quizRestartBtn, quizHomeBtn;
 
+    // Variables de Barra de Progreso Táctica
+    let quizLoadingOverlay, quizLoadingText, quizProgressBar;
+
     let quizQuestions = [];
     let currentQuizQuestion = 0;
     let quizScore = 0;
@@ -24,6 +27,21 @@
     let quizType = "visual"; 
     let bancoTeoriaDinamico = null;
 
+    // --- FUNCIONES DE PROGRESO ---
+    async function updateProgress(percent, text) {
+        quizLoadingOverlay.style.display = 'flex';
+        quizProgressBar.style.width = percent + '%';
+        quizLoadingText.textContent = text;
+        // Blindaje para renderizado de interfaz antes de procesar cálculos densos
+        await new Promise(resolve => setTimeout(resolve, 50)); 
+    }
+
+    function hideProgress() {
+        quizLoadingOverlay.style.display = 'none';
+        quizProgressBar.style.width = '0%';
+    }
+
+    // --- CARGA DE DATOS ---
     async function cargarDatos() {
         try {
             const response = await fetch('data/data.json');
@@ -63,15 +81,14 @@
             bancoTeoriaDinamico = await respuesta.json();
             return true;
         } catch (error) {
-            console.error("Error al cargar el banco de preguntas teóricas:", error);
-            alert("No se pudo cargar el cuestionario de teoría.");
+            console.error("Error de telemetría:", error);
+            alert("No se pudo sincronizar el banco de preguntas teóricas.");
             return false;
         }
     }
 
     function populateGroupSelects() {
         const groups = Object.keys(groupStyles).sort();
-
         [groupSelect1, groupSelect2, quizGroupDropdown].forEach(select => {
             if(select) {
                 select.innerHTML = '<option value="" disabled selected>Selecciona un grupo</option>';
@@ -89,19 +106,19 @@
         const container = document.getElementById('quiz-checkboxes-grid');
         container.innerHTML = '';
         const groups = Object.keys(groupStyles).sort();
-        
+
         groups.forEach(g => {
             const label = document.createElement('label');
             label.style.display = 'flex';
             label.style.alignItems = 'center';
             label.style.gap = '5px';
             label.style.cursor = 'pointer';
-            
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = g;
             checkbox.className = 'quiz-group-checkbox';
-            
+
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(`${groupStyles[g].emoji} ${g}`));
             container.appendChild(label);
@@ -228,10 +245,8 @@
         if (valid) {
             const separador = imgUrl.includes('?') ? '&' : '?';
             imagenAlga.src = `${imgUrl}${separador}t=${new Date().getTime()}`;
-            
             cargando.style.display = "none";
             contenedorImagen.style.display = "inline-block";
-            
             contenedorImagen.classList.remove('animate__fadeIn');
             void contenedorImagen.offsetWidth;
             contenedorImagen.classList.add('animate__animated', 'animate__fadeIn');
@@ -247,45 +262,47 @@
         mostrarAlga(alga.name);
     }
 
-    function openCompareModal() {
-        compareModal.style.display = 'block';
-    }
+    function openCompareModal() { compareModal.style.display = 'block'; }
 
     function performGroupCompare() {
         const g1 = groupSelect1.value;
         const g2 = groupSelect2.value;
-
-        if (!g1 || !g2) {
-            alert("Por favor selecciona dos grupos diferentes.");
-            return;
-        }
+        if (!g1 || !g2) { alert("Análisis denegado. Seleccione dos grupos distintos."); return; }
 
         const details1 = groupDetails[g1];
         const details2 = groupDetails[g2];
         const allKeys = Array.from(new Set([...Object.keys(details1), ...Object.keys(details2)]));
 
         let html = `<table class="compare-table">
-            <tr>
-                <th>Característica</th>
-                <th>${groupStyles[g1].emoji} ${g1}</th>
-                <th>${groupStyles[g2].emoji} ${g2}</th>
-            </tr>`;
-
+            <tr><th>Característica</th><th>${groupStyles[g1].emoji} ${g1}</th><th>${groupStyles[g2].emoji} ${g2}</th></tr>`;
         allKeys.forEach(key => {
-            html += `<tr>
-                <td><strong>${key}</strong></td>
-                <td>${details1[key] || '-'}</td>
-                <td>${details2[key] || '-'}</td>
-            </tr>`;
+            html += `<tr><td><strong>${key}</strong></td><td>${details1[key] || '-'}</td><td>${details2[key] || '-'}</td></tr>`;
         });
-
         html += '</table>';
         compareTableContainer.innerHTML = html;
     }
 
-    function openQuizModal() {
+    // --- LÓGICA TÁCTICA DEL QUIZ (REESTRUCTURADA PARA CERO LATENCIA) ---
+    async function openQuizModal() {
         quizModal.style.display = 'block';
-        showQuizSetup();
+        quizSetupScreen.style.display = 'none';
+        quizGameScreen.style.display = 'none';
+        quizResultsScreen.style.display = 'none';
+
+        // FASE 1: Precarga y verificación de la base de datos teórica
+        await updateProgress(20, 'Estableciendo conexión con el banco táctico...');
+        const cargado = await cargarBancoTeoria();
+        await updateProgress(100, 'Base de datos sincronizada');
+
+        setTimeout(() => {
+            hideProgress();
+            if (!cargado) {
+                alert("Fallo crítico: No se pudo enlazar el banco de preguntas.");
+                quizModal.style.display = 'none';
+                return;
+            }
+            showQuizSetup();
+        }, 300); // Pequeño respiro visual
     }
 
     function showQuizSetup() {
@@ -298,20 +315,15 @@
     }
 
     async function setupQuizMode(mode) {
-        if (quizType === 'teoria') {
-            const cargado = await cargarBancoTeoria();
-            if (!cargado) return;
-        }
-
         if (mode === 'all') {
             if (quizType === 'visual') {
-                initQuizGame(allAlgaeData);
+                await initQuizGame(allAlgaeData);
             } else {
                 let totalTeoria = [];
                 Object.keys(bancoTeoriaDinamico).forEach(g => {
                     totalTeoria = totalTeoria.concat(bancoTeoriaDinamico[g]);
                 });
-                initQuizGame(totalTeoria);
+                await initQuizGame(totalTeoria);
             }
         } else {
             quizGroupSelectionDiv.style.display = 'block';
@@ -326,17 +338,17 @@
         }
     }
 
-    function startGroupQuiz() {
+    async function startGroupQuiz() {
         if (quizType === 'visual') {
             const group = quizGroupDropdown.value;
-            if (!group) { alert("Selecciona un grupo"); return; }
+            if (!group) { alert("Seleccione un objetivo táctico."); return; }
             const filtered = allAlgaeData.filter(a => a.group === group);
-            if (filtered.length < 4) { alert(`El grupo ${group} tiene muy pocas algas para un quiz visual.`); return; }
-            initQuizGame(filtered);
+            if (filtered.length < 4) { alert(`El grupo ${group} carece del volumen estadístico necesario (mínimo 4).`); return; }
+            await initQuizGame(filtered);
         } else {
             const checkedBoxes = document.querySelectorAll('.quiz-group-checkbox:checked');
-            if (checkedBoxes.length === 0) { alert("Selecciona al menos un grupo para estudiar teoría."); return; }
-            
+            if (checkedBoxes.length === 0) { alert("Seleccione al menos un cuadrante de estudio."); return; }
+
             let poolPreguntas = [];
             checkedBoxes.forEach(box => {
                 const grupoSelected = box.value;
@@ -344,24 +356,40 @@
                     poolPreguntas = poolPreguntas.concat(bancoTeoriaDinamico[grupoSelected]);
                 }
             });
-            
-            if (poolPreguntas.length === 0) { alert("No hay preguntas teóricas disponibles para los grupos seleccionados."); return; }
-            initQuizGame(poolPreguntas);
+
+            if (poolPreguntas.length === 0) { alert("No hay datos teóricos en los cuadrantes seleccionados."); return; }
+            await initQuizGame(poolPreguntas);
         }
     }
 
-    function initQuizGame(dataset) {
+    async function initQuizGame(dataset) {
+        quizSetupScreen.style.display = 'none';
+
         quizQuestions = [];
         quizScore = 0;
         currentQuizQuestion = 0;
 
+        // FASE 2: Estructuración y validación del arsenal antes de iniciar
+        await updateProgress(10, 'Compilando arsenal de evaluación...');
+
         if (quizType === 'visual') {
             const validDataset = dataset.filter(a => a.img && a.img.trim() !== "");
-            if (validDataset.length < 4) { alert("No hay suficientes imágenes válidas."); return; }
+            if (validDataset.length < 4) { 
+                alert("Insuficientes imágenes válidas en el banco."); 
+                hideProgress(); 
+                showQuizSetup(); 
+                return; 
+            }
+
             const shuffled = [...validDataset].sort(() => 0.5 - Math.random());
             const selected = shuffled.slice(0, Math.min(QUIZ_LENGTH, shuffled.length));
 
-            selected.forEach(correctAlga => {
+            for (let i = 0; i < selected.length; i++) {
+                // Barra de progreso actualizando dinámicamente
+                const percent = 10 + ((i / selected.length) * 80);
+                await updateProgress(percent, `Validando telemetría visual ${i+1}/${selected.length}...`);
+
+                const correctAlga = selected[i];
                 const others = allAlgaeData.filter(a => a.name !== correctAlga.name);
                 const wrong = others.sort(() => 0.5 - Math.random()).slice(0, 3).map(a => a.name);
                 const options = [correctAlga.name, ...wrong].sort(() => 0.5 - Math.random());
@@ -371,24 +399,32 @@
                     correctAnswer: correctAlga.name,
                     options: options
                 });
-            });
+            }
         } else {
             const shuffledQuestions = [...dataset].sort(() => 0.5 - Math.random());
             const selectedQuestions = shuffledQuestions.slice(0, Math.min(QUIZ_LENGTH, shuffledQuestions.length));
-            
-            selectedQuestions.forEach(qData => {
+
+            for (let i = 0; i < selectedQuestions.length; i++) {
+                const percent = 10 + ((i / selectedQuestions.length) * 80);
+                await updateProgress(percent, `Estructurando variables teóricas ${i+1}/${selectedQuestions.length}...`);
+
+                const qData = selectedQuestions[i];
                 quizQuestions.push({
                     isTheory: true,
                     questionText: qData.q,
                     correctAnswer: qData.options[qData.correct],
                     options: [...qData.options]
                 });
-            });
+            }
         }
 
-        quizSetupScreen.style.display = 'none';
-        quizGameScreen.style.display = 'block';
-        loadQuizQuestion();
+        await updateProgress(100, 'Selecion de preguntas completada,Suerte.');
+
+        setTimeout(() => {
+            hideProgress();
+            quizGameScreen.style.display = 'block';
+            loadQuizQuestion();
+        }, 400); // Respiro visual final
     }
 
     async function loadQuizQuestion() {
@@ -401,9 +437,9 @@
         quizOptions.innerHTML = '';
         quizFeedback.textContent = '';
         quizFeedback.className = '';
-        
-        quizProgress.textContent = `Pregunta ${currentQuizQuestion + 1} / ${quizQuestions.length}`;
-        quizScoreEl.textContent = `Puntos: ${quizScore}`;
+
+        quizProgress.textContent = `Fase ${currentQuizQuestion + 1} / ${quizQuestions.length}`;
+        quizScoreEl.textContent = `Puntuacion: ${quizScore}`;
 
         const questionTextEl = document.querySelector('.quiz-question-text');
 
@@ -417,12 +453,12 @@
             document.getElementById('quiz-image-container').style.display = 'flex';
             quizImage.style.display = 'none';
             quizSpinner.style.display = 'block';
-            questionTextEl.textContent = '¿Qué alga es esta?';
+            questionTextEl.textContent = 'Identifique el objetivo:';
 
             let imgUrl = q.image;
             let valid = imgUrl && imgUrl.trim() !== "" && imgUrl.startsWith('http');
 
-            if (!valid) {
+            if (!valid) { // Si falló el filtro de la matriz primaria
                 imgUrl = await buscarEnWikimediaCommons(q.correctAnswer);
                 if (!imgUrl) imgUrl = await buscarEnINaturalist(q.correctAnswer);
                 valid = !!imgUrl;
@@ -456,18 +492,18 @@
 
         if (selected === correct) {
             quizScore++;
-            quizFeedback.textContent = "👍";
+            quizFeedback.textContent = "VERIFICADO";
             quizFeedback.className = 'correct';
         } else {
             btnElement.classList.add('wrong');
-            quizFeedback.textContent = "👎";
+            quizFeedback.textContent = "NEGATIVO";
             quizFeedback.className = 'wrong';
         }
 
         setTimeout(() => {
             currentQuizQuestion++;
             loadQuizQuestion();
-        }, 1500);
+        }, 1200);
     }
 
     function finishQuiz() {
@@ -476,12 +512,13 @@
         quizFinalScoreNumber.textContent = quizScore;
 
         const percentage = (quizScore / quizQuestions.length);
-        if (percentage === 1) quizFinalMessage.textContent = "¡Perfecto! 🌟 Eres un experto.";
-        else if (percentage >= 0.7) quizFinalMessage.textContent = "¡Muy bien! 👏 Casi perfecto.";
-        else if (percentage >= 0.5) quizFinalMessage.textContent = "Bien, pero puedes mejorar. 📚";
-        else quizFinalMessage.textContent = "Sigue practicando. 💪";
+        if (percentage >= 0.99) quizFinalMessage.textContent = "Felicidades. Sigue asi.";
+        else if (percentage >= 0.7) quizFinalMessage.textContent = "Nada mal. Puedes mejorar vamos.";
+        else if (percentage >= 0.5) quizFinalMessage.textContent = "Intentalo una vez mas. No te rindas.";
+        else quizFinalMessage.textContent = "Puedes mejorar. Intentalo otra vez.";
     }
 
+    // --- INICIALIZACIÓN ---
     document.addEventListener('DOMContentLoaded', () => {
         catalogo = document.getElementById("catalogo");
         algaSeleccionada = document.getElementById("algaSeleccionada");
@@ -524,6 +561,11 @@
         quizRestartBtn = document.getElementById("quiz-restart-btn");
         quizHomeBtn = document.getElementById("quiz-home-btn");
 
+        // Asignación de variables de progreso
+        quizLoadingOverlay = document.getElementById("quiz-loading-overlay");
+        quizLoadingText = document.getElementById("quiz-loading-text");
+        quizProgressBar = document.getElementById("quiz-progress-bar");
+
         window.singleGroupContainer = document.getElementById('quiz-single-group-container');
         window.multipleGroupContainer = document.getElementById('quiz-multiple-group-container');
 
@@ -561,7 +603,7 @@
         startQuizBtn.addEventListener('click', openQuizModal);
         closeQuizModal.addEventListener('click', () => quizModal.style.display = 'none');
         quizModeAllBtn.addEventListener('click', () => setupQuizMode('all'));
-        
+
         quizModeGroupBtn.addEventListener('click', () => {
             quizGroupSelectionDiv.style.display = 'block';
             if (quizType === 'visual') {
