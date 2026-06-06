@@ -77,9 +77,16 @@
     <div class="modal-content-quiz">
         <span id="close-quiz-modal" class="cerrar-modal-dark">×</span>
 
-<div id="quiz-setup">
+        <div id="quiz-loading-overlay" class="quiz-loading-overlay">
+            <h3 id="quiz-loading-text" class="quiz-loading-text">Inicializando telemetría...</h3>
+            <div class="progress-bar-container">
+                <div id="quiz-progress-bar"></div>
+            </div>
+        </div>
+
+        <div id="quiz-setup">
             <h2 class="quiz-title">🎓 Configuración del Quiz</h2>
-            
+
             <div class="quiz-type-selection" style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.1);">
                 <p style="font-weight: bold; margin-bottom: 10px;">1. Selecciona la modalidad del Quiz:</p>
                 <label style="margin-right: 20px; cursor: pointer;">
@@ -107,13 +114,13 @@
                     <label for="quiz-group-dropdown" style="font-weight: bold; display: block; margin-bottom: 8px;">Selecciona el grupo taxonómico:</label>
                     <select id="quiz-group-dropdown" style="width: 100%; max-width: 300px; margin-bottom: 15px;"></select>
                 </div>
-                
+
                 <div id="quiz-multiple-group-container" style="display: none;">
                     <p style="font-weight: bold; margin-bottom: 8px;">Selecciona uno o varios grupos para combinar:</p>
                     <div id="quiz-checkboxes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 15px;">
                     </div>
                 </div>
-                
+
                 <button id="quiz-start-group-btn" class="action-btn" style="width: 100%;">¡Comenzar Desafío!</button>
             </div>
         </div>
