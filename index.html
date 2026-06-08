@@ -2,9 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Catálogo Talofitas</title>
-<link rel="icon" type="image/png" href="https://i.imgur.com/S7Mbuoe.png"> <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0096c7">
+<link rel="icon" type="image/png" href="https://i.imgur.com/S7Mbuoe.png"> 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +16,10 @@
 
 <div class="main-content">
     <div id="search-container" class="animate__animated animate__fadeIn">
-        <input type="text" id="search-input" placeholder="Buscar microalga por nombre..." aria-label="Buscar microalga">
+        <div id="search-input-wrapper" style="position: relative; flex-grow: 1; width: 100%; box-sizing: border-box;">
+            <input type="text" id="search-input" placeholder="Buscar microalga por nombre..." aria-label="Buscar microalga" autocomplete="off">
+            <div id="autocomplete-list" class="autocomplete-items"></div>
+        </div>
 
         <button id="surprise-btn" aria-label="Mostrar un alga aleatoria">🎲 ¡Sorpréndeme!</button>
         <button id="compare-groups-btn" aria-label="Comparar grupos de algas">⚖️ Comparar Grupos</button>
@@ -77,22 +83,15 @@
     <div class="modal-content-quiz">
         <span id="close-quiz-modal" class="cerrar-modal-dark">×</span>
 
-        <div id="quiz-loading-overlay" class="quiz-loading-overlay">
-            <h3 id="quiz-loading-text" class="quiz-loading-text">Inicializando telemetría...</h3>
-            <div class="progress-bar-container">
-                <div id="quiz-progress-bar"></div>
-            </div>
-        </div>
-
         <div id="quiz-setup">
             <h2 class="quiz-title">🎓 Configuración del Quiz</h2>
 
-            <div class="quiz-type-selection" style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.1);">
-                <p style="font-weight: bold; margin-bottom: 10px;">1. Selecciona la modalidad del Quiz:</p>
-                <label style="margin-right: 20px; cursor: pointer;">
+            <div class="quiz-type-selection">
+                <p><strong>1. Selecciona la modalidad del Quiz:</strong></p>
+                <label>
                     <input type="radio" name="quiz-type" value="visual" checked id="type-visual-radio"> 🖼️ Reconocimiento Visual
                 </label>
-                <label style="cursor: pointer;">
+                <label>
                     <input type="radio" name="quiz-type" value="teoria" id="type-teoria-radio"> 📚 Cuestionario Teórico
                 </label>
             </div>
@@ -121,14 +120,14 @@
                     </div>
                 </div>
 
-                <button id="quiz-start-group-btn" class="action-btn" style="width: 100%;">¡Comenzar Desafío!</button>
+                <button id="quiz-start-group-btn" class="action-btn" style="width: 100%;">¡Comenzar Desafío Inteligente!</button>
             </div>
         </div>
 
         <div id="quiz-game" style="display: none;">
             <div id="quiz-header">
                 <div id="quiz-progress">Pregunta 1/10</div>
-                <div id="quiz-score">Puntos: 0</div>
+                <div id="quiz-score">Rendimiento: 0</div>
             </div>
 
             <div id="quiz-body">
@@ -138,8 +137,7 @@
                     <div id="quiz-feedback"></div>
                 </div>
                 <h3 class="quiz-question-text">¿Qué alga es esta?</h3>
-                <div id="quiz-options">
-                    </div>
+                <div id="quiz-options"></div>
             </div>
         </div>
 
@@ -149,7 +147,8 @@
                 <span id="quiz-final-score-number">0</span>
                 <span class="total-questions">/ 10</span>
             </div>
-            <p id="quiz-final-message">¡Bien hecho!</p>
+            <p id="quiz-final-message">Evaluación Completada</p>
+            <p id="quiz-stats-message" style="font-size: 0.9em; opacity: 0.8; margin-bottom: 20px;">El algoritmo ha registrado tu desempeño.</p>
             <button id="quiz-restart-btn" class="action-btn">Jugar de Nuevo</button>
             <button id="quiz-home-btn" class="secondary-btn">Volver al Menú</button>
         </div>
