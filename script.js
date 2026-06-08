@@ -44,7 +44,7 @@ if ('serviceWorker' in navigator) {
     // ==========================================================================
     async function cargarDatos() {
         try {
-            const response = await fetch('data/data.json');
+            const response = await fetch('data/data.json?v=' + new Date().getTime());
             if (!response.ok) throw new Error(`Fallo de conexión con data.json`);
             const data = await response.json();
 
