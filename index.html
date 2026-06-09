@@ -1,57 +1,174 @@
-// El nombre ya no necesita cambiar. Será estático.
-const CACHE_NAME = 'talofitas-tactico-auto'; 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Catálogo Talofitas</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0096c7">
+<link rel="icon" type="image/png" href="https://i.imgur.com/S7Mbuoe.png"> 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1 class="animate__animated animate__fadeInDown">Macro y Micro algas</h1>
 
-const ASSETS_TO_CACHE = [
-    './',
-    './index.html',
-    './style.css',
-    './script.js',
-    './data/data.json',
-    './data/teoria.json',
-    'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-    'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'
-];
+<div class="main-content">
+    <div id="search-container" class="animate__animated animate__fadeIn">
+        <div id="search-input-wrapper" style="position: relative; flex-grow: 1; width: 100%; box-sizing: border-box;">
+            <input type="text" id="search-input" placeholder="Buscar microalga por nombre..." aria-label="Buscar microalga" autocomplete="off">
+            <div id="autocomplete-list" class="autocomplete-items"></div>
+        </div>
 
-self.addEventListener('install', (event) => {
-    // Fuerzo la instalación inmediata
-    event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
-    );
-    self.skipWaiting();
-});
+        <button id="surprise-btn" aria-label="Mostrar un alga aleatoria">🎲 ¡Sorpréndeme!</button>
+        <button id="compare-groups-btn" aria-label="Comparar grupos de algas">⚖️ Comparar Grupos</button>
+        <button id="start-quiz-btn" aria-label="Iniciar el quiz de identificación">🧠 Iniciar Quiz</button>
+    </div>
 
-self.addEventListener('activate', (event) => {
-    // Toma el control de la página instantáneamente sin esperar a que se reinicie
-    event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.filter(name => name !== CACHE_NAME).map(name => caches.delete(name))
-            );
-        })
-    );
-    self.clients.claim();
-});
+    <div id="catalogo" class="animate__animated animate__fadeInUp"></div>
 
-self.addEventListener('fetch', (event) => {
-    if (!event.request.url.startsWith('http')) return;
+    <div id="result" class="animate__animated animate__fadeIn">
+        <h2 id="algaSeleccionada">Selecciona una microalga</h2>
 
-    // DOCTRINA TÁCTICA: "Network-First" (Primero Red)
-    event.respondWith(
-        fetch(event.request)
-            .then(response => {
-                // Si hay internet y la carga es exitosa, actualiza la copia de seguridad silenciosamente
-                if (response && response.status === 200) {
-                    const responseClone = response.clone();
-                    caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, responseClone);
-                    });
-                }
-                return response;
-            })
-            .catch(() => {
-                // Si no hay internet (falla el fetch), extrae el archivo de la memoria caché
-                console.warn("Falla de conexión: Activando respaldo Offline para " + event.request.url);
-                return caches.match(event.request);
-            })
-    );
-});
+        <div id="detalles-alga" class="detalles-contenedor animate__animated animate__fadeIn" style="display:none;"></div>
+
+        <div id="cargando" style="display:none;">
+            <div class="spinner"></div>
+            CARGANDO, ESPERA...
+        </div>
+        <div class="imagen-container" style="display:none;" id="contenedorImagen">
+            <img id="imagenAlga" src="" alt="Imagen de microalga" loading="lazy">
+            <button class="pantalla-completa-btn" onclick="abrirPantallaCompleta()" aria-label="Ampliar imagen de la microalga">🔍 Ampliar</button>
+            <div class="watermark">Desarrollado por Luis Córdova🌿</div>
+        </div>
+        <br>
+        <button id="buscarImagen" onclick="buscarEnGoogleImages()" aria-label="Buscar esta microalga en Google Imágenes">Buscar en Google Imágenes</button>
+        <button id="recomendarAlgas" onclick="recomendarAlgas()" aria-label="Recomendar nuevas algas">Recomendar Algas</button>
+        <button id="reportarError" onclick="reportarError()" aria-label="Reportar un error táctico o de datos">⚠️ Reportar Error</button>
+    </div>
+</div>
+
+<div id="modalImagen" class="modal" role="dialog" aria-modal="true" aria-label="Imagen en pantalla completa" onclick="cerrarModal()">
+    <span class="cerrar-modal" onclick="cerrarModal()" aria-label="Cerrar imagen en pantalla completa">×</span>
+    <div class="modal-content">
+        <img id="imagenModal" src="" alt="Imagen ampliada de microalga">
+    </div>
+</div>
+
+<div id="compare-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="compare-modal-title">
+    <div class="modal-content-large">
+        <span id="close-compare-modal" class="cerrar-modal-dark">×</span>
+        <h2 id="compare-modal-title">Comparar Grupos</h2>
+
+        <div id="compare-controls">
+            <div class="select-group-wrapper">
+                <label for="group-select-1">Grupo 1:</label>
+                <select id="group-select-1"></select>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="select-group-wrapper">
+                <label for="group-select-2">Grupo 2:</label>
+                <select id="group-select-2"></select>
+            </div>
+            <button id="do-compare-btn">Comparar</button>
+        </div>
+
+        <div id="compare-table-container">
+            <p class="placeholder-text">Selecciona dos grupos y pulsa "Comparar" para ver las diferencias.</p>
+        </div>
+    </div>
+</div>
+
+<div id="quiz-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
+    <div class="modal-content-quiz">
+        <span id="close-quiz-modal" class="cerrar-modal-dark">×</span>
+
+        <div id="quiz-setup">
+            <h2 class="quiz-title">🎓 Configuración del Quiz</h2>
+
+            <div class="quiz-type-selection">
+                <p><strong>1. Selecciona la modalidad del Quiz:</strong></p>
+                <label>
+                    <input type="radio" name="quiz-type" value="visual" checked id="type-visual-radio"> 🖼️ Reconocimiento Visual
+                </label>
+                <label>
+                    <input type="radio" name="quiz-type" value="teoria" id="type-teoria-radio"> 📚 Cuestionario Teórico
+                </label>
+            </div>
+
+            <div class="quiz-length-selection" style="margin-bottom: 25px;">
+                <p><strong>2. Selecciona la longitud del desafío:</strong></p>
+                <select id="quiz-length-select" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(0,150,199,0.3); background-color: rgba(0,150,199,0.05); font-weight: bold; font-size: 1.05em; color: inherit; outline: none; cursor: pointer;">
+                    <option value="5" style="color: #333;">⏱️ Escaramuza (5 Preguntas)</option>
+                    <option value="10" selected style="color: #333;">🎯 Estándar (10 Preguntas)</option>
+                    <option value="20" style="color: #333;">🔥 Intenso (20 Preguntas)</option>
+                    <option value="50" style="color: #333;">💀 Hardcore (50 Preguntas)</option>
+                    <option value="1000" style="color: #333;">♾️ Modo Dios (Todas las posibles)</option>
+                </select>
+            </div>
+
+            <p style="font-weight: bold; margin-bottom: 10px;">3. ¿Cómo quieres practicar hoy?</p>
+            <div class="quiz-mode-buttons">
+                <button id="quiz-mode-all" class="quiz-mode-btn">
+                    <span class="mode-icon">🌍</span>
+                    <span class="mode-text">Todas las Algas</span>
+                </button>
+                <button id="quiz-mode-group" class="quiz-mode-btn">
+                    <span class="mode-icon">🌿</span>
+                    <span class="mode-text">Por Grupos Específicos</span>
+                </button>
+            </div>
+
+            <div id="quiz-group-selection" style="display: none; text-align: left; margin-top: 20px; background: rgba(0,0,0,0.02); padding: 15px; border-radius: 8px;">
+                <div id="quiz-single-group-container">
+                    <label for="quiz-group-dropdown" style="font-weight: bold; display: block; margin-bottom: 8px;">Selecciona el grupo taxonómico:</label>
+                    <select id="quiz-group-dropdown" style="width: 100%; max-width: 300px; margin-bottom: 15px;"></select>
+                </div>
+
+                <div id="quiz-multiple-group-container" style="display: none;">
+                    <p style="font-weight: bold; margin-bottom: 8px;">Selecciona uno o varios grupos para combinar:</p>
+                    <div id="quiz-checkboxes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 15px;">
+                    </div>
+                </div>
+
+                <button id="quiz-start-group-btn" class="action-btn" style="width: 100%;">¡Comenzar Desafío Inteligente!</button>
+            </div>
+        </div>
+
+        <div id="quiz-game" style="display: none;">
+            <div id="quiz-header">
+                <div id="quiz-progress">Pregunta 1/10</div>
+                <div id="quiz-score">Rendimiento: 0</div>
+            </div>
+
+            <div id="quiz-body">
+                <div id="quiz-image-container">
+                    <div id="quiz-spinner" class="spinner" style="display: none;"></div>
+                    <img id="quiz-image" src="" alt="Imagen de alga para identificar" style="display: none;">
+                    <div id="quiz-feedback"></div>
+                </div>
+                <h3 class="quiz-question-text">¿Qué alga es esta?</h3>
+                <div id="quiz-options"></div>
+            </div>
+        </div>
+
+        <div id="quiz-results" style="display: none;">
+            <h2 class="quiz-title">🏆 Quiz Terminado</h2>
+            <div class="final-score-circle">
+                <span id="quiz-final-score-number">0</span>
+                <span class="total-questions">/ 10</span>
+            </div>
+            <p id="quiz-final-message">Evaluación Completada</p>
+            <p id="quiz-stats-message" style="font-size: 0.9em; opacity: 0.8; margin-bottom: 20px;">El algoritmo ha registrado tu desempeño.</p>
+            <button id="quiz-restart-btn" class="action-btn">Jugar de Nuevo</button>
+            <button id="quiz-home-btn" class="secondary-btn">Volver al Menú</button>
+        </div>
+    </div>
+</div>
+
+<button id="mode-toggle" aria-label="Cambiar modo claro/oscuro">🌙</button>
+
+<script src="script.js"></script>
+</body>
+</html>
