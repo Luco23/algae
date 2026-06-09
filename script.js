@@ -606,5 +606,6 @@ if ('serviceWorker' in navigator) {
         };
 
         window.recomendarAlgas = () => window.open("https://docs.google.com/forms/d/e/1FAIpQLScKt3p1B_aV5KCY2r5icR33LhkexEpVjzoRWiHY6WSa-HmXQA/viewform", "_blank");
+        window.reportarError = () => window.open("https://forms.gle/NBTfqCXDpu8RHBwf9", "_blank");
     });
 })();
