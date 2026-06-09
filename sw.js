@@ -1,4 +1,3 @@
-// El nombre ya no necesita cambiar. Será estático.
 const CACHE_NAME = 'talofitas-tactico-auto'; 
 
 const ASSETS_TO_CACHE = [
