@@ -1,4 +1,4 @@
-const CACHE_NAME = 'talofitas-tactico-v6'; // Versión actualizada para purga obligatoria
+const CACHE_NAME = 'talofitas-tactico-v7'; // Versión actualizada para purga obligatoria
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
