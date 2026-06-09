@@ -359,7 +359,7 @@ if ('serviceWorker' in navigator) {
         }
     }
 
-    function startGroupQuiz() {
+        async function startGroupQuiz() {
         if (quizType === 'visual') {
             const group = quizGroupDropdown.value;
             if (!group) return alert("Parámetro inválido. Seleccione un grupo.");
@@ -367,6 +367,10 @@ if ('serviceWorker' in navigator) {
             if (filtered.length < 4) return alert("Volumen de muestra estadísticamente insuficiente (Mínimo 4).");
             initQuizGame(filtered);
         } else {
+            // BLINDAJE TÁCTICO: Obligar al sistema a confirmar la descarga teórica antes de avanzar
+            const cargado = await cargarBancoTeoria();
+            if (!cargado) return;
+
             const checked = document.querySelectorAll('.quiz-group-checkbox:checked');
             if (checked.length === 0) return alert("Seleccione objetivo táctico.");
             let pool = [];
@@ -548,17 +552,8 @@ if ('serviceWorker' in navigator) {
         closeQuizModal.addEventListener('click', () => quizModal.style.display = 'none'); 
         quizModeAllBtn.addEventListener('click', () => setupQuizMode('all'));
 
-        quizModeGroupBtn.addEventListener('click', () => {
-            quizGroupSelectionDiv.style.display = 'block';
-            if (quizType === 'visual') { 
-                singleGroupContainer.style.display = 'block'; 
-                multipleGroupContainer.style.display = 'none'; 
-            } else { 
-                singleGroupContainer.style.display = 'none'; 
-                multipleGroupContainer.style.display = 'block'; 
-                renderQuizCheckboxes(); 
-            }
-        });
+                // Reemplazo del bloque de botones de modalidad
+        quizModeGroupBtn.addEventListener('click', () => setupQuizMode('group'));
 
         document.getElementById('type-visual-radio').addEventListener('change', () => { 
             quizType = "visual"; 
@@ -567,6 +562,17 @@ if ('serviceWorker' in navigator) {
                 multipleGroupContainer.style.display = 'none'; 
             } 
         });
+        
+        document.getElementById('type-teoria-radio').addEventListener('change', async () => { 
+            quizType = "teoria"; 
+            if (quizGroupSelectionDiv.style.display === 'block') { 
+                singleGroupContainer.style.display = 'none'; 
+                multipleGroupContainer.style.display = 'block'; 
+                await cargarBancoTeoria(); // Sincronización estricta al cambiar de pestaña
+                renderQuizCheckboxes(); 
+            } 
+        });
+
 
         document.getElementById('type-teoria-radio').addEventListener('change', () => { 
             quizType = "teoria"; 
