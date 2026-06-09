@@ -17,7 +17,6 @@
     let quizQuestions = [];
     let currentQuizQuestion = 0;
     let quizScore = 0;
-    const QUIZ_LENGTH = 10;
 
     let quizType = "visual"; 
     let bancoTeoriaDinamico = null;
@@ -87,19 +86,19 @@
         const container = document.getElementById('quiz-checkboxes-grid');
         container.innerHTML = '';
         const groups = Object.keys(groupStyles).sort();
-        
+
         groups.forEach(g => {
             const label = document.createElement('label');
             label.style.display = 'flex';
             label.style.alignItems = 'center';
             label.style.gap = '5px';
             label.style.cursor = 'pointer';
-            
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = g;
             checkbox.className = 'quiz-group-checkbox';
-            
+
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(`${groupStyles[g].emoji} ${g}`));
             container.appendChild(label);
@@ -226,10 +225,10 @@
         if (valid) {
             const separador = imgUrl.includes('?') ? '&' : '?';
             imagenAlga.src = `${imgUrl}${separador}t=${new Date().getTime()}`;
-            
+
             cargando.style.display = "none";
             contenedorImagen.style.display = "inline-block";
-            
+
             contenedorImagen.classList.remove('animate__fadeIn');
             void contenedorImagen.offsetWidth;
             contenedorImagen.classList.add('animate__animated', 'animate__fadeIn');
@@ -338,7 +337,7 @@
 
             const checkedBoxes = document.querySelectorAll('.quiz-group-checkbox:checked');
             if (checkedBoxes.length === 0) { alert("Selecciona al menos un grupo para estudiar teoría."); return; }
-            
+
             let poolPreguntas = [];
             checkedBoxes.forEach(box => {
                 const grupoSelected = box.value;
@@ -346,7 +345,7 @@
                     poolPreguntas = poolPreguntas.concat(bancoTeoriaDinamico[grupoSelected]);
                 }
             });
-            
+
             if (poolPreguntas.length === 0) { alert("No hay preguntas teóricas disponibles para los grupos seleccionados."); return; }
             initQuizGame(poolPreguntas);
         }
@@ -357,11 +356,16 @@
         quizScore = 0;
         currentQuizQuestion = 0;
 
+        // Extraer el límite que el usuario seleccionó en la pantalla
+        let limiteSeleccionado = parseInt(document.getElementById('quiz-length-select').value) || 10;
+
         if (quizType === 'visual') {
             const validDataset = dataset.filter(a => a.img && a.img.trim() !== "");
             if (validDataset.length < 4) { alert("No hay suficientes imágenes válidas."); return; }
             const shuffled = [...validDataset].sort(() => 0.5 - Math.random());
-            const selected = shuffled.slice(0, Math.min(QUIZ_LENGTH, shuffled.length));
+
+            // Corte dinámico según el selector
+            const selected = shuffled.slice(0, Math.min(limiteSeleccionado, shuffled.length));
 
             selected.forEach(correctAlga => {
                 const others = allAlgaeData.filter(a => a.name !== correctAlga.name);
@@ -376,8 +380,10 @@
             });
         } else {
             const shuffledQuestions = [...dataset].sort(() => 0.5 - Math.random());
-            const selectedQuestions = shuffledQuestions.slice(0, Math.min(QUIZ_LENGTH, shuffledQuestions.length));
-            
+
+            // Corte dinámico según el selector
+            const selectedQuestions = shuffledQuestions.slice(0, Math.min(limiteSeleccionado, shuffledQuestions.length));
+
             selectedQuestions.forEach(qData => {
                 quizQuestions.push({
                     isTheory: true,
@@ -403,7 +409,7 @@
         quizOptions.innerHTML = '';
         quizFeedback.textContent = '';
         quizFeedback.className = '';
-        
+
         quizProgress.textContent = `Pregunta ${currentQuizQuestion + 1} / ${quizQuestions.length}`;
         quizScoreEl.textContent = `Puntos: ${quizScore}`;
 
@@ -563,7 +569,7 @@
         startQuizBtn.addEventListener('click', openQuizModal);
         closeQuizModal.addEventListener('click', () => quizModal.style.display = 'none');
         quizModeAllBtn.addEventListener('click', () => setupQuizMode('all'));
-        
+
         // BLINDAJE TÁCTICO: Validaciones de carga en eventos
         quizModeGroupBtn.addEventListener('click', async () => {
             quizGroupSelectionDiv.style.display = 'block';
