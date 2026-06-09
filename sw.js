@@ -1,4 +1,6 @@
-const CACHE_NAME = 'talofitas-tactico-v8'; // Versión actualizada para purga obligatoria
+// El nombre ya no necesita cambiar. Será estático.
+const CACHE_NAME = 'talofitas-tactico-auto'; 
+
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -6,12 +8,12 @@ const ASSETS_TO_CACHE = [
     './script.js',
     './data/data.json',
     './data/teoria.json',
-    'https://i.imgur.com/S7Mbuoe.png',
     'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
     'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'
 ];
 
 self.addEventListener('install', (event) => {
+    // Fuerzo la instalación inmediata
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
     );
@@ -19,6 +21,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+    // Toma el control de la página instantáneamente sin esperar a que se reinicie
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
@@ -32,19 +35,23 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     if (!event.request.url.startsWith('http')) return;
 
+    // DOCTRINA TÁCTICA: "Network-First" (Primero Red)
     event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || fetch(event.request).then(response => {
-                return caches.open(CACHE_NAME).then(cache => {
-                    // BLINDAJE: Solo guarda imágenes si la descarga fue 100% exitosa (código 200)
-                    if (event.request.destination === 'image' && response.ok) {
-                        cache.put(event.request, response.clone());
-                    }
-                    return response;
-                });
-            });
-        }).catch(() => {
-            console.error("Fallo de red. Operando en modo Offline.");
-        })
+        fetch(event.request)
+            .then(response => {
+                // Si hay internet y la carga es exitosa, actualiza la copia de seguridad silenciosamente
+                if (response && response.status === 200) {
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => {
+                        cache.put(event.request, responseClone);
+                    });
+                }
+                return response;
+            })
+            .catch(() => {
+                // Si no hay internet (falla el fetch), extrae el archivo de la memoria caché
+                console.warn("Falla de conexión: Activando respaldo Offline para " + event.request.url);
+                return caches.match(event.request);
+            })
     );
 });
