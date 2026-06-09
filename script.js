@@ -359,7 +359,7 @@ if ('serviceWorker' in navigator) {
         }
     }
 
-        async function startGroupQuiz() {
+    async function startGroupQuiz() {
         if (quizType === 'visual') {
             const group = quizGroupDropdown.value;
             if (!group) return alert("Parámetro inválido. Seleccione un grupo.");
@@ -381,6 +381,7 @@ if ('serviceWorker' in navigator) {
             initQuizGame(pool);
         }
     }
+
 
     function initQuizGame(dataset) {
         quizQuestions = []; 
@@ -552,7 +553,7 @@ if ('serviceWorker' in navigator) {
         closeQuizModal.addEventListener('click', () => quizModal.style.display = 'none'); 
         quizModeAllBtn.addEventListener('click', () => setupQuizMode('all'));
 
-                // Reemplazo del bloque de botones de modalidad
+        // Reemplazo del bloque de botones de modalidad
         quizModeGroupBtn.addEventListener('click', () => setupQuizMode('group'));
 
         document.getElementById('type-visual-radio').addEventListener('change', () => { 
@@ -572,6 +573,7 @@ if ('serviceWorker' in navigator) {
                 renderQuizCheckboxes(); 
             } 
         });
+
 
 
         document.getElementById('type-teoria-radio').addEventListener('change', () => { 
